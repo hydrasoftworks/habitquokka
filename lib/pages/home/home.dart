@@ -1,74 +1,59 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
+import 'package:go_router/go_router.dart';
 
-import 'package:habit_quokka/models/tracker.dart';
-import 'package:habit_quokka/pages/tracker/tracker.dart';
-import 'package:habit_quokka/pages/trackers/trackers.dart';
+import 'package:habit_quokka/models/destination.dart';
 
-enum _Page {
-  home,
-  tracker;
+class HomePage extends StatelessWidget {
+  const HomePage({
+    super.key,
+    required this.child,
+  });
 
-  bool get splitScreen => this == _Page.tracker;
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  _Page _selectedPage = _Page.home;
-  Tracker? _selectedTracker;
+  final List<Destination> _destinations = Destination.values;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = _destinations.indexWhere(
+      (destination) => destination.path == GoRouter.of(context).location,
+    );
     return AdaptiveScaffold(
-      selectedIndex: _selectedPage.index,
-      onSelectedIndexChange: (int index) {
-        setState(() => _selectedPage = _Page.values[index]);
-      },
-      bodyRatio: 0.15,
       useDrawer: false,
-      destinations: const <NavigationDestination>[
-        NavigationDestination(
-          icon: Icon(Icons.inbox_outlined),
-          selectedIcon: Icon(Icons.inbox),
-          label: 'Inbox',
-        ),
-        NavigationDestination(
-          icon: Icon(Icons.article_outlined),
-          selectedIcon: Icon(Icons.article),
-          label: 'Habit Trackers',
-        ),
-      ],
-      body: _buildBody,
-      smallSecondaryBody: AdaptiveScaffold.emptyBuilder,
-      secondaryBody: _selectedPage.splitScreen ? _buildTrackerPage : null,
+      internalAnimations: false,
+      selectedIndex: math.max(selectedIndex, 0),
+      onSelectedIndexChange: (int index) {
+        final destination = _destinations[index];
+        GoRouter.of(context).go(destination.path);
+      },
+      destinations: _destinations
+          .map((destination) => destination.model)
+          .toList(growable: false),
+      body: (_) => child,
     );
   }
+}
 
-  Widget _buildBody(BuildContext context) {
-    switch (_selectedPage) {
-      case _Page.home:
-        return const Center(child: Text('Inbox'));
-      case _Page.tracker:
-        return TrackersPage(
-          onTrackerSelected: (tracker) => setState(
-            () => _selectedTracker = tracker,
-          ),
+extension _Model on Destination {
+  NavigationDestination get model {
+    switch (this) {
+      case Destination.home:
+        return const NavigationDestination(
+          label: 'Home',
+          icon: Icon(Icons.home_outlined),
+          selectedIcon: Icon(Icons.home_filled),
+          tooltip: 'Home page',
+        );
+      case Destination.trackers:
+        return const NavigationDestination(
+          label: 'My Trackers',
+          icon: Icon(Icons.group_outlined),
+          selectedIcon: Icon(Icons.group),
+          tooltip: 'My Trackers page',
         );
     }
-  }
-
-  Widget _buildTrackerPage(BuildContext context) {
-    final tracker = _selectedTracker;
-    if (tracker != null) {
-      return TrackerPage(tracker: tracker);
-    }
-    return const Center(child: Text('Select a tracker'));
   }
 }

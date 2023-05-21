@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:habit_quokka/models/tracker.dart';
-import 'package:habit_quokka/pages/tracker/widgets/windows.dart';
+import 'package:habit_quokka/pages/trackers/pages/details/widgets/windows.dart';
 
-class TrackerPage extends StatelessWidget {
-  const TrackerPage({
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({
     super.key,
     required this.tracker,
   });
@@ -15,8 +15,9 @@ class TrackerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
         child: AspectRatio(
           aspectRatio: tracker.columns / tracker.rows,
           child: Stack(

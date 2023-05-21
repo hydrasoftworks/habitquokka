@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:habit_quokka/models/destination.dart';
 import 'package:habit_quokka/models/tracker.dart';
+import 'package:habit_quokka/pages/trackers/pages/list/list.dart';
 
 class TrackersPage extends StatelessWidget {
-  const TrackersPage({
-    super.key,
-    required this.onTrackerSelected,
-  });
-
-  final void Function(Tracker) onTrackerSelected;
+  const TrackersPage({super.key});
 
   final List<Tracker> _trackers = const [
     Tracker(
@@ -21,25 +19,24 @@ class TrackersPage extends StatelessWidget {
       columns: 6,
       seedColor: 0x0D47A1,
     ),
+    Tracker(
+      id: 'TEST2',
+      name: 'Japanese',
+      image:
+          'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80',
+      rows: 5,
+      columns: 6,
+      seedColor: 0x9edc00,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _trackers.length,
-      itemBuilder: (context, index) {
-        final tracker = _trackers[index];
-        return ListTile(
-          title: Text(
-            tracker.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          onTap: () {
-            _changeTheme(context, tracker.seedColor);
-            onTrackerSelected(tracker);
-          },
-        );
+    return ListPage(
+      trackers: _trackers,
+      onTrackerSelected: (tracker) {
+        _changeTheme(context, tracker.seedColor);
+        GoRouter.of(context).go('${Destination.trackers.path}/${tracker.id}');
       },
     );
   }
