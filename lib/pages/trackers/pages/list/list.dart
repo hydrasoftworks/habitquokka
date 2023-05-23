@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:habit_quokka/models/tracker.dart';
+import 'package:habit_quokka/widgets/material_container.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({
@@ -15,19 +16,22 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: trackers.length,
-        itemBuilder: (context, index) {
-          final tracker = trackers[index];
-          return ListTile(
-            title: Text(
-              tracker.name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () => onTrackerSelected(tracker),
-          );
-        },
+      body: MaterialContainer(
+        surfaceColor: SurfaceColor.surfaceContainer,
+        child: ListView.builder(
+          itemCount: trackers.length,
+          itemBuilder: (context, index) {
+            final tracker = trackers[index];
+            return ListTile(
+              title: Text(
+                tracker.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              onTap: () => onTrackerSelected(tracker),
+            );
+          },
+        ),
       ),
     );
   }
