@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'package:habit_quokka/pages/trackers/pages/details/widgets/window.dart';
+import 'package:habit_quokka/pages/trackers/widgets/tracker_details/widgets/window.dart';
 
 class Windows extends StatefulWidget {
   const Windows({

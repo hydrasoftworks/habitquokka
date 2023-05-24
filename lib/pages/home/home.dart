@@ -21,40 +21,42 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedIndex = _selectedIndex(context);
 
-    return AdaptiveLayout(
-      internalAnimations: false,
-      primaryNavigation: SlotLayout(
-        config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.medium: _buildPrimaryNavigation(
-            context,
-            key: Key('$HomePage-primary-navigation-medium'),
-            selectedIndex: selectedIndex,
-            extended: false,
-          ),
-          Breakpoints.large: _buildPrimaryNavigation(
-            context,
-            key: Key('$HomePage-primary-navigation-large'),
-            selectedIndex: selectedIndex,
-            extended: true,
-          ),
-        },
-      ),
-      bottomNavigation: SlotLayout(
-        config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.small: _buildBottomNavigation(
-            context,
-            key: Key('$HomePage-bottom-navigation-small'),
-            selectedIndex: selectedIndex,
-          ),
-        },
-      ),
-      body: SlotLayout(
-        config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.smallAndUp: SlotLayout.from(
-            key: Key('$HomePage-body'),
-            builder: (_) => child,
-          ),
-        },
+    return Scaffold(
+      body: AdaptiveLayout(
+        internalAnimations: false,
+        primaryNavigation: SlotLayout(
+          config: <Breakpoint, SlotLayoutConfig>{
+            Breakpoints.medium: _buildPrimaryNavigation(
+              context,
+              key: Key('$HomePage-primary-navigation-medium'),
+              selectedIndex: selectedIndex,
+              extended: false,
+            ),
+            Breakpoints.large: _buildPrimaryNavigation(
+              context,
+              key: Key('$HomePage-primary-navigation-large'),
+              selectedIndex: selectedIndex,
+              extended: true,
+            ),
+          },
+        ),
+        bottomNavigation: SlotLayout(
+          config: <Breakpoint, SlotLayoutConfig>{
+            Breakpoints.small: _buildBottomNavigation(
+              context,
+              key: Key('$HomePage-bottom-navigation-small'),
+              selectedIndex: selectedIndex,
+            ),
+          },
+        ),
+        body: SlotLayout(
+          config: <Breakpoint, SlotLayoutConfig>{
+            Breakpoints.smallAndUp: SlotLayout.from(
+              key: Key('$HomePage-body'),
+              builder: (_) => child,
+            ),
+          },
+        ),
       ),
     );
   }

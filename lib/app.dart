@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habit_quokka/models/destination.dart';
-import 'package:habit_quokka/models/tracker.dart';
 import 'package:habit_quokka/pages/home/home.dart';
-import 'package:habit_quokka/pages/trackers/pages/details/details.dart';
 import 'package:habit_quokka/pages/trackers/trackers.dart';
 
 final _router = GoRouter(
@@ -14,7 +13,10 @@ final _router = GoRouter(
   debugLogDiagnostics: true,
   routes: [
     ShellRoute(
-      builder: (context, state, child) => HomePage(child: child),
+      pageBuilder: (context, state, child) => NoTransitionPage<void>(
+        key: state.pageKey,
+        child: HomePage(child: child),
+      ),
       routes: <RouteBase>[
         GoRoute(
           path: Destination.home.path,
@@ -24,25 +26,23 @@ final _router = GoRouter(
         ),
         GoRoute(
           path: Destination.trackers.path,
-          builder: (BuildContext context, GoRouterState state) {
-            return const TrackersPage();
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return NoTransitionPage<void>(
+              key: state.pageKey,
+              child: const TrackersPage(selectedTrackerId: null),
+            );
           },
-          routes: [
-            GoRoute(
-              path: ':trackerId',
-              builder: (context, state) {
-                const tracker = Tracker(
-                  id: 'TEST1',
-                  name: 'Water',
-                  image: 'https://picsum.photos/500?image=9',
-                  rows: 5,
-                  columns: 6,
-                  seedColor: 0x0D47A1,
-                );
-                return const DetailsPage(tracker: tracker);
-              },
-            ),
-          ],
+        ),
+        GoRoute(
+          path: '${Destination.trackers.path}/:trackerId',
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return NoTransitionPage<void>(
+              key: state.pageKey,
+              child: TrackersPage(
+                selectedTrackerId: state.pathParameters['trackerId'],
+              ),
+            );
+          },
         ),
       ],
     ),
@@ -58,11 +58,13 @@ class App extends StatelessWidget {
       initial: AdaptiveThemeMode.system,
       light: ThemeData.light(useMaterial3: true),
       dark: ThemeData.dark(useMaterial3: true),
-      builder: (light, dark) => MaterialApp.router(
-        title: 'Habit Quokka',
-        theme: light,
-        darkTheme: dark,
-        routerConfig: _router,
+      builder: (light, dark) => ResponsiveApp(
+        builder: (context) => MaterialApp.router(
+          title: 'Habit Quokka',
+          theme: light,
+          darkTheme: dark,
+          routerConfig: _router,
+        ),
       ),
     );
   }

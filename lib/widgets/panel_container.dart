@@ -1,0 +1,128 @@
+import 'package:flutter/material.dart';
+
+// Source: https://github.com/egortabula/material3_layout/
+
+enum SurfaceColor {
+  /// The lowest tone color that can be used as a background for a surface.
+  surface,
+
+  /// A slightly higher tone color that can be used for low-emphasis surfaces.
+  surfaceContainerLowest,
+
+  /// A higher tone color that can be used for medium-emphasis surfaces.
+  surfaceContainerLow,
+
+  /// A higher tone color that can be used for high-emphasis surfaces.
+  surfaceContainer,
+
+  /// A higher tone color that can be used for elevated surfaces, such as dialogs.
+  surfaceContainerHigh,
+
+  /// The highest tone color that can be used as a background for a surface.
+  surfaceContainerHighest;
+
+  Color color(BuildContext context) {
+    switch (this) {
+      case SurfaceColor.surface:
+        return Theme.of(context).colorScheme.surface;
+      case SurfaceColor.surfaceContainerLowest:
+        return Theme.of(context).brightness == Brightness.dark
+            ? Colors.black
+            : Colors.white;
+      case SurfaceColor.surfaceContainerLow:
+        return ElevationOverlay.applySurfaceTint(
+          Theme.of(context).colorScheme.surface,
+          Theme.of(context).colorScheme.surfaceTint,
+          1,
+        );
+      case SurfaceColor.surfaceContainer:
+        return ElevationOverlay.applySurfaceTint(
+          Theme.of(context).colorScheme.surface,
+          Theme.of(context).colorScheme.surfaceTint,
+          2,
+        );
+      case SurfaceColor.surfaceContainerHigh:
+        return ElevationOverlay.applySurfaceTint(
+          Theme.of(context).colorScheme.surface,
+          Theme.of(context).colorScheme.surfaceTint,
+          3,
+        );
+      case SurfaceColor.surfaceContainerHighest:
+        return Theme.of(context).colorScheme.surfaceVariant;
+    }
+  }
+}
+
+/// The [PanelContainer] is a wrapper widget for widgets. The container allows you to select the surface background color, container
+/// dimensions, and border radius.
+/// Example of usage:
+///
+/// ```dart
+/// PanelContainer(
+///   child: YourWidget(),
+///   surfaceColor: SurfaceColor.primaryVariant,
+///   padding: EdgeInsets.all(16),
+/// )
+/// ```
+class PanelContainer extends StatelessWidget {
+  const PanelContainer({
+    Key? key,
+    required this.child,
+    this.surfaceColor = SurfaceColor.surface,
+    this.padding = defaultPadding,
+    this.margin = defaultMargin,
+    this.height = double.infinity,
+    this.width = double.infinity,
+    this.topBorderRadius = 12,
+    this.bottomBorderRadius = 12,
+  }) : super(key: key);
+
+  static const defaultPadding = EdgeInsets.all(24);
+  static const defaultMargin = EdgeInsets.all(24);
+
+  /// The child widget to be wrapped with the container.
+  final Widget child;
+
+  /// The color of the surface of the container. Defaults to [SurfaceColor.surface].
+  final SurfaceColor surfaceColor;
+
+  /// The padding for the container's child widget. Defaults to [defaultPadding].
+  final EdgeInsetsGeometry padding;
+
+  /// The margin for the container's child widget. Defaults to [defaultMargin].
+  final EdgeInsetsGeometry margin;
+
+  /// The width of the container. Defaults to [double.infinity].
+  final double width;
+
+  /// The height of the container. Defaults to [double.infinity].
+  final double height;
+
+  /// The top border radius for the container. Defaults to 12.
+  final double topBorderRadius;
+
+  /// The bottom border radius for the container. Defaults to 12.
+  final double bottomBorderRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: Material(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(topBorderRadius),
+          bottom: Radius.circular(bottomBorderRadius),
+        ),
+        color: surfaceColor.color(context),
+        child: Padding(
+          padding: margin,
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}

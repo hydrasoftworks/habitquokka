@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+import 'package:habit_quokka/models/tracker.dart';
+import 'package:habit_quokka/widgets/panel_container.dart';
+
+class TrackersList extends StatelessWidget {
+  const TrackersList({
+    super.key,
+    required this.trackers,
+    required this.selectedTrackerId,
+    required this.onTrackerSelected,
+  });
+
+  final List<Tracker> trackers;
+  final String? selectedTrackerId;
+  final void Function(Tracker) onTrackerSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PanelContainer(
+        surfaceColor: SurfaceColor.surfaceContainerLow,
+        child: ListView.builder(
+          itemCount: trackers.length,
+          itemBuilder: (context, index) {
+            final tracker = trackers[index];
+            return ListTile(
+              selected: tracker.id == selectedTrackerId,
+              onTap: () => onTrackerSelected(tracker),
+              title: Text(
+                tracker.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:habit_quokka/models/destination.dart';
 import 'package:habit_quokka/models/tracker.dart';
-import 'package:habit_quokka/pages/trackers/pages/details/widgets/windows.dart';
-import 'package:habit_quokka/widgets/material_container.dart';
+import 'package:habit_quokka/pages/trackers/widgets/tracker_details/widgets/windows.dart';
+import 'package:habit_quokka/widgets/panel_container.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({
+class TrackerDetails extends StatelessWidget {
+  const TrackerDetails({
     super.key,
     required this.tracker,
   });
@@ -19,9 +21,16 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(tracker.name),
+        leading: BackButton(
+          onPressed: () => GoRouter.of(context).go(Destination.trackers.path),
+        ),
       ),
-      body: MaterialContainer(
-        surfaceColor: SurfaceColor.surfaceContainerLow,
+      body: PanelContainer(
+        surfaceColor: SurfaceColor.surfaceContainer,
+        padding: PanelContainer.defaultPadding.copyWith(
+          top: 0,
+          left: PanelContainer.defaultPadding.left / 2,
+        ),
         child: Center(
           child: AspectRatio(
             aspectRatio: tracker.columns / tracker.rows,
