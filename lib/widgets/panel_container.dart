@@ -66,7 +66,7 @@ enum SurfaceColor {
 /// ```
 class PanelContainer extends StatelessWidget {
   const PanelContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.surfaceColor = SurfaceColor.surface,
     this.padding = defaultPadding,
@@ -75,7 +75,7 @@ class PanelContainer extends StatelessWidget {
     this.width = double.infinity,
     this.topBorderRadius = 12,
     this.bottomBorderRadius = 12,
-  }) : super(key: key);
+  });
 
   static const defaultPadding = EdgeInsets.all(24);
   static const defaultMargin = EdgeInsets.all(24);

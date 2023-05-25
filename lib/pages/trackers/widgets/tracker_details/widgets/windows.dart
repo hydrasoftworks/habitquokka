@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'package:animated_emoji/emojis.dart';
+
 import 'package:habit_quokka/pages/trackers/widgets/tracker_details/widgets/window.dart';
 
 class Windows extends StatefulWidget {
@@ -23,6 +25,7 @@ class Windows extends StatefulWidget {
 class _WindowsState extends State<Windows> {
   final Set<String> _opened = {};
   late List<int> _indexes;
+  late List<AnimatedEmojiData> _emojis;
 
   @override
   void initState() {
@@ -31,7 +34,12 @@ class _WindowsState extends State<Windows> {
       widget.rows * widget.columns,
       (index) => index + 1,
     );
-    if (widget.seed != null) _indexes.shuffle(math.Random(widget.seed));
+    _emojis = List.of(AnimatedEmojis.values);
+    if (widget.seed != null) {
+      final random = math.Random(widget.seed);
+      _indexes.shuffle(random);
+      _emojis.shuffle(random);
+    }
   }
 
   @override
@@ -59,6 +67,7 @@ class _WindowsState extends State<Windows> {
       aspectRatio: 1,
       child: Window(
         text: _indexes[index].toString(),
+        emoji: _emojis[index],
         isOpened: _opened.contains(key),
         onPressed: () {
           setState(() {

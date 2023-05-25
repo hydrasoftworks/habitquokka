@@ -94,7 +94,10 @@ class TrackersPage extends StatelessWidget {
       (timeStamp) => _changeTheme(context, tracker.seedColor),
     );
 
-    return TrackerDetails(tracker: tracker);
+    return TrackerDetails(
+      key: ValueKey('$TrackerDetails-${tracker.id}'),
+      tracker: tracker,
+    );
   }
 
   void _changeTheme(BuildContext context, int seedColor) {
