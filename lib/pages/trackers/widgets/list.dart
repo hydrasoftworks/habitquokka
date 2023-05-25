@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:habit_quokka/models/tracker.dart';
-import 'package:habit_quokka/widgets/panel_container.dart';
+import 'package:habitquokka/models/tracker.dart';
+import 'package:habitquokka/widgets/panel_container.dart';
 
 class TrackersList extends StatelessWidget {
   const TrackersList({

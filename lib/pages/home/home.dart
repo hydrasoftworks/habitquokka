@@ -6,7 +6,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:habit_quokka/models/destination.dart';
+import 'package:habitquokka/models/destination.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -114,6 +114,7 @@ class HomePage extends StatelessWidget {
     if (destination != Destination.trackers) {
       AdaptiveTheme.of(context).reset();
     }
+
     GoRouter.of(context).go(destination.path);
   }
 }

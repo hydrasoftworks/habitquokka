@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:habit_quokka/models/destination.dart';
-import 'package:habit_quokka/pages/home/home.dart';
-import 'package:habit_quokka/pages/trackers/trackers.dart';
+import 'package:habitquokka/models/destination.dart';
+import 'package:habitquokka/pages/home/home.dart';
+import 'package:habitquokka/pages/trackers/trackers.dart';
 
 final _router = GoRouter(
   initialLocation: '/',
@@ -61,8 +62,12 @@ class App extends StatelessWidget {
       builder: (light, dark) => ResponsiveApp(
         builder: (context) => MaterialApp.router(
           title: 'Habit Quokka',
-          theme: light,
-          darkTheme: dark,
+          theme: light.copyWith(
+            textTheme: GoogleFonts.notoSansTextTheme(light.textTheme),
+          ),
+          darkTheme: dark.copyWith(
+            textTheme: GoogleFonts.notoSansTextTheme(dark.textTheme),
+          ),
           routerConfig: _router,
         ),
       ),

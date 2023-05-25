@@ -4,11 +4,11 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:habit_quokka/models/destination.dart';
-import 'package:habit_quokka/models/tracker.dart';
-import 'package:habit_quokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
-import 'package:habit_quokka/pages/trackers/widgets/trackers_list.dart';
-import 'package:habit_quokka/widgets/panel_container.dart';
+import 'package:habitquokka/models/destination.dart';
+import 'package:habitquokka/models/tracker.dart';
+import 'package:habitquokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
+import 'package:habitquokka/pages/trackers/widgets/trackers_list.dart';
+import 'package:habitquokka/widgets/panel_container.dart';
 
 class TrackersPage extends StatelessWidget {
   const TrackersPage({

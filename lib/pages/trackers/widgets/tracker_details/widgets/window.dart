@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Window extends StatefulWidget {
   const Window({
@@ -79,7 +80,9 @@ class _WindowState extends State<Window> {
           .colorScheme
           .onPrimaryContainer
           .withOpacity(isOpened ? 0 : 1),
-      textStyle: Theme.of(context).textTheme.displayMedium,
+      textStyle: GoogleFonts.lilitaOne(
+        textStyle: Theme.of(context).textTheme.displayLarge,
+      ),
       shape: const BeveledRectangleBorder(),
       elevation: 0,
       padding: const EdgeInsets.all(8),

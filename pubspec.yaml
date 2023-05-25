@@ -1,4 +1,4 @@
-name: habit_quokka
+name: habitquokka
 description: A new Flutter project.
 publish_to: 'none'
 version: 0.1.0
@@ -17,15 +17,18 @@ dependencies:
   go_router: ^7.1.1
   responsive_builder: ^0.7.0
   animated_emoji: ^1.0.1+2
+  google_fonts: ^4.0.4
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   flutter_lints: ^2.0.1
   import_sorter: ^4.6.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/fonts/Lilita_One/
+    - assets/fonts/Noto_Sans/
 
 import_sorter:
   comments: false

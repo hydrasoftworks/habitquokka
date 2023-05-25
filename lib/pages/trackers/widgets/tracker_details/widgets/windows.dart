@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/emojis.dart';
 
-import 'package:habit_quokka/pages/trackers/widgets/tracker_details/widgets/window.dart';
+import 'package:habitquokka/pages/trackers/widgets/tracker_details/widgets/window.dart';
 
 class Windows extends StatefulWidget {
   const Windows({
