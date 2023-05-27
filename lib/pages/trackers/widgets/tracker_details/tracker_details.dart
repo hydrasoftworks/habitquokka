@@ -20,7 +20,11 @@ class TrackerDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(tracker.name),
+        title: Text(
+          tracker.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         leading: BackButton(
           onPressed: () => GoRouter.of(context).go(Destination.trackers.path),
         ),

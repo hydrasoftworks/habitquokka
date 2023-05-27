@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:animated_emoji/animated_emoji.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/models/destination.dart';
 import 'package:habitquokka/models/tracker.dart';
+import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
 import 'package:habitquokka/pages/trackers/widgets/trackers_list.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
@@ -20,7 +22,8 @@ class TrackersPage extends StatelessWidget {
   final List<Tracker> _trackers = const [
     Tracker(
       id: 'TEST1',
-      name: 'Water',
+      shortName: 'Water',
+      name: 'Drink 2 liters of water per day',
       image: 'https://picsum.photos/500?image=9',
       rows: 5,
       columns: 6,
@@ -28,7 +31,8 @@ class TrackersPage extends StatelessWidget {
     ),
     Tracker(
       id: 'TEST2',
-      name: 'Japanese',
+      shortName: 'Japanese',
+      name: 'Learn Japanese every other day',
       image:
           'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80',
       rows: 5,
@@ -68,7 +72,10 @@ class TrackersPage extends StatelessWidget {
               ),
               child: (selectedTrackerId != null)
                   ? _buildTrackerDetails(context)
-                  : const Center(child: Text('Select a tracker')),
+                  : const EmptyPage(
+                      emoji: AnimatedEmojis.turtle,
+                      text: 'Select or create a tracker to get started!',
+                    ),
             ),
           ),
         ],

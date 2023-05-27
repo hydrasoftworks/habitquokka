@@ -31,7 +31,7 @@ class TrackersList extends StatelessWidget {
               selected: tracker.id == selectedTrackerId,
               onTap: () => onTrackerSelected(tracker),
               title: Text(
-                tracker.name,
+                tracker.shortName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

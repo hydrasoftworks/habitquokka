@@ -83,7 +83,11 @@ class _WindowState extends State<Window> {
       textStyle: GoogleFonts.lilitaOne(
         textStyle: Theme.of(context).textTheme.displayLarge,
       ),
-      shape: const BeveledRectangleBorder(),
+      shape: BeveledRectangleBorder(
+        side: isOpened
+            ? BorderSide.none
+            : BorderSide(color: Theme.of(context).colorScheme.tertiary),
+      ),
       elevation: 0,
       padding: const EdgeInsets.all(8),
     );
