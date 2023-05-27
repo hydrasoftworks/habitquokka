@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:animated_emoji/animated_emoji.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/models/destination.dart';
+import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
@@ -73,7 +73,7 @@ class TrackersPage extends StatelessWidget {
               child: (selectedTrackerId != null)
                   ? _buildTrackerDetails(context)
                   : const EmptyPage(
-                      emoji: AnimatedEmojis.turtle,
+                      emoji: Emoji.emptyTracker,
                       text: 'Select or create a tracker to get started!',
                     ),
             ),

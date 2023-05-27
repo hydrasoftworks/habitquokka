@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/emojis.dart';
 
+import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/pages/trackers/widgets/tracker_details/widgets/window.dart';
 
 class Windows extends StatefulWidget {
@@ -34,12 +35,13 @@ class _WindowsState extends State<Windows> {
       widget.rows * widget.columns,
       (index) => index + 1,
     );
-    _emojis = List.of(AnimatedEmojis.values);
+    _emojis = List.of(Emoji.all);
     if (widget.seed != null) {
       final random = math.Random(widget.seed);
       _indexes.shuffle(random);
       _emojis.shuffle(random);
     }
+    _emojis = _emojis.take(_indexes.length).toList(growable: false);
   }
 
   @override

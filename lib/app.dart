@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:animated_emoji/animated_emoji.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/models/destination.dart';
+import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
 import 'package:habitquokka/pages/trackers/trackers.dart';
@@ -17,7 +17,7 @@ final _router = GoRouter(
   errorPageBuilder: (context, state) => NoTransitionPage<void>(
     key: state.pageKey,
     child: const EmptyPage(
-      emoji: AnimatedEmojis.dizzy,
+      emoji: Emoji.notFound,
       text: 'Page not found',
     ),
   ),
