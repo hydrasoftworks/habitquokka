@@ -12,9 +12,11 @@ class TrackerDetails extends StatelessWidget {
   const TrackerDetails({
     super.key,
     required this.tracker,
+    required this.padding,
   });
 
   final Tracker tracker;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +33,7 @@ class TrackerDetails extends StatelessWidget {
       ),
       body: PanelContainer(
         surfaceColor: SurfaceColor.surfaceContainer,
-        padding: PanelContainer.defaultPadding.copyWith(
-          top: 0,
-          left: PanelContainer.defaultPadding.left / 2,
-        ),
+        padding: padding,
         child: Center(
           child: AspectRatio(
             aspectRatio: tracker.columns / tracker.rows,

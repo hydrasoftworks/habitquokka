@@ -51,9 +51,9 @@ class TrackersPage extends StatelessWidget {
 
   Widget _buildSinglePage(BuildContext context) {
     if (selectedTrackerId != null) {
-      return _buildTrackerDetails(context);
+      return _buildTrackerDetails(context, isSplitPage: false);
     }
-    return _buildTrackersList(context);
+    return _buildTrackersList(context, isSplitPage: false);
   }
 
   Widget _buildSplitPage(BuildContext context) {
@@ -63,7 +63,7 @@ class TrackersPage extends StatelessWidget {
         children: [
           SizedBox(
             width: 30.screenWidth,
-            child: _buildTrackersList(context),
+            child: _buildTrackersList(context, isSplitPage: true),
           ),
           Expanded(
             child: Padding(
@@ -71,7 +71,7 @@ class TrackersPage extends StatelessWidget {
                 top: PanelContainer.defaultPadding.top,
               ),
               child: (selectedTrackerId != null)
-                  ? _buildTrackerDetails(context)
+                  ? _buildTrackerDetails(context, isSplitPage: true)
                   : const EmptyPage(
                       emoji: Emoji.emptyTracker,
                       text: 'Select or create a tracker to get started!',
@@ -83,17 +83,26 @@ class TrackersPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTrackersList(BuildContext context) {
+  Widget _buildTrackersList(
+    BuildContext context, {
+    required bool isSplitPage,
+  }) {
     return TrackersList(
-      trackers: _trackers,
-      selectedTrackerId: selectedTrackerId,
       onTrackerSelected: (tracker) {
         GoRouter.of(context).go('${Destination.trackers.path}/${tracker.id}');
       },
+      trackers: _trackers,
+      selectedTrackerId: selectedTrackerId,
+      padding: PanelContainer.defaultPadding.copyWith(
+        right: isSplitPage ? PanelContainer.defaultPadding.right / 2 : null,
+      ),
     );
   }
 
-  Widget _buildTrackerDetails(BuildContext context) {
+  Widget _buildTrackerDetails(
+    BuildContext context, {
+    required bool isSplitPage,
+  }) {
     final tracker = _trackers.firstWhere(
       (tracker) => tracker.id == selectedTrackerId,
     );
@@ -104,6 +113,10 @@ class TrackersPage extends StatelessWidget {
     return TrackerDetails(
       key: ValueKey('$TrackerDetails-${tracker.id}'),
       tracker: tracker,
+      padding: PanelContainer.defaultPadding.copyWith(
+        top: 0,
+        left: isSplitPage ? PanelContainer.defaultPadding.left / 2 : null,
+      ),
     );
   }
 

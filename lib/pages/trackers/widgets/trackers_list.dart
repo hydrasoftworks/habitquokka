@@ -8,11 +8,13 @@ class TrackersList extends StatelessWidget {
     super.key,
     required this.trackers,
     required this.selectedTrackerId,
+    required this.padding,
     required this.onTrackerSelected,
   });
 
   final List<Tracker> trackers;
   final String? selectedTrackerId;
+  final EdgeInsets padding;
   final void Function(Tracker) onTrackerSelected;
 
   @override
@@ -20,9 +22,7 @@ class TrackersList extends StatelessWidget {
     return Scaffold(
       body: PanelContainer(
         surfaceColor: SurfaceColor.surfaceContainerLow,
-        padding: PanelContainer.defaultPadding.copyWith(
-          right: PanelContainer.defaultPadding.right / 2,
-        ),
+        padding: padding,
         child: ListView.builder(
           itemCount: trackers.length,
           itemBuilder: (context, index) {
