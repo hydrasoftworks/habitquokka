@@ -1,7 +1,7 @@
 import 'package:animated_emoji/animated_emoji.dart';
 
 class Emoji {
-  static const notFound = AnimatedEmojis.dizzy;
+  static const notFound = AnimatedEmojis.sad;
   static const emptyTracker = AnimatedEmojis.turtle;
 
   static const List<AnimatedEmojiData> all = [

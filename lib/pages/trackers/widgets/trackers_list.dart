@@ -28,6 +28,9 @@ class TrackersList extends StatelessWidget {
           itemBuilder: (context, index) {
             final tracker = trackers[index];
             return ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
               selected: tracker.id == selectedTrackerId,
               onTap: () => onTrackerSelected(tracker),
               title: Text(

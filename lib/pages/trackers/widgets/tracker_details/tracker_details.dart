@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:habitquokka/models/destination.dart';
+import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/trackers/widgets/tracker_details/widgets/windows.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
@@ -28,7 +28,8 @@ class TrackerDetails extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         leading: BackButton(
-          onPressed: () => GoRouter.of(context).go(Destination.trackers.path),
+          onPressed: () =>
+              GoRouter.of(context).go(HomeDestination.trackers.path),
         ),
       ),
       body: PanelContainer(

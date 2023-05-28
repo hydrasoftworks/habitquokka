@@ -4,8 +4,8 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:habitquokka/models/destination.dart';
 import 'package:habitquokka/models/emoji.dart';
+import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
@@ -89,7 +89,8 @@ class TrackersPage extends StatelessWidget {
   }) {
     return TrackersList(
       onTrackerSelected: (tracker) {
-        GoRouter.of(context).go('${Destination.trackers.path}/${tracker.id}');
+        GoRouter.of(context)
+            .go('${HomeDestination.trackers.path}/${tracker.id}');
       },
       trackers: _trackers,
       selectedTrackerId: selectedTrackerId,

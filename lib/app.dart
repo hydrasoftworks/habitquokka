@@ -1,63 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:habitquokka/models/destination.dart';
-import 'package:habitquokka/models/emoji.dart';
-import 'package:habitquokka/pages/empty/empty.dart';
-import 'package:habitquokka/pages/home/home.dart';
-import 'package:habitquokka/pages/trackers/trackers.dart';
-
-final _router = GoRouter(
-  initialLocation: '/',
-  debugLogDiagnostics: true,
-  errorPageBuilder: (context, state) => NoTransitionPage<void>(
-    key: state.pageKey,
-    child: const EmptyPage(
-      emoji: Emoji.notFound,
-      text: 'Page not found',
-    ),
-  ),
-  routes: [
-    ShellRoute(
-      pageBuilder: (context, state, child) => NoTransitionPage<void>(
-        key: state.pageKey,
-        child: HomePage(child: child),
-      ),
-      routes: <RouteBase>[
-        GoRoute(
-          path: Destination.home.path,
-          builder: (BuildContext context, GoRouterState state) {
-            return const Center(child: Text('Home'));
-          },
-        ),
-        GoRoute(
-          path: Destination.trackers.path,
-          pageBuilder: (BuildContext context, GoRouterState state) {
-            return NoTransitionPage<void>(
-              key: state.pageKey,
-              child: const TrackersPage(selectedTrackerId: null),
-            );
-          },
-        ),
-        GoRoute(
-          path: '${Destination.trackers.path}/:trackerId',
-          pageBuilder: (BuildContext context, GoRouterState state) {
-            return NoTransitionPage<void>(
-              key: state.pageKey,
-              child: TrackersPage(
-                selectedTrackerId: state.pathParameters['trackerId'],
-              ),
-            );
-          },
-        ),
-      ],
-    ),
-  ],
-);
+import 'package:habitquokka/router.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -77,7 +24,7 @@ class App extends StatelessWidget {
           darkTheme: dark.copyWith(
             textTheme: GoogleFonts.notoSansTextTheme(dark.textTheme),
           ),
-          routerConfig: _router,
+          routerConfig: AppRouter.router,
         ),
       ),
     );

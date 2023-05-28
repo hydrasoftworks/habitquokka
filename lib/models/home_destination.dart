@@ -1,12 +1,12 @@
-enum Destination {
+enum HomeDestination {
   home,
   trackers;
 
   String get path {
     switch (this) {
-      case Destination.home:
+      case HomeDestination.home:
         return '/';
-      case Destination.trackers:
+      case HomeDestination.trackers:
         return '/trackers';
     }
   }

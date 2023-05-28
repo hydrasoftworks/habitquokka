@@ -2,11 +2,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:habitquokka/models/destination.dart';
+import 'package:habitquokka/models/home_destination.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -14,7 +13,7 @@ class HomePage extends StatelessWidget {
     required this.child,
   });
 
-  final List<Destination> _destinations = Destination.values;
+  final List<HomeDestination> _destinations = HomeDestination.values;
   final Widget child;
 
   @override
@@ -111,29 +110,25 @@ class HomePage extends StatelessWidget {
 
   void onDestinationSelected(BuildContext context, int index) {
     final destination = _destinations[index];
-    if (destination != Destination.trackers) {
-      AdaptiveTheme.of(context).reset();
-    }
-
     GoRouter.of(context).go(destination.path);
   }
 }
 
-extension _Model on Destination {
+extension _Model on HomeDestination {
   NavigationDestination get model {
     switch (this) {
-      case Destination.home:
+      case HomeDestination.home:
         return const NavigationDestination(
           label: 'Home',
           icon: Icon(Icons.home_outlined),
           selectedIcon: Icon(Icons.home_filled),
           tooltip: 'Home page',
         );
-      case Destination.trackers:
+      case HomeDestination.trackers:
         return const NavigationDestination(
           label: 'My Trackers',
-          icon: Icon(Icons.group_outlined),
-          selectedIcon: Icon(Icons.group),
+          icon: Icon(Icons.view_module_outlined),
+          selectedIcon: Icon(Icons.view_module),
           tooltip: 'My Trackers page',
         );
     }

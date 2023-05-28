@@ -78,7 +78,7 @@ class PanelContainer extends StatelessWidget {
   });
 
   static const defaultPadding = EdgeInsets.all(24);
-  static const defaultMargin = EdgeInsets.all(24);
+  static const defaultMargin = EdgeInsets.all(16);
 
   /// The child widget to be wrapped with the container.
   final Widget child;
