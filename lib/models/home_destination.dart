@@ -1,10 +1,10 @@
 enum HomeDestination {
-  home,
+  landing,
   trackers;
 
   String get path {
     switch (this) {
-      case HomeDestination.home:
+      case HomeDestination.landing:
         return '/';
       case HomeDestination.trackers:
         return '/trackers';
