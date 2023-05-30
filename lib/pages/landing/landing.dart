@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitquokka/pages/landing/widgets/change_page_button.dart';
+import 'package:habitquokka/pages/landing/widgets/landing_step.dart';
+import 'package:habitquokka/pages/landing/widgets/theme_wrapper.dart';
+import 'package:habitquokka/theme.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -11,7 +13,6 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   late PageController _pageController;
-  final int _numberOfPages = 3;
   int _visiblePage = 0;
 
   @override
@@ -32,46 +33,47 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
+      body: PageView(
+        controller: _pageController,
+        scrollDirection: Axis.vertical,
         children: [
-          PageView(
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            children: [
-              Container(
-                color: Colors.yellow,
-              ),
-              Container(
-                color: Colors.red,
-              ),
-              Container(
-                color: Colors.green,
-              ),
-            ],
+          ThemeWrapper(
+            seedColor: AppTheme.mainColor,
+            child: LandingStep(
+              onPreviousPressed: null,
+              onNextPressed: _onNextPressed,
+            ),
           ),
-          if (_visiblePage < _numberOfPages - 1)
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: NextPageButton(
-                onPressed: () => _pageController.nextPage(
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeIn,
-                ),
-              ),
+          ThemeWrapper(
+            seedColor: const Color(0xFFeff4e2),
+            child: LandingStep(
+              onPreviousPressed: _onPreviousPressed,
+              onNextPressed: _onNextPressed,
             ),
-          if (_visiblePage > 0)
-            Align(
-              alignment: Alignment.topCenter,
-              child: PreviousPageButton(
-                onPressed: () => _pageController.previousPage(
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeIn,
-                ),
-              ),
+          ),
+          ThemeWrapper(
+            seedColor: const Color(0xFFffb3e2),
+            child: LandingStep(
+              onPreviousPressed: _onPreviousPressed,
+              onNextPressed: null,
             ),
+          ),
         ],
       ),
+    );
+  }
+
+  void _onPreviousPressed() {
+    _pageController.previousPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeIn,
+    );
+  }
+
+  void _onNextPressed() {
+    _pageController.nextPage(
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeIn,
     );
   }
 }

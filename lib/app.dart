@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/router.dart';
+import 'package:habitquokka/theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,8 +14,20 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return AdaptiveTheme(
       initial: AdaptiveThemeMode.system,
-      light: ThemeData.light(useMaterial3: true),
-      dark: ThemeData.dark(useMaterial3: true),
+      light: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppTheme.mainColor,
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
+      ),
+      dark: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppTheme.mainColor,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
       builder: (light, dark) => ResponsiveApp(
         builder: (context) => MaterialApp.router(
           title: 'Habit Quokka',

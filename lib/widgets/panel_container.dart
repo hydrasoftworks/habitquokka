@@ -69,6 +69,7 @@ class PanelContainer extends StatelessWidget {
     super.key,
     required this.child,
     this.surfaceColor = SurfaceColor.surface,
+    this.customColor,
     this.padding = defaultPadding,
     this.margin = defaultMargin,
     this.height = double.infinity,
@@ -85,6 +86,9 @@ class PanelContainer extends StatelessWidget {
 
   /// The color of the surface of the container. Defaults to [SurfaceColor.surface].
   final SurfaceColor surfaceColor;
+
+  /// The override of color of the surface of the container. Defaults to [surfaceColor].
+  final Color? customColor;
 
   /// The padding for the container's child widget. Defaults to [defaultPadding].
   final EdgeInsetsGeometry padding;
@@ -113,7 +117,7 @@ class PanelContainer extends StatelessWidget {
           top: Radius.circular(topBorderRadius),
           bottom: Radius.circular(bottomBorderRadius),
         ),
-        color: surfaceColor.color(context),
+        color: customColor ?? surfaceColor.color(context),
         child: Padding(
           padding: margin,
           child: SizedBox(

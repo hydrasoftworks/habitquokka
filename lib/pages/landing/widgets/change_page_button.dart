@@ -55,6 +55,8 @@ class _ChangePageButton extends StatelessWidget {
       onPressed: onPressed,
       iconSize: width * 0.05,
       style: IconButton.styleFrom(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top:
@@ -67,8 +69,8 @@ class _ChangePageButton extends StatelessWidget {
       ),
       icon: Icon(
         switch (mode) {
-          _Mode.next => Icons.keyboard_arrow_down,
           _Mode.previous => Icons.keyboard_arrow_up,
+          _Mode.next => Icons.keyboard_arrow_down,
         },
       ),
     );
