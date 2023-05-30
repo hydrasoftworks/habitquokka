@@ -5,15 +5,21 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:habitquokka/pages/landing/widgets/change_page_button.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
+typedef WidgetBuilder = Widget Function(BuildContext);
+
 class LandingStep extends StatelessWidget {
   const LandingStep({
     super.key,
     required this.onPreviousPressed,
     required this.onNextPressed,
+    required this.mobile,
+    required this.desktop,
   });
 
   final VoidCallback? onPreviousPressed;
   final VoidCallback? onNextPressed;
+  final WidgetBuilder mobile;
+  final WidgetBuilder desktop;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +32,8 @@ class LandingStep extends StatelessWidget {
         PanelContainer(
           customColor: Theme.of(context).colorScheme.primaryContainer,
           child: ScreenTypeLayout.builder(
-            mobile: (context) => const _MobileStep(),
-            desktop: (context) => const _DesktopStep(),
+            mobile: mobile,
+            desktop: desktop,
           ),
         ),
         if (onPreviousPressed != null)
@@ -46,23 +52,5 @@ class LandingStep extends StatelessWidget {
           ),
       ],
     );
-  }
-}
-
-class _MobileStep extends StatelessWidget {
-  const _MobileStep();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-class _DesktopStep extends StatelessWidget {
-  const _DesktopStep();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

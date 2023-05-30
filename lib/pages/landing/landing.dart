@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitquokka/pages/landing/widgets/landing_step.dart';
+import 'package:habitquokka/pages/landing/widgets/steps/first_step.dart';
 import 'package:habitquokka/pages/landing/widgets/theme_wrapper.dart';
 import 'package:habitquokka/theme.dart';
 
@@ -42,6 +43,8 @@ class _LandingPageState extends State<LandingPage> {
             child: LandingStep(
               onPreviousPressed: null,
               onNextPressed: _onNextPressed,
+              mobile: (_) => const FirstStepMobile(),
+              desktop: (_) => const FirstStepDesktop(),
             ),
           ),
           ThemeWrapper(
@@ -49,6 +52,8 @@ class _LandingPageState extends State<LandingPage> {
             child: LandingStep(
               onPreviousPressed: _onPreviousPressed,
               onNextPressed: _onNextPressed,
+              mobile: (_) => const FirstStepMobile(),
+              desktop: (_) => const FirstStepDesktop(),
             ),
           ),
           ThemeWrapper(
@@ -56,6 +61,8 @@ class _LandingPageState extends State<LandingPage> {
             child: LandingStep(
               onPreviousPressed: _onPreviousPressed,
               onNextPressed: null,
+              mobile: (_) => const FirstStepMobile(),
+              desktop: (_) => const FirstStepDesktop(),
             ),
           ),
         ],

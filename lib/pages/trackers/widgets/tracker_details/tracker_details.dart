@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/tracker.dart';
-import 'package:habitquokka/pages/trackers/widgets/tracker_details/widgets/windows.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
 class TrackerDetails extends StatelessWidget {
   const TrackerDetails({
@@ -36,22 +35,8 @@ class TrackerDetails extends StatelessWidget {
         surfaceColor: SurfaceColor.surfaceContainer,
         padding: padding,
         child: Center(
-          child: AspectRatio(
-            aspectRatio: tracker.columns / tracker.rows,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                CachedNetworkImage(
-                  imageUrl: tracker.image,
-                  fit: BoxFit.cover,
-                ),
-                Windows(
-                  rows: tracker.rows,
-                  columns: tracker.columns,
-                  seed: tracker.id.hashCode,
-                ),
-              ],
-            ),
+          child: TrackerWidget(
+            tracker: tracker,
           ),
         ),
       ),
