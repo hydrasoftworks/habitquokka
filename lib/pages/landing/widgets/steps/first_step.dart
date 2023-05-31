@@ -15,12 +15,13 @@ class FirstStepMobile extends StatelessWidget {
       padding: EdgeInsets.all(12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _TitleWidget(),
           SizedBox(height: 48),
           _DescriptionWidget(),
           SizedBox(height: 24),
-          _TrackerWidget(),
+          Expanded(child: _TrackerWidget()),
         ],
       ),
     );
@@ -57,11 +58,14 @@ class _TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(
-      'Habit Quokka',
-      style: Theme.of(context).textTheme.displayLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
+    return SelectionArea(
+      child: AutoSizeText(
+        'Habit Quokka',
+        minFontSize: 14,
+        style: Theme.of(context).textTheme.displayLarge?.copyWith(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+      ),
     );
   }
 }
@@ -71,11 +75,14 @@ class _DescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(
-      'Welcome to Habit Quokka – the fun habit tracking app inspired by advent calendars! Create a tracker for any habit you want to follow and start building good habits today.',
-      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
+    return SelectionArea(
+      child: AutoSizeText(
+        'Welcome to Habit Quokka – the fun habit tracking app inspired by advent calendars! Create a tracker for any habit you want to follow and start building good habits today.',
+        minFontSize: 10,
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+      ),
     );
   }
 }

@@ -17,7 +17,6 @@ class TrackerWidget extends StatelessWidget {
     return AspectRatio(
       aspectRatio: tracker.columns / tracker.rows,
       child: Stack(
-        fit: StackFit.expand,
         children: [
           CachedNetworkImage(
             imageUrl: tracker.image,
