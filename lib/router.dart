@@ -7,7 +7,7 @@ import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
-import 'package:habitquokka/pages/landing/landing.dart';
+import 'package:habitquokka/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/trackers/trackers.dart';
 
 class AppRouter {
@@ -32,11 +32,11 @@ class AppRouter {
         ),
         routes: <RouteBase>[
           GoRoute(
-            path: HomeDestination.landing.path,
+            path: HomeDestination.onboarding.path,
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: const LandingPage(),
+                child: const OnboardingPage(),
               );
             },
           ),

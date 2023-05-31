@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:habitquokka/pages/landing/widgets/change_page_button.dart';
+import 'package:habitquokka/pages/onboarding/widgets/change_page_button.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 typedef WidgetBuilder = Widget Function(BuildContext);
 
-class LandingStep extends StatelessWidget {
-  const LandingStep({
+class OnboardingStep extends StatelessWidget {
+  const OnboardingStep({
     super.key,
     required this.onPreviousPressed,
     required this.onNextPressed,

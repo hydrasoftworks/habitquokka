@@ -117,7 +117,7 @@ class HomePage extends StatelessWidget {
 extension _Model on HomeDestination {
   NavigationDestination get model {
     switch (this) {
-      case HomeDestination.landing:
+      case HomeDestination.onboarding:
         return const NavigationDestination(
           label: 'Home',
           icon: Icon(Icons.home_outlined),

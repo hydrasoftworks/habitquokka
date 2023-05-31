@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitquokka/pages/landing/widgets/landing_step.dart';
-import 'package:habitquokka/pages/landing/widgets/steps/first_step.dart';
-import 'package:habitquokka/pages/landing/widgets/theme_wrapper.dart';
+import 'package:preload_page_view/preload_page_view.dart';
+
+import 'package:habitquokka/pages/onboarding/widgets/onboarding_step.dart';
+import 'package:habitquokka/pages/onboarding/widgets/steps/first_step.dart';
+import 'package:habitquokka/pages/onboarding/widgets/steps/second_step.dart';
+import 'package:habitquokka/pages/onboarding/widgets/steps/third_step.dart';
+import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
 import 'package:habitquokka/theme.dart';
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
+class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({super.key});
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
-  late PageController _pageController;
+class _OnboardingPageState extends State<OnboardingPage> {
+  late PreloadPageController _pageController;
   int _visiblePage = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _visiblePage);
+    _pageController = PreloadPageController(initialPage: _visiblePage);
     _pageController.addListener(() {
       setState(() => _visiblePage = _pageController.page?.toInt() ?? 0);
     });
@@ -34,13 +38,14 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
+      body: PreloadPageView(
         controller: _pageController,
         scrollDirection: Axis.vertical,
+        preloadPagesCount: 3,
         children: [
           ThemeWrapper(
             seedColor: AppTheme.mainColor,
-            child: LandingStep(
+            child: OnboardingStep(
               onPreviousPressed: null,
               onNextPressed: _onNextPressed,
               mobile: (_) => const FirstStepMobile(),
@@ -49,20 +54,20 @@ class _LandingPageState extends State<LandingPage> {
           ),
           ThemeWrapper(
             seedColor: const Color(0xFFeff4e2),
-            child: LandingStep(
+            child: OnboardingStep(
               onPreviousPressed: _onPreviousPressed,
               onNextPressed: _onNextPressed,
-              mobile: (_) => const FirstStepMobile(),
-              desktop: (_) => const FirstStepDesktop(),
+              mobile: (_) => const SecondStepMobile(),
+              desktop: (_) => const SecondStepDesktop(),
             ),
           ),
           ThemeWrapper(
             seedColor: const Color(0xFFffb3e2),
-            child: LandingStep(
+            child: OnboardingStep(
               onPreviousPressed: _onPreviousPressed,
               onNextPressed: null,
-              mobile: (_) => const FirstStepMobile(),
-              desktop: (_) => const FirstStepDesktop(),
+              mobile: (_) => const ThirdStepMobile(),
+              desktop: (_) => const ThirdStepDesktop(),
             ),
           ),
         ],
