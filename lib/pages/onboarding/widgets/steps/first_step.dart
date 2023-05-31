@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
@@ -76,7 +77,7 @@ class _TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectableText(
-      'Habit Quokka',
+      L10n.of(context).appName,
       style: GoogleFonts.lilitaOne(
         textStyle: textStyle,
         color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -93,7 +94,7 @@ class _DescriptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectableText(
-      'Welcome to Habit Quokka – the fun habit tracking app inspired by advent calendars! Create a tracker for any habit you want to follow and start building good habits today.',
+      L10n.of(context).onboardingStep1Description,
       style: textStyle?.copyWith(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
       ),

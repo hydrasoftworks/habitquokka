@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
+
 class ThirdStepMobile extends StatelessWidget {
   const ThirdStepMobile({super.key});
 
@@ -47,7 +49,7 @@ class _DescriptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectableText(
-      'Say goodbye to boring habit trackers and hello to Habit Quokka\'s playful design.\nRegister or login today and unleash your inner quokka to start building habits that stick.',
+      L10n.of(context).onboardingStep3Description,
       style: textStyle?.copyWith(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
       ),

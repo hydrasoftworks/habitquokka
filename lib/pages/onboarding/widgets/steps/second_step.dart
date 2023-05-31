@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
@@ -59,7 +60,7 @@ class _DescriptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectableText(
-      'Every time you perform the habit, you get to open a window on the grid. Keep up with your habits and open all the windows to reveal the full image.\nIt\'s like a game that rewards you for building good habits!',
+      L10n.of(context).onboardingStep2Description,
       style: textStyle?.copyWith(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
       ),
