@@ -1,5 +1,5 @@
 [build]
-  command = "flutter build web --web-renderer canvaskit --release"
+  command = "flutter build web --web-renderer canvaskit --release --build-number=$COMMIT_REF"
   publish = "build/web"
 
 [[plugins]]

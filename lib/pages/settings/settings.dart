@@ -34,7 +34,7 @@ class SettingsPage extends StatelessWidget {
         final packageInfo = snapshot.data as PackageInfo;
         return Padding(
           padding: const EdgeInsets.only(bottom: 6, right: 24),
-          child: Text(
+          child: SelectableText(
             '${packageInfo.version} (${packageInfo.buildNumber})',
             style: Theme.of(context).textTheme.bodySmall,
           ),
