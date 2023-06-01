@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/home_destination.dart';
 
 class HomePage extends StatelessWidget {
@@ -76,13 +77,13 @@ class HomePage extends StatelessWidget {
   }) {
     return SlotLayout.from(
       key: key,
-      builder: (_) => AdaptiveScaffold.standardNavigationRail(
+      builder: (context) => AdaptiveScaffold.standardNavigationRail(
         selectedIndex: selectedIndex,
         extended: extended,
         padding: EdgeInsets.zero,
         onDestinationSelected: (index) => onDestinationSelected(context, index),
         destinations: _destinations
-            .map((destination) => destination.model)
+            .map((destination) => destination.model(context))
             .map(AdaptiveScaffold.toRailDestination)
             .toList(growable: false),
       ),
@@ -98,11 +99,11 @@ class HomePage extends StatelessWidget {
       key: key,
       inAnimation: AdaptiveScaffold.bottomToTop,
       outAnimation: AdaptiveScaffold.topToBottom,
-      builder: (_) => AdaptiveScaffold.standardBottomNavigationBar(
+      builder: (context) => AdaptiveScaffold.standardBottomNavigationBar(
         currentIndex: selectedIndex,
         onDestinationSelected: (index) => onDestinationSelected(context, index),
         destinations: _destinations
-            .map((destination) => destination.model)
+            .map((destination) => destination.model(context))
             .toList(growable: false),
       ),
     );
@@ -115,21 +116,28 @@ class HomePage extends StatelessWidget {
 }
 
 extension _Model on HomeDestination {
-  NavigationDestination get model {
+  NavigationDestination model(BuildContext context) {
     switch (this) {
       case HomeDestination.onboarding:
-        return const NavigationDestination(
-          label: 'Home',
-          icon: Icon(Icons.home_outlined),
-          selectedIcon: Icon(Icons.home_filled),
-          tooltip: 'Home page',
+        return NavigationDestination(
+          label: L10n.of(context).homeDestinationOnboarding,
+          icon: const Icon(Icons.home_outlined),
+          selectedIcon: const Icon(Icons.home_filled),
+          tooltip: L10n.of(context).homeDestinationOnboardingTooltip,
         );
       case HomeDestination.trackers:
-        return const NavigationDestination(
-          label: 'My Trackers',
-          icon: Icon(Icons.view_module_outlined),
-          selectedIcon: Icon(Icons.view_module),
-          tooltip: 'My Trackers page',
+        return NavigationDestination(
+          label: L10n.of(context).homeDestinationTracker,
+          icon: const Icon(Icons.view_module_outlined),
+          selectedIcon: const Icon(Icons.view_module),
+          tooltip: L10n.of(context).homeDestinationTrackerTooltip,
+        );
+      case HomeDestination.settings:
+        return NavigationDestination(
+          label: L10n.of(context).homeDestinationSettings,
+          icon: const Icon(Icons.settings_outlined),
+          selectedIcon: const Icon(Icons.settings),
+          tooltip: L10n.of(context).homeDestinationSettingsTooltip,
         );
     }
   }

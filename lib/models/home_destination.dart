@@ -1,6 +1,7 @@
 enum HomeDestination {
   onboarding,
-  trackers;
+  trackers,
+  settings;
 
   String get path {
     switch (this) {
@@ -8,6 +9,8 @@ enum HomeDestination {
         return '/';
       case HomeDestination.trackers:
         return '/trackers';
+      case HomeDestination.settings:
+        return '/settings';
     }
   }
 }

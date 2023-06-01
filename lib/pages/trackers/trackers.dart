@@ -4,6 +4,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/tracker.dart';
@@ -72,9 +73,9 @@ class TrackersPage extends StatelessWidget {
               ),
               child: (selectedTrackerId != null)
                   ? _buildTrackerDetails(context, isSplitPage: true)
-                  : const EmptyPage(
+                  : EmptyPage(
                       emoji: Emoji.emptyTracker,
-                      text: 'Select or create a tracker to get started!',
+                      text: L10n.of(context).trackersNoTrackerSelected,
                     ),
             ),
           ),

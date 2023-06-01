@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
 import 'package:habitquokka/pages/onboarding/onboarding.dart';
+import 'package:habitquokka/pages/settings/settings.dart';
 import 'package:habitquokka/pages/trackers/trackers.dart';
 
 class AppRouter {
@@ -16,9 +18,9 @@ class AppRouter {
     debugLogDiagnostics: true,
     errorPageBuilder: (context, state) => _PageBuilder.from<void>(
       state: state,
-      child: const EmptyPage(
+      child: EmptyPage(
         emoji: Emoji.notFound,
-        text: 'Page not found',
+        text: L10n.of(context).emptyPage,
       ),
     ),
     routes: [
@@ -57,6 +59,15 @@ class AppRouter {
                 child: TrackersPage(
                   selectedTrackerId: state.pathParameters['trackerId'],
                 ),
+              );
+            },
+          ),
+          GoRoute(
+            path: HomeDestination.settings.path,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const SettingsPage(),
               );
             },
           ),
