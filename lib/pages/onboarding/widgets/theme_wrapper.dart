@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:habitquokka/theme/theme.dart';
+
 class ThemeWrapper extends StatelessWidget {
   const ThemeWrapper({
     super.key,
@@ -20,7 +22,7 @@ class ThemeWrapper extends StatelessWidget {
         ),
         textTheme: Theme.of(context).textTheme,
         useMaterial3: true,
-      ),
+      ).copyWith(extensions: AppThemeExtensions.app),
       child: child,
     );
   }

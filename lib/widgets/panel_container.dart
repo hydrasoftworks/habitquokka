@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:habitquokka/theme/spacing.dart';
+
 // Source: https://github.com/egortabula/material3_layout/
 
 enum SurfaceColor {
@@ -78,8 +80,8 @@ class PanelContainer extends StatelessWidget {
     this.bottomBorderRadius = 12,
   });
 
-  static const defaultPadding = EdgeInsets.all(24);
-  static const defaultMargin = EdgeInsets.all(16);
+  static const defaultPadding = EdgeInsets.all(AppSpacing.initialMedium);
+  static const defaultMargin = EdgeInsets.all(AppSpacing.initialMedium);
 
   /// The child widget to be wrapped with the container.
   final Widget child;

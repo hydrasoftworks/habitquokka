@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
+import 'package:habitquokka/theme/theme.dart';
 
 class ThirdStepMobile extends StatelessWidget {
   const ThirdStepMobile({super.key});
@@ -8,7 +9,7 @@ class ThirdStepMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(Theme.of(context).appSpacing.small),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -27,7 +28,7 @@ class ThirdStepDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(Theme.of(context).appSpacing.large),
       child: Row(
         children: [
           Expanded(

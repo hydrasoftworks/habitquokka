@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
+import 'package:habitquokka/theme/theme.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
 class SecondStepMobile extends StatelessWidget {
@@ -11,14 +12,14 @@ class SecondStepMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(Theme.of(context).appSpacing.small),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _DescriptionWidget(
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: Theme.of(context).appSpacing.medium),
           const _TrackerWidget(),
         ],
       ),
@@ -32,14 +33,14 @@ class SecondStepDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(Theme.of(context).appSpacing.large),
       child: Row(
         children: [
           const Expanded(
             flex: 5,
-            child: _TrackerWidget(),
+            child: Center(child: _TrackerWidget()),
           ),
-          const SizedBox(width: 24),
+          SizedBox(width: Theme.of(context).appSpacing.medium),
           Expanded(
             flex: 4,
             child: _DescriptionWidget(

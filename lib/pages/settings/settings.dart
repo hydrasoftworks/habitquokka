@@ -1,7 +1,10 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
 
+import 'package:habitquokka/theme/theme.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -32,10 +35,19 @@ class SettingsPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) return const SizedBox.shrink();
         final packageInfo = snapshot.data as PackageInfo;
+        final buildNumber = packageInfo.buildNumber;
+        final buildShort = buildNumber.substring(
+          0,
+          math.min(7, buildNumber.length),
+        );
+
         return Padding(
-          padding: const EdgeInsets.only(bottom: 6, right: 24),
+          padding: EdgeInsets.only(
+            bottom: 6,
+            right: Theme.of(context).appSpacing.medium,
+          ),
           child: SelectableText(
-            '${packageInfo.version} (${packageInfo.buildNumber})',
+            '${packageInfo.version} ($buildShort)',
             style: Theme.of(context).textTheme.bodySmall,
           ),
         );

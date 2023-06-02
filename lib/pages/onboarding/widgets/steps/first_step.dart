@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
+import 'package:habitquokka/theme/theme.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
 class FirstStepMobile extends StatelessWidget {
@@ -13,18 +14,18 @@ class FirstStepMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(Theme.of(context).appSpacing.small),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _TitleWidget(
             textStyle: Theme.of(context).textTheme.displaySmall,
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: Theme.of(context).appSpacing.medium),
           _DescriptionWidget(
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: Theme.of(context).appSpacing.medium),
           const _TrackerWidget(),
         ],
       ),
@@ -38,28 +39,30 @@ class FirstStepDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(Theme.of(context).appSpacing.large),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _TitleWidget(
             textStyle: Theme.of(context).textTheme.displayLarge,
           ),
-          const SizedBox(height: 48),
-          Row(
-            children: [
-              Expanded(
-                flex: 4,
-                child: _DescriptionWidget(
-                  textStyle: Theme.of(context).textTheme.headlineSmall,
+          SizedBox(height: Theme.of(context).appSpacing.large),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: _DescriptionWidget(
+                    textStyle: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 24),
-              const Expanded(
-                flex: 5,
-                child: _TrackerWidget(),
-              ),
-            ],
+                SizedBox(width: Theme.of(context).appSpacing.large),
+                const Expanded(
+                  flex: 5,
+                  child: Center(child: _TrackerWidget()),
+                ),
+              ],
+            ),
           ),
         ],
       ),
