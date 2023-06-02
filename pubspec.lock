@@ -29,10 +29,10 @@ packages:
     dependency: "direct main"
     description:
       name: animated_emoji
-      sha256: "5f4fdbe846824bf1a3c61563c7c8cf2748e8afdeb4cc4d8097936c5e316899bb"
+      sha256: "1be7a676dffa68c3d3c4230bf89b064afb461a7b64e7d21fe112519d643d9544"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1+2"
+    version: "2.0.0"
   archive:
     dependency: transitive
     description:
@@ -894,5 +894,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.0.2 <4.0.0"
-  flutter: ">=3.10.0"
+  dart: "3.0.3"
+  flutter: ">=3.10.3"

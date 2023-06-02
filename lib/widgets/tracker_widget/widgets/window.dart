@@ -54,6 +54,7 @@ class _WindowState extends State<Window> {
           child: AnimatedEmoji(
             widget.emoji,
             animate: _isHovered,
+            source: AnimatedEmojiSource.network,
             onLoaded: (_) => setState(() => _isLoaded = true),
           ),
         ),

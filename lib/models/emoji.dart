@@ -57,7 +57,6 @@ class Emoji {
     AnimatedEmojis.speakNoEvilMonkey,
     AnimatedEmojis.redHeart,
     AnimatedEmojis.sparklingHeart,
-    AnimatedEmojis.revolvingHeart,
     AnimatedEmojis.twoHearts,
     AnimatedEmojis.bandagedHeart,
     AnimatedEmojis.fireHeart,
