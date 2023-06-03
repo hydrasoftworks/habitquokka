@@ -15,7 +15,7 @@ class ImageOriginText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(2),
+      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(4)),

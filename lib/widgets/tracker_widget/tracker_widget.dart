@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:murmur3/murmur3.dart';
 
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/tracker.dart';
@@ -25,13 +26,19 @@ class _TrackerWidgetState extends State<TrackerWidget> {
   late List<int> _indexes;
   late List<AnimatedEmojiData> _emojis;
   final Set<String> _opened = {};
+  bool _isDataLoaded = false;
 
   bool get _areAllWindowsOpened => _opened.length == _indexes.length;
 
   @override
   void initState() {
     super.initState();
-    final seed = widget.tracker.id.hashCode;
+    _setupLists();
+  }
+
+  void _setupLists() async {
+    final seed = await murmur3a(widget.tracker.id);
+
     _indexes = List.generate(
       widget.tracker.rows * widget.tracker.columns,
       (index) => index + 1,
@@ -43,10 +50,15 @@ class _TrackerWidgetState extends State<TrackerWidget> {
       _emojis.shuffle(random);
     }
     _emojis = _emojis.take(_indexes.length).toList(growable: false);
+    setState(() => _isDataLoaded = true);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!_isDataLoaded) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return AspectRatio(
       aspectRatio: widget.tracker.columns / widget.tracker.rows,
       child: Stack(

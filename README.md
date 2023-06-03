@@ -4,6 +4,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/db37a603-3dd6-43c9-afd4-17494b69c7bc/deploy-status)](https://app.netlify.com/sites/habitquokka/deploys)
 [![Melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
+[![License](https://img.shields.io/github/license/hydrasoftworks/habitquokka)](https://github.com/hydrasoftworks/habitquokka/blob/master/LICENSE)
+
 > Build better habits, one window at a time
 
 Habit Quokka is an online habit-tracking app that uses a unique design inspired by advent calendars. Users can create habit trackers for any habit they want to follow and open a window on the grid every time they perform that habit. This reveals a hidden image one step at a time and makes building good habits fun and playful. The app's design is a refreshing change from traditional habit trackers, and it motivates users to stick to their habits.
