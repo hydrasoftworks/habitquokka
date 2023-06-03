@@ -9,6 +9,7 @@ class Tracker {
     required this.rows,
     required this.columns,
     required this.seedColor,
+    this.randomizeNumbers = true,
   });
 
   final String id;
@@ -18,4 +19,5 @@ class Tracker {
   final int rows;
   final int columns;
   final int seedColor;
+  final bool randomizeNumbers;
 }

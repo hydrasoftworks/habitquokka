@@ -1,60 +1,40 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/emojis.dart';
 
-import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/widgets/tracker_widget/widgets/window.dart';
 
-class Windows extends StatefulWidget {
+typedef WindowPressedCallback = void Function(String);
+
+class Windows extends StatelessWidget {
   const Windows({
     super.key,
     required this.rows,
     required this.columns,
-    this.seed,
+    required this.indexes,
+    required this.emojis,
+    required this.opened,
+    required this.onWindowPressed,
   });
 
   final int rows;
   final int columns;
-  final int? seed;
-
-  @override
-  State<Windows> createState() => _WindowsState();
-}
-
-class _WindowsState extends State<Windows> {
-  final Set<String> _opened = {};
-  late List<int> _indexes;
-  late List<AnimatedEmojiData> _emojis;
-
-  @override
-  void initState() {
-    super.initState();
-    _indexes = List.generate(
-      widget.rows * widget.columns,
-      (index) => index + 1,
-    );
-    _emojis = List.of(Emoji.all);
-    if (widget.seed != null) {
-      final random = math.Random(widget.seed);
-      _indexes.shuffle(random);
-      _emojis.shuffle(random);
-    }
-    _emojis = _emojis.take(_indexes.length).toList(growable: false);
-  }
+  final List<int> indexes;
+  final List<AnimatedEmojiData> emojis;
+  final Set<String> opened;
+  final WindowPressedCallback onWindowPressed;
 
   @override
   Widget build(BuildContext context) {
     return Table(
       children: List.generate(
-        widget.rows,
+        rows,
         (rowIndex) => TableRow(
           children: List.generate(
-            widget.columns,
+            columns,
             (columnIndex) {
               final key = '$rowIndex-$columnIndex';
-              final index = rowIndex * widget.columns + columnIndex;
+              final index = rowIndex * columns + columnIndex;
               return _buildWindow(index, key);
             },
           ),
@@ -68,18 +48,10 @@ class _WindowsState extends State<Windows> {
       key: ValueKey(key),
       aspectRatio: 1,
       child: Window(
-        text: _indexes[index].toString(),
-        emoji: _emojis[index],
-        isOpened: _opened.contains(key),
-        onPressed: () {
-          setState(() {
-            if (_opened.contains(key)) {
-              _opened.remove(key);
-            } else {
-              _opened.add(key);
-            }
-          });
-        },
+        text: indexes[index].toString(),
+        emoji: emojis[index],
+        isOpened: opened.contains(key),
+        onPressed: () => onWindowPressed(key),
       ),
     );
   }
