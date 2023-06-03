@@ -10,7 +10,9 @@ import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
 import 'package:habitquokka/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/settings/settings.dart';
+import 'package:habitquokka/pages/trackers/pages/new_tracker/new_tracker.dart';
 import 'package:habitquokka/pages/trackers/trackers.dart';
+import 'package:habitquokka/widgets/dialog_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -20,7 +22,7 @@ class AppRouter {
       state: state,
       child: EmptyPage(
         emoji: Emoji.notFound,
-        text: L10n.of(context).emptyPage,
+        text: L10n.of(context).emptyPageLabel,
       ),
     ),
     routes: [
@@ -50,6 +52,19 @@ class AppRouter {
                 child: const TrackersPage(selectedTrackerId: null),
               );
             },
+            routes: [
+              GoRoute(
+                path: 'new',
+                pageBuilder: (context, state) => DialogPage(
+                  name: state.location,
+                  arguments: {
+                    ...state.pathParameters,
+                    ...state.queryParameters,
+                  },
+                  builder: (context) => const NewTrackerAlertPage(),
+                ),
+              ),
+            ],
           ),
           GoRoute(
             path: '${HomeDestination.trackers.path}/:trackerId',

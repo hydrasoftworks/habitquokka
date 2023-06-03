@@ -720,6 +720,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  reactive_forms:
+    dependency: "direct main"
+    description:
+      name: reactive_forms
+      sha256: "5aa9c48a0626c20d00a005e597cb10efbdebbfeecb9c4227b03a5945fbb91ec4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "14.3.0"
+  reactive_forms_annotations:
+    dependency: "direct main"
+    description:
+      name: reactive_forms_annotations
+      sha256: "1582fcf922b80d95a8ed281f6e9587f3e65262da5dabf079172bbe96d1d8f763"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  reactive_forms_generator:
+    dependency: "direct dev"
+    description:
+      name: reactive_forms_generator
+      sha256: "6d3a38564bf398b6d61c0a3bf0f62ae568e9a4db68b4d5a978ada7f0108598b1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   responsive_builder:
     dependency: "direct main"
     description:
@@ -813,6 +845,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  source_gen:
+    dependency: transitive
+    description:
+      name: source_gen
+      sha256: "373f96cf5a8744bc9816c1ff41cf5391bbdbe3d7a96fe98c622b6738a8a7bd33"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.2"
   source_span:
     dependency: transitive
     description:

@@ -61,7 +61,7 @@ class _DescriptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectableText(
-      L10n.of(context).onboardingStep2Description,
+      L10n.of(context).onboardingPageStep2DescriptionLabel,
       style: textStyle?.copyWith(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
       ),

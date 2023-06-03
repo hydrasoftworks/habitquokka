@@ -7,8 +7,8 @@ import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
-class TrackerDetails extends StatelessWidget {
-  const TrackerDetails({
+class TrackerDetailsPage extends StatelessWidget {
+  const TrackerDetailsPage({
     super.key,
     required this.tracker,
     required this.padding,

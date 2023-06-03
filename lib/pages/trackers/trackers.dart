@@ -10,8 +10,8 @@ import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
-import 'package:habitquokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
-import 'package:habitquokka/pages/trackers/widgets/trackers_list.dart';
+import 'package:habitquokka/pages/trackers/pages/tracker_details/tracker_details.dart';
+import 'package:habitquokka/pages/trackers/pages/trackers_list/trackers_list.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 class TrackersPage extends StatelessWidget {
@@ -72,7 +72,7 @@ class TrackersPage extends StatelessWidget {
                   ? _buildTrackerDetails(context, isSplitPage: true)
                   : EmptyPage(
                       emoji: Emoji.emptyTracker,
-                      text: L10n.of(context).trackersNoTrackerSelected,
+                      text: L10n.of(context).trackersPageNoTrackerSelectedLabel,
                     ),
             ),
           ),
@@ -85,7 +85,7 @@ class TrackersPage extends StatelessWidget {
     BuildContext context, {
     required bool isSplitPage,
   }) {
-    return TrackersList(
+    return TrackersListPage(
       onTrackerSelected: (tracker) {
         GoRouter.of(context)
             .go('${HomeDestination.trackers.path}/${tracker.id}');
@@ -109,8 +109,8 @@ class TrackersPage extends StatelessWidget {
       (timeStamp) => _changeTheme(context, tracker.seedColor),
     );
 
-    return TrackerDetails(
-      key: ValueKey('$TrackerDetails-${tracker.id}'),
+    return TrackerDetailsPage(
+      key: ValueKey('$TrackerDetailsPage-${tracker.id}'),
       tracker: tracker,
       padding: PanelContainer.defaultPadding.copyWith(
         top: 0,

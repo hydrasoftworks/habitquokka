@@ -120,24 +120,24 @@ extension _Model on HomeDestination {
     switch (this) {
       case HomeDestination.onboarding:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationOnboarding,
+          label: L10n.of(context).homePageDestinationOnboardingLabel,
           icon: const Icon(Icons.home_outlined),
           selectedIcon: const Icon(Icons.home_filled),
-          tooltip: L10n.of(context).homeDestinationOnboardingTooltip,
+          tooltip: L10n.of(context).homePageDestinationOnboardingTooltip,
         );
       case HomeDestination.trackers:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationTracker,
+          label: L10n.of(context).homePageDestinationTrackerLabel,
           icon: const Icon(Icons.view_module_outlined),
           selectedIcon: const Icon(Icons.view_module),
-          tooltip: L10n.of(context).homeDestinationTrackerTooltip,
+          tooltip: L10n.of(context).homePageDestinationTrackerTooltip,
         );
       case HomeDestination.settings:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationSettings,
+          label: L10n.of(context).homePageDestinationSettingsLabel,
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          tooltip: L10n.of(context).homeDestinationSettingsTooltip,
+          tooltip: L10n.of(context).homePageDestinationSettingsTooltip,
         );
     }
   }
