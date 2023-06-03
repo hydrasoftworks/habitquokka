@@ -1,0 +1,42 @@
+name: habitquokka
+
+sdkPath: .fvm/flutter_sdk
+
+packages:
+  - '.'
+
+command:
+  bootstrap:
+    hooks:
+      post: melos run alfred
+
+scripts:
+  alfred:
+    description: Prepare code to be pushed to repository.
+    run: melos run l10n && melos run generate && melos run sort && melos run format && melos run analyze
+
+  l10n:
+    description: Generates translation files.
+    run: flutter gen-l10n
+
+  generate:
+    description: Generate Dart code.
+    run: flutter pub run build_runner build --delete-conflicting-outputs
+
+  sort:
+    description: Sorts imports.
+    run: flutter pub run import_sorter:main
+
+  format:
+    description: Format code.
+    run: dart format lib/* -l 80
+
+  analyze:
+    description: Analyze Dart code.
+    run: dart analyze lib/* --fatal-infos
+
+  build:web:
+    description: Build web.
+    run: flutter build web --web-renderer canvaskit --release --build-number=$COMMIT_REF
+    env:
+      COMMIT_REF: 1

@@ -1,5 +1,11 @@
 [build]
-  command = "flutter build web --web-renderer canvaskit --release --build-number=$COMMIT_REF"
+  command = '''
+    export PATH="$PATH":"$HOME/.pub-cache/bin" \
+    && ln -s ~/flutter .fvm/flutter_sdk \
+    && dart pub global activate melos \
+    && melos bootstrap \
+    && melos run build:web
+  '''
   publish = "build/web"
 
 [[plugins]]
