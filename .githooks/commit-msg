@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+if ! head -1 "$1" | grep -qE "^(build|ci|chore|docs|feat|fix|perf|refactor|revert|style|test)(\(.+?\))?: .{1,}$"; then
+    echo "ERROR: Commit message should start with one of the following:
+    * build: Changes that affect the build system like gulp, npm, etc
+    * ci: Changes made to the CI configuration like Travis, Circle, Actions
+    * chore: Other changes that don't modify src or test files
+    * docs: Documentation only changes
+    * feat: A new feature
+    * fix: Fixed a bug
+    * perf: Code changes that improve performance
+    * refactor: A code change that's not particularly a bug or new feature
+    * revert: Revert a previous commit
+    * style: Changes to styling like white-space, formatting, semi-colons)
+    * test: Add or fix tests" >&2
+    exit 1
+fi
