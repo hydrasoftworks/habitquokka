@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
@@ -20,8 +21,8 @@ class ExampleTrackerWidget extends StatelessWidget {
       child: TrackerWidget(
         tracker: Tracker(
           id: 'Onboarding',
-          shortName: 'Habit Quokka',
-          name: 'Check out Habit Quokka!',
+          shortName: L10n.of(context).onboardingPageTrackerShortName,
+          name: L10n.of(context).onboardingPageTrackerName,
           image: const TrackerImage(
             source: ImageSource.unsplash,
             rawUrl:

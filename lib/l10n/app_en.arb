@@ -10,6 +10,8 @@
   "homePageDestinationTrackerTooltip": "My trackers page",
   "homePageDestinationSettingsLabel": "Settings",
   "homePageDestinationSettingsTooltip": "Settings page",
+  "onboardingPageTrackerShortName": "Habit Quokka",
+  "onboardingPageTrackerName": "Visit Habit Quokka daily!",
   "onboardingPageStep1DescriptionLabel": "Welcome to Habit Quokka – the fun habit tracking app inspired by advent calendars! Create a tracker for any habit you want to follow and start building good habits today.",
   "onboardingPageStep2DescriptionLabel": "Every time you perform the habit, you get to open a window on the grid. Keep up with your habits and open all the windows to reveal the full image.\nIt's like a game that rewards you for building good habits!",
   "onboardingStep3DescriptionLabel": "Say goodbye to boring habit trackers and hello to Habit Quokka's playful design.\nRegister or login today and unleash your inner quokka to start building habits that stick.",
