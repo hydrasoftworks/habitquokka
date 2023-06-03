@@ -19,7 +19,11 @@ class EmptyPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AnimatedEmoji(emoji, size: 80),
+          AnimatedEmoji(
+            emoji,
+            size: 80,
+            source: AnimatedEmojiSource.network,
+          ),
           const SizedBox(height: 20),
           Text(
             text,
