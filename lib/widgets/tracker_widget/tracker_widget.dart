@@ -20,7 +20,7 @@ class TrackerWidget extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           CachedNetworkImage(
-            imageUrl: tracker.image,
+            imageUrl: tracker.image.rawUrl,
             fit: BoxFit.cover,
           ),
           Windows(

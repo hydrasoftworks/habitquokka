@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/models/tracker.dart';
-import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
+import 'package:habitquokka/pages/onboarding/widgets/steps/example_tracker_widget.dart';
 import 'package:habitquokka/theme/theme.dart';
-import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
+
+const int _seedColor = 0xFFb3e2a2;
 
 class SecondStepMobile extends StatelessWidget {
   const SecondStepMobile({super.key});
@@ -20,7 +20,7 @@ class SecondStepMobile extends StatelessWidget {
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
-          const _TrackerWidget(),
+          const ExampleTrackerWidget(seedColor: _seedColor),
         ],
       ),
     );
@@ -38,7 +38,7 @@ class SecondStepDesktop extends StatelessWidget {
         children: [
           const Expanded(
             flex: 5,
-            child: Center(child: _TrackerWidget()),
+            child: Center(child: ExampleTrackerWidget(seedColor: _seedColor)),
           ),
           SizedBox(width: Theme.of(context).appSpacing.medium),
           Expanded(
@@ -64,31 +64,6 @@ class _DescriptionWidget extends StatelessWidget {
       L10n.of(context).onboardingStep2Description,
       style: textStyle?.copyWith(
         color: Theme.of(context).colorScheme.onPrimaryContainer,
-      ),
-    );
-  }
-}
-
-class _TrackerWidget extends StatelessWidget {
-  const _TrackerWidget();
-
-  static const int _seedColor = 0xFFb3e2a2;
-
-  @override
-  Widget build(BuildContext context) {
-    return const ThemeWrapper(
-      seedColor: Color(_seedColor),
-      child: TrackerWidget(
-        tracker: Tracker(
-          id: 'TEST2',
-          shortName: 'Japanese',
-          name: 'Learn Japanese every other day',
-          image:
-              'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80',
-          rows: 5,
-          columns: 6,
-          seedColor: _seedColor,
-        ),
       ),
     );
   }

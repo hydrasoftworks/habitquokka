@@ -8,6 +8,7 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/tracker.dart';
+import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/trackers/widgets/tracker_details/tracker_details.dart';
 import 'package:habitquokka/pages/trackers/widgets/trackers_list.dart';
@@ -22,24 +23,20 @@ class TrackersPage extends StatelessWidget {
   final String? selectedTrackerId;
   final List<Tracker> _trackers = const [
     Tracker(
-      id: 'TEST1',
-      shortName: 'Water',
-      name: 'Drink 2 liters of water per day',
-      image: 'https://picsum.photos/500?image=9',
+      id: 'Onboarding',
+      shortName: 'Habit Quokka',
+      name: 'Check out Habit Quokka!',
+      image: TrackerImage(
+        source: ImageSource.unsplash,
+        rawUrl:
+            'https://images.unsplash.com/photo-1571164330912-270c6d07e212?crop=entropy&cs=srgb&fm=jpg&ixid=M3wyMTI5MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODU3OTUzODF8&ixlib=rb-4.0.3&q=85',
+        pageUrl: 'https://unsplash.com/photos/dXdkpdYCNbo',
+        author: 'Luca Bravo',
+      ),
       rows: 5,
       columns: 6,
       seedColor: 0x0D47A1,
-    ),
-    Tracker(
-      id: 'TEST2',
-      shortName: 'Japanese',
-      name: 'Learn Japanese every other day',
-      image:
-          'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3542&q=80',
-      rows: 5,
-      columns: 6,
-      seedColor: 0x9edc00,
-    ),
+    )
   ];
 
   @override

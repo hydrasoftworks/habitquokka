@@ -1,3 +1,5 @@
+import 'package:habitquokka/models/tracker_image.dart';
+
 class Tracker {
   const Tracker({
     required this.id,
@@ -12,7 +14,7 @@ class Tracker {
   final String id;
   final String shortName;
   final String name;
-  final String image;
+  final TrackerImage image;
   final int rows;
   final int columns;
   final int seedColor;
