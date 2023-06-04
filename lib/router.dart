@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
@@ -9,6 +10,7 @@ import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/route.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
+import 'package:habitquokka/pages/home/pages/authentication/authentication.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/home/pages/settings/settings.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
@@ -17,7 +19,7 @@ import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
 class AppRouter {
   static final router = GoRouter(
     initialLocation: AppRoute.onboarding,
-    debugLogDiagnostics: true,
+    debugLogDiagnostics: kDebugMode,
     errorPageBuilder: (context, state) => _PageBuilder.from<void>(
       state: state,
       child: EmptyPage(
@@ -45,7 +47,20 @@ class AppRouter {
             },
           ),
           GoRoute(
+            path: AppRoute.authentication(),
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const AuthenticationPage(),
+              );
+            },
+          ),
+          GoRoute(
             path: AppRoute.trackers,
+            redirect: (context, state) {
+              // TODO: Implement authentication
+              return AppRoute.authentication(state.location);
+            },
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -67,7 +82,11 @@ class AppRouter {
             ],
           ),
           GoRoute(
-            path: '${AppRoute.trackers}/:trackerId',
+            path: AppRoute.trackerDetails(':trackerId'),
+            redirect: (context, state) {
+              // TODO: Implement authentication
+              return AppRoute.authentication(state.location);
+            },
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -79,6 +98,10 @@ class AppRouter {
           ),
           GoRoute(
             path: AppRoute.settings,
+            redirect: (context, state) {
+              // TODO: Implement authentication
+              return AppRoute.authentication(state.location);
+            },
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -131,7 +154,6 @@ class DialogPage<T> extends Page<T> {
     super.key,
     super.name,
     super.arguments,
-    super.restorationId,
     required this.builder,
   });
 
