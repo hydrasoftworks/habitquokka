@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/pages/trackers/pages/new_tracker/models/new_tracker.dart';
+import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/models/new_tracker.dart';
 import 'package:habitquokka/theme/theme.dart';
 
 class NewTrackerAlertPage extends StatelessWidget {

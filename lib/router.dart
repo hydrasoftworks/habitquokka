@@ -6,17 +6,17 @@ import 'package:go_router/go_router.dart';
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/home_destination.dart';
+import 'package:habitquokka/models/route.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
-import 'package:habitquokka/pages/onboarding/onboarding.dart';
-import 'package:habitquokka/pages/settings/settings.dart';
-import 'package:habitquokka/pages/trackers/pages/new_tracker/new_tracker.dart';
-import 'package:habitquokka/pages/trackers/trackers.dart';
-import 'package:habitquokka/widgets/dialog_page.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
+import 'package:habitquokka/pages/home/pages/settings/settings.dart';
+import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
+import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
 
 class AppRouter {
   static final router = GoRouter(
-    initialLocation: '/',
+    initialLocation: AppRoute.onboarding,
     debugLogDiagnostics: true,
     errorPageBuilder: (context, state) => _PageBuilder.from<void>(
       state: state,
@@ -36,7 +36,7 @@ class AppRouter {
         ),
         routes: <RouteBase>[
           GoRoute(
-            path: HomeDestination.onboarding.path,
+            path: AppRoute.onboarding,
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -45,7 +45,7 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: HomeDestination.trackers.path,
+            path: AppRoute.trackers,
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -67,7 +67,7 @@ class AppRouter {
             ],
           ),
           GoRoute(
-            path: '${HomeDestination.trackers.path}/:trackerId',
+            path: '${AppRoute.trackers}/:trackerId',
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -78,7 +78,7 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: HomeDestination.settings.path,
+            path: AppRoute.settings,
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
@@ -124,4 +124,25 @@ extension _PageBuilder<T> on NoTransitionPage<T> {
       child: child,
     );
   }
+}
+
+class DialogPage<T> extends Page<T> {
+  const DialogPage({
+    super.key,
+    super.name,
+    super.arguments,
+    super.restorationId,
+    required this.builder,
+  });
+
+  final WidgetBuilder builder;
+
+  @override
+  Route<T> createRoute(BuildContext context) => DialogRoute<T>(
+        context: context,
+        settings: this,
+        barrierColor: Colors.transparent,
+        barrierDismissible: false,
+        builder: builder,
+      );
 }

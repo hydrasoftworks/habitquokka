@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/theme/theme.dart';
 
@@ -49,10 +51,12 @@ class _DescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
-      L10n.of(context).onboardingStep3DescriptionLabel,
-      style: textStyle?.copyWith(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+    return SelectionArea(
+      child: AutoSizeText(
+        L10n.of(context).onboardingStep3DescriptionLabel,
+        style: textStyle?.copyWith(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
@@ -6,12 +8,12 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
-import 'package:habitquokka/models/home_destination.dart';
+import 'package:habitquokka/models/route.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
-import 'package:habitquokka/pages/trackers/pages/tracker_details/tracker_details.dart';
-import 'package:habitquokka/pages/trackers/pages/trackers_list/trackers_list.dart';
+import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/tracker_details.dart';
+import 'package:habitquokka/pages/home/pages/trackers/pages/trackers_list/trackers_list.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 class TrackersPage extends StatelessWidget {
@@ -60,7 +62,7 @@ class TrackersPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            width: 30.screenWidth,
+            width: math.max(30.screenWidth, 300),
             child: _buildTrackersList(context, isSplitPage: true),
           ),
           Expanded(
@@ -87,8 +89,7 @@ class TrackersPage extends StatelessWidget {
   }) {
     return TrackersListPage(
       onTrackerSelected: (tracker) {
-        GoRouter.of(context)
-            .go('${HomeDestination.trackers.path}/${tracker.id}');
+        GoRouter.of(context).go(AppRoute.trackerDetails(tracker.id));
       },
       trackers: _trackers,
       selectedTrackerId: selectedTrackerId,

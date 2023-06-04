@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:preload_page_view/preload_page_view.dart';
 
-import 'package:habitquokka/pages/onboarding/widgets/onboarding_step.dart';
-import 'package:habitquokka/pages/onboarding/widgets/steps/first_step.dart';
-import 'package:habitquokka/pages/onboarding/widgets/steps/second_step.dart';
-import 'package:habitquokka/pages/onboarding/widgets/steps/third_step.dart';
-import 'package:habitquokka/pages/onboarding/widgets/theme_wrapper.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/widgets/onboarding_step.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/first_step.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/second_step.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/third_step.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/widgets/theme_wrapper.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

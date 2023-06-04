@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/pages/onboarding/widgets/steps/example_tracker_widget.dart';
+import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/example_tracker_widget.dart';
 import 'package:habitquokka/theme/theme.dart';
 
 const int _seedColor = 0xFFb3e2a2;
@@ -60,10 +62,12 @@ class _DescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
-      L10n.of(context).onboardingPageStep2DescriptionLabel,
-      style: textStyle?.copyWith(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+    return SelectionArea(
+      child: AutoSizeText(
+        L10n.of(context).onboardingPageStep2DescriptionLabel,
+        style: textStyle?.copyWith(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
       ),
     );
   }

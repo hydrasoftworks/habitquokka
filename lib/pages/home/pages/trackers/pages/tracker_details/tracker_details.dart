@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:habitquokka/models/home_destination.dart';
+import 'package:habitquokka/models/route.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
@@ -27,8 +27,7 @@ class TrackerDetailsPage extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         leading: BackButton(
-          onPressed: () =>
-              GoRouter.of(context).go(HomeDestination.trackers.path),
+          onPressed: () => GoRouter.of(context).go(AppRoute.trackers),
         ),
       ),
       body: PanelContainer(
