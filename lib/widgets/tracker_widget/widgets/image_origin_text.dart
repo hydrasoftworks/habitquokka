@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:habitquokka/models/tracker_image.dart';
@@ -34,7 +35,7 @@ class _UnsplashImageOriginText extends StatelessWidget {
 
   final TrackerImage image;
 
-  static const String _appName = 'habit_quokka';
+  String get _appName => dotenv.get('UNSPLASH_APP_NAME');
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class _UnsplashImageOriginText extends StatelessWidget {
             ),
           ),
           const TextSpan(text: ' on '),
-          const WidgetSpan(
+          WidgetSpan(
             alignment: PlaceholderAlignment.baseline,
             baseline: TextBaseline.alphabetic,
             child: _LinkButton(

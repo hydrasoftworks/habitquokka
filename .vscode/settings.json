@@ -11,5 +11,13 @@
   "files.watcherExclude": {
     "**/.fvm": true
   },
-  "cSpell.words": ["habitquokka", "lerp", "lilita", "Luca", "noto"]
+  "cSpell.words": [
+    "dotenv",
+    "habitquokka",
+    "lerp",
+    "lilita",
+    "Luca",
+    "noto",
+    "supabase"
+  ]
 }
