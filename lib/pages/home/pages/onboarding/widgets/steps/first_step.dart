@@ -27,7 +27,7 @@ class FirstStepMobile extends StatelessWidget {
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
-          const ExampleTrackerWidget(seedColor: _seedColor),
+          const Flexible(child: ExampleTrackerWidget(seedColor: _seedColor)),
         ],
       ),
     );
