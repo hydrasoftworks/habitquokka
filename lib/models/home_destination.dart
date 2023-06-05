@@ -1,4 +1,4 @@
-import 'package:habitquokka/models/route.dart';
+import 'package:habitquokka/router/route.dart';
 
 enum HomeDestination {
   onboarding,

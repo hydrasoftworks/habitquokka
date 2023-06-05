@@ -31,9 +31,14 @@ dependencies:
   murmur3: ^2.1.0
   supabase_flutter: ^1.10.1
   flutter_dotenv: ^5.1.0
+  async_redux: ^20.0.2
+  fast_immutable_collections: ^9.1.5
+  equatable: ^2.0.5
+  copy_with_extension: ^5.0.2
 
 dev_dependencies:
   build_runner: ^2.4.4
+  copy_with_extension_gen: ^5.0.2
   flutter_lints: ^2.0.1
   import_sorter: ^4.6.0
   melos: ^3.1.0

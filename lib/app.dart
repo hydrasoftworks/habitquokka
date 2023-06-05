@@ -5,11 +5,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/router.dart';
+import 'package:habitquokka/redux/redux.dart';
+import 'package:habitquokka/router/router.dart';
 import 'package:habitquokka/theme/theme.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({
+    super.key,
+    required this.store,
+  });
+
+  final Store<AppState> store;
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +36,22 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ),
       builder: (light, dark) => ResponsiveApp(
-        builder: (context) => MaterialApp.router(
-          theme: light.copyWith(
-            textTheme: GoogleFonts.notoSansTextTheme(light.textTheme),
-            extensions: AppThemeExtensions.app,
+        builder: (context) => StoreProvider<AppState>(
+          store: store,
+          child: MaterialApp.router(
+            theme: light.copyWith(
+              textTheme: GoogleFonts.notoSansTextTheme(light.textTheme),
+              extensions: AppThemeExtensions.app,
+            ),
+            darkTheme: dark.copyWith(
+              textTheme: GoogleFonts.notoSansTextTheme(dark.textTheme),
+              extensions: AppThemeExtensions.app,
+            ),
+            localizationsDelegates: L10n.localizationsDelegates,
+            supportedLocales: L10n.supportedLocales,
+            onGenerateTitle: (context) => L10n.of(context).appNameLong,
+            routerConfig: AppRouter.router,
           ),
-          darkTheme: dark.copyWith(
-            textTheme: GoogleFonts.notoSansTextTheme(dark.textTheme),
-            extensions: AppThemeExtensions.app,
-          ),
-          localizationsDelegates: L10n.localizationsDelegates,
-          supportedLocales: L10n.supportedLocales,
-          onGenerateTitle: (context) => L10n.of(context).appNameLong,
-          routerConfig: AppRouter.router,
         ),
       ),
     );

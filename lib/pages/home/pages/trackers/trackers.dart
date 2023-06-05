@@ -8,12 +8,12 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
-import 'package:habitquokka/models/route.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/tracker_details.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/trackers_list/trackers_list.dart';
+import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 class TrackersPage extends StatelessWidget {

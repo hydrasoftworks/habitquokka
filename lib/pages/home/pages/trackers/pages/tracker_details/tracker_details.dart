@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:habitquokka/models/route.dart';
 import 'package:habitquokka/models/tracker.dart';
+import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
