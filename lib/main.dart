@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'package:habitquokka/app.dart';
+import 'package:habitquokka/redux/account/actions/check_authentication_action.dart';
 import 'package:habitquokka/redux/redux.dart';
 
 void main() async {
@@ -20,9 +21,13 @@ void main() async {
 
   final store = Store<AppState>(
     initialState: AppState.initial(),
-    environment: Environment(),
+    environment: Environment(
+      supabase: Supabase.instance.client,
+    ),
     actionObservers: kDebugMode ? [ConsoleActionObserver()] : null,
   );
+
+  store.dispatch(CheckAuthenticationAction());
 
   runApp(App(store: store));
 }

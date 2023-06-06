@@ -10,8 +10,27 @@ class UnauthenticatedGuard {
     BuildContext context,
     GoRouterState state,
   ) {
-    final isSignedIn =
-        StoreProvider.of<AppState>(context, null).state.account.isSignedIn;
+    final isSignedIn = StoreProvider.of<AppState>(context, null)
+        .state
+        .accountState
+        .isAuthenticated;
     return isSignedIn ? null : AppRoute.authentication(state.location);
+  }
+}
+
+class AuthenticatedGuard {
+  static String? redirect(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    final isSignedIn = StoreProvider.of<AppState>(context, null)
+        .state
+        .accountState
+        .isAuthenticated;
+    if (isSignedIn) {
+      return state.queryParameters['redirect'] ?? AppRoute.onboarding;
+    }
+
+    return null;
   }
 }

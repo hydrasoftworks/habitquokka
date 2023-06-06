@@ -6,15 +6,15 @@ part 'state.g.dart';
 @CopyWith()
 class AccountState extends Equatable {
   const AccountState({
-    required this.isSignedIn,
+    required this.isAuthenticated,
   });
 
   factory AccountState.initial() => const AccountState(
-        isSignedIn: false,
+        isAuthenticated: false,
       );
 
-  final bool isSignedIn;
+  final bool isAuthenticated;
 
   @override
-  List<Object?> get props => [isSignedIn];
+  List<Object?> get props => [isAuthenticated];
 }

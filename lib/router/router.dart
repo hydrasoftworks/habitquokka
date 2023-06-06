@@ -49,10 +49,11 @@ class AppRouter {
           ),
           GoRoute(
             path: AppRoute.authentication(),
+            redirect: AuthenticatedGuard.redirect,
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: const AuthenticationPage(),
+                child: const AuthenticationPageConnector(),
               );
             },
           ),

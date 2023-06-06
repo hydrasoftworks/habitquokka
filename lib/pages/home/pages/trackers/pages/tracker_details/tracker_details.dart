@@ -31,7 +31,6 @@ class TrackerDetailsPage extends StatelessWidget {
         ),
       ),
       body: PanelContainer(
-        surfaceColor: SurfaceColor.surfaceContainer,
         padding: padding,
         child: Center(
           child: TrackerWidget(

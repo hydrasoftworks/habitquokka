@@ -1,10 +1,8 @@
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-part 'new_tracker.gform.dart';
+import 'package:habitquokka/models/validators.dart';
 
-Map<String, dynamic>? requiredValidator(AbstractControl<dynamic> control) {
-  return Validators.required(control);
-}
+part 'new_tracker.gform.dart';
 
 @ReactiveFormAnnotation()
 class NewTracker {

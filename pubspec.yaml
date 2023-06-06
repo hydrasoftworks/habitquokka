@@ -32,7 +32,6 @@ dependencies:
   supabase_flutter: ^1.10.1
   flutter_dotenv: ^5.1.0
   async_redux: ^20.0.2
-  fast_immutable_collections: ^9.1.5
   equatable: ^2.0.5
   copy_with_extension: ^5.0.2
 

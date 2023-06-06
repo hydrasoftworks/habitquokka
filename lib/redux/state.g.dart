@@ -7,7 +7,7 @@ part of 'state.dart';
 // **************************************************************************
 
 abstract class _$AppStateCWProxy {
-  AppState account(AccountState account);
+  AppState accountState(AccountState accountState);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -16,7 +16,7 @@ abstract class _$AppStateCWProxy {
   /// AppState(...).copyWith(id: 12, name: "My name")
   /// ````
   AppState call({
-    AccountState? account,
+    AccountState? accountState,
   });
 }
 
@@ -27,7 +27,8 @@ class _$AppStateCWProxyImpl implements _$AppStateCWProxy {
   final AppState _value;
 
   @override
-  AppState account(AccountState account) => this(account: account);
+  AppState accountState(AccountState accountState) =>
+      this(accountState: accountState);
 
   @override
 
@@ -38,13 +39,14 @@ class _$AppStateCWProxyImpl implements _$AppStateCWProxy {
   /// AppState(...).copyWith(id: 12, name: "My name")
   /// ````
   AppState call({
-    Object? account = const $CopyWithPlaceholder(),
+    Object? accountState = const $CopyWithPlaceholder(),
   }) {
     return AppState(
-      account: account == const $CopyWithPlaceholder() || account == null
-          ? _value.account
-          // ignore: cast_nullable_to_non_nullable
-          : account as AccountState,
+      accountState:
+          accountState == const $CopyWithPlaceholder() || accountState == null
+              ? _value.accountState
+              // ignore: cast_nullable_to_non_nullable
+              : accountState as AccountState,
     );
   }
 }

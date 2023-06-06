@@ -8,15 +8,15 @@ part 'state.g.dart';
 @CopyWith()
 class AppState extends Equatable {
   const AppState({
-    required this.account,
+    required this.accountState,
   });
 
   factory AppState.initial() => AppState(
-        account: AccountState.initial(),
+        accountState: AccountState.initial(),
       );
 
-  final AccountState account;
+  final AccountState accountState;
 
   @override
-  List<Object?> get props => [account];
+  List<Object?> get props => [accountState];
 }

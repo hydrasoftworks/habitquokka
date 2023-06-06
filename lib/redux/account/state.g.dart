@@ -7,7 +7,7 @@ part of 'state.dart';
 // **************************************************************************
 
 abstract class _$AccountStateCWProxy {
-  AccountState isSignedIn(bool isSignedIn);
+  AccountState isAuthenticated(bool isAuthenticated);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -16,7 +16,7 @@ abstract class _$AccountStateCWProxy {
   /// AccountState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountState call({
-    bool? isSignedIn,
+    bool? isAuthenticated,
   });
 }
 
@@ -27,7 +27,8 @@ class _$AccountStateCWProxyImpl implements _$AccountStateCWProxy {
   final AccountState _value;
 
   @override
-  AccountState isSignedIn(bool isSignedIn) => this(isSignedIn: isSignedIn);
+  AccountState isAuthenticated(bool isAuthenticated) =>
+      this(isAuthenticated: isAuthenticated);
 
   @override
 
@@ -38,14 +39,14 @@ class _$AccountStateCWProxyImpl implements _$AccountStateCWProxy {
   /// AccountState(...).copyWith(id: 12, name: "My name")
   /// ````
   AccountState call({
-    Object? isSignedIn = const $CopyWithPlaceholder(),
+    Object? isAuthenticated = const $CopyWithPlaceholder(),
   }) {
     return AccountState(
-      isSignedIn:
-          isSignedIn == const $CopyWithPlaceholder() || isSignedIn == null
-              ? _value.isSignedIn
-              // ignore: cast_nullable_to_non_nullable
-              : isSignedIn as bool,
+      isAuthenticated: isAuthenticated == const $CopyWithPlaceholder() ||
+              isAuthenticated == null
+          ? _value.isAuthenticated
+          // ignore: cast_nullable_to_non_nullable
+          : isAuthenticated as bool,
     );
   }
 }
