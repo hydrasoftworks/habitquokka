@@ -36,7 +36,10 @@ class AppRouter {
         ],
         pageBuilder: (context, state, child) => _PageBuilder.from<void>(
           state: state,
-          child: HomePage(child: child),
+          child: UserExceptionDialog<AppState>(
+            useLocalContext: true,
+            child: HomePage(child: child),
+          ),
         ),
         routes: <RouteBase>[
           GoRoute(

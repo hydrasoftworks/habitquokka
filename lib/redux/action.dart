@@ -1,3 +1,5 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'package:habitquokka/redux/redux.dart';
 
 abstract class Action extends ReduxAction<AppState> {
@@ -5,4 +7,15 @@ abstract class Action extends ReduxAction<AppState> {
   Environment get env => super.env as Environment;
 
   AccountState get accountState => state.accountState;
+
+  @override
+  Object? wrapError(Object error, StackTrace stackTrace) {
+    return switch (error) {
+      AuthException(message: var message) => UserException(
+          message,
+          cause: error,
+        ),
+      _ => super.wrapError(error, stackTrace)
+    };
+  }
 }
