@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
   }
 
   int _selectedIndex(BuildContext context) {
-    final path = GoRouter.of(context).location;
+    final path = GoRouterState.of(context).location;
     int selectedIndex = _destinations.lastIndexWhere(
       (destination) =>
           path.startsWith(destination.path) ||

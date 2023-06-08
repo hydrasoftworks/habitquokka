@@ -7,6 +7,9 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/pages/home/pages/authentication/models/sign_on.dart';
 import 'package:habitquokka/pages/home/pages/authentication/widgets/switch_page.dart';
 import 'package:habitquokka/theme/theme.dart';
+import 'package:habitquokka/widgets/progress_filled_button.dart';
+
+typedef OnSignOn = Future<void> Function(SignOn);
 
 class SignOnPage extends StatelessWidget {
   const SignOnPage({
@@ -16,7 +19,7 @@ class SignOnPage extends StatelessWidget {
   });
 
   final VoidCallback onSwitchToSignIn;
-  final void Function(SignOn) onSignOn;
+  final OnSignOn onSignOn;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class _Form extends StatefulWidget {
   final SignOnForm formModel;
 
   final VoidCallback onSwitchToSignIn;
-  final void Function(SignOn model) onSignOn;
+  final OnSignOn onSignOn;
 
   @override
   State<_Form> createState() => _FormState();
@@ -120,18 +123,18 @@ class _FormState extends State<_Form> {
         ],
         Text(L10n.of(context).authenticationPageLegalLabel),
         SizedBox(height: Theme.of(context).appSpacing.large),
-        FilledButton(
-          onPressed: () => widget.formModel.submit(onValid: _submitForm),
-          child: Text(
-            L10n.of(context).authenticationPageButtonLabel,
-          ),
+        ProgressFilledButton(
+          onPressed: _submitForm,
+          label: L10n.of(context).authenticationPageButtonLabel,
         ),
       ],
     );
   }
 
-  void _submitForm(SignOn model) {
-    widget.onSignOn(model);
+  Future<void> _submitForm() async {
+    widget.formModel.form.markAllAsTouched();
+    if (!widget.formModel.form.valid) return;
+    await widget.onSignOn(widget.formModel.model);
     setState(() => _showOTPField = true);
   }
 }

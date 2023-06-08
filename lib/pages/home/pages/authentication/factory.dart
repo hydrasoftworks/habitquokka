@@ -11,11 +11,13 @@ class Factory
 
   @override
   ViewModel fromStore() => ViewModel(
-        onSignOnWithOTP: (username, email) => dispatch(
+        isAuthenticated: state.accountState.isAuthenticated,
+        onSignOnWithOTP: (username, email) => dispatchAsync(
           SignOnWithOTPAction(username: username, email: email),
         ),
-        onSignInWithOTP: (email) => dispatch(SignInWithOTPAction(email: email)),
-        onVerifyOTP: (email, otp, type) => dispatch(
+        onSignInWithOTP: (email) =>
+            dispatchAsync(SignInWithOTPAction(email: email)),
+        onVerifyOTP: (email, otp, type) => dispatchAsync(
           VerifyOTPAction(email: email, otp: otp, type: type),
         ),
       );
