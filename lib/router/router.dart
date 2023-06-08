@@ -10,6 +10,7 @@ import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
 import 'package:habitquokka/pages/home/pages/authentication/authentication.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
+import 'package:habitquokka/pages/home/pages/settings/connector.dart';
 import 'package:habitquokka/pages/home/pages/settings/settings.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
 import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
@@ -98,7 +99,7 @@ class AppRouter {
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: const SettingsPage(),
+                child: const SettingsPageConnector(),
               );
             },
           ),
