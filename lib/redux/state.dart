@@ -9,14 +9,21 @@ part 'state.g.dart';
 class AppState extends Equatable {
   const AppState({
     required this.accountState,
+    required this.version,
   });
 
   factory AppState.initial() => AppState(
         accountState: AccountState.initial(),
+        version: null,
       );
 
   final AccountState accountState;
 
+  final String? version;
+
   @override
-  List<Object?> get props => [accountState];
+  List<Object?> get props => [
+        accountState,
+        version,
+      ];
 }

@@ -9,6 +9,8 @@ part of 'state.dart';
 abstract class _$AppStateCWProxy {
   AppState accountState(AccountState accountState);
 
+  AppState version(String? version);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -17,6 +19,7 @@ abstract class _$AppStateCWProxy {
   /// ````
   AppState call({
     AccountState? accountState,
+    String? version,
   });
 }
 
@@ -31,6 +34,9 @@ class _$AppStateCWProxyImpl implements _$AppStateCWProxy {
       this(accountState: accountState);
 
   @override
+  AppState version(String? version) => this(version: version);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -40,6 +46,7 @@ class _$AppStateCWProxyImpl implements _$AppStateCWProxy {
   /// ````
   AppState call({
     Object? accountState = const $CopyWithPlaceholder(),
+    Object? version = const $CopyWithPlaceholder(),
   }) {
     return AppState(
       accountState:
@@ -47,6 +54,10 @@ class _$AppStateCWProxyImpl implements _$AppStateCWProxy {
               ? _value.accountState
               // ignore: cast_nullable_to_non_nullable
               : accountState as AccountState,
+      version: version == const $CopyWithPlaceholder()
+          ? _value.version
+          // ignore: cast_nullable_to_non_nullable
+          : version as String?,
     );
   }
 }

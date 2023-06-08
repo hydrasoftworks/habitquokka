@@ -8,5 +8,6 @@ class Environment {
   });
 
   static const bool isDebug = kDebugMode;
+
   final SupabaseClient supabase;
 }

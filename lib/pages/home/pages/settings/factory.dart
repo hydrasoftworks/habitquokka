@@ -8,6 +8,7 @@ class Factory extends VmFactory<AppState, SettingsPageConnector, ViewModel> {
 
   @override
   ViewModel fromStore() => ViewModel(
+        version: state.version,
         onSignOut: () => dispatch(SignOutAction()),
       );
 }

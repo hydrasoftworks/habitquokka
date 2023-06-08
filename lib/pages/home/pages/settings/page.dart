@@ -1,9 +1,6 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
@@ -40,37 +37,25 @@ class SettingsPage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: _buildVersion(),
+            child: _buildVersion(context, viewModel.version),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildVersion() {
-    return FutureBuilder(
-      // TODO: Move that to a state
-      future: PackageInfo.fromPlatform(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return const SizedBox.shrink();
-        final packageInfo = snapshot.data as PackageInfo;
-        final buildNumber = packageInfo.buildNumber;
-        final buildShort = buildNumber.substring(
-          0,
-          math.min(7, buildNumber.length),
-        );
+  Widget _buildVersion(BuildContext context, String? version) {
+    if (version == null) return const SizedBox.shrink();
 
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: 6,
-            right: Theme.of(context).appSpacing.medium,
-          ),
-          child: SelectableText(
-            '${packageInfo.version} ($buildShort)',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        );
-      },
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: 6,
+        right: Theme.of(context).appSpacing.medium,
+      ),
+      child: SelectableText(
+        version,
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
     );
   }
 }
