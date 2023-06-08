@@ -26,9 +26,11 @@ class NewTrackerAlertPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                formModel.form.markAllAsTouched();
-                if (!formModel.form.valid) return;
-                // TODO: Create new tracker
+                formModel.submit(
+                  onValid: (model) => {
+                    // TODO: Create new tracker
+                  },
+                );
               },
               style: TextButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary,
@@ -73,8 +75,6 @@ class _Form extends StatelessWidget {
               labelText: L10n.of(context).newTrackerPageShortNameLabel,
               helperText: L10n.of(context).newTrackerPageShortNameTooltip,
               hintText: L10n.of(context).newTrackerPageShortNameHint,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              border: const OutlineInputBorder(),
             ),
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
@@ -84,8 +84,6 @@ class _Form extends StatelessWidget {
               labelText: L10n.of(context).newTrackerPageNameLabel,
               helperText: L10n.of(context).newTrackerPageNameTooltip,
               hintText: L10n.of(context).newTrackerPageNameHint,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              border: const OutlineInputBorder(),
             ),
           ),
         ],

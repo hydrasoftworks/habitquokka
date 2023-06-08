@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
@@ -14,13 +13,14 @@ import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/home/pages/settings/settings.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
 import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
+import 'package:habitquokka/redux/redux.dart';
 import 'package:habitquokka/router/guards.dart';
 import 'package:habitquokka/router/route.dart';
 
 class AppRouter {
   static final router = GoRouter(
     initialLocation: AppRoute.onboarding,
-    debugLogDiagnostics: kDebugMode,
+    debugLogDiagnostics: Environment.isDebug,
     errorPageBuilder: (context, state) => _PageBuilder.from<void>(
       state: state,
       child: EmptyPage(

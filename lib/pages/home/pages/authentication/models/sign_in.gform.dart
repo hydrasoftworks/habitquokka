@@ -3,14 +3,14 @@
 // ignore_for_file: type=lint
 // ignore_for_file:
 
-part of 'authentication.dart';
+part of 'sign_in.dart';
 
 // **************************************************************************
 // ReactiveFormsGenerator
 // **************************************************************************
 
-class ReactiveAuthenticationFormConsumer extends StatelessWidget {
-  const ReactiveAuthenticationFormConsumer({
+class ReactiveSignInFormConsumer extends StatelessWidget {
+  const ReactiveSignInFormConsumer({
     Key? key,
     required this.builder,
     this.child,
@@ -19,22 +19,21 @@ class ReactiveAuthenticationFormConsumer extends StatelessWidget {
   final Widget? child;
 
   final Widget Function(
-          BuildContext context, AuthenticationForm formModel, Widget? child)
-      builder;
+      BuildContext context, SignInForm formModel, Widget? child) builder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveAuthenticationForm.of(context);
+    final formModel = ReactiveSignInForm.of(context);
 
-    if (formModel is! AuthenticationForm) {
+    if (formModel is! SignInForm) {
       throw FormControlParentNotFoundException(this);
     }
     return builder(context, formModel, child);
   }
 }
 
-class AuthenticationFormInheritedStreamer extends InheritedStreamer<dynamic> {
-  const AuthenticationFormInheritedStreamer({
+class SignInFormInheritedStreamer extends InheritedStreamer<dynamic> {
+  const SignInFormInheritedStreamer({
     Key? key,
     required this.form,
     required Stream<dynamic> stream,
@@ -45,11 +44,11 @@ class AuthenticationFormInheritedStreamer extends InheritedStreamer<dynamic> {
           key: key,
         );
 
-  final AuthenticationForm form;
+  final SignInForm form;
 }
 
-class ReactiveAuthenticationForm extends StatelessWidget {
-  const ReactiveAuthenticationForm({
+class ReactiveSignInForm extends StatelessWidget {
+  const ReactiveSignInForm({
     Key? key,
     required this.form,
     required this.child,
@@ -58,31 +57,30 @@ class ReactiveAuthenticationForm extends StatelessWidget {
 
   final Widget child;
 
-  final AuthenticationForm form;
+  final SignInForm form;
 
   final WillPopCallback? onWillPop;
 
-  static AuthenticationForm? of(
+  static SignInForm? of(
     BuildContext context, {
     bool listen = true,
   }) {
     if (listen) {
       return context
-          .dependOnInheritedWidgetOfExactType<
-              AuthenticationFormInheritedStreamer>()
+          .dependOnInheritedWidgetOfExactType<SignInFormInheritedStreamer>()
           ?.form;
     }
 
-    final element = context.getElementForInheritedWidgetOfExactType<
-        AuthenticationFormInheritedStreamer>();
+    final element = context
+        .getElementForInheritedWidgetOfExactType<SignInFormInheritedStreamer>();
     return element == null
         ? null
-        : (element.widget as AuthenticationFormInheritedStreamer).form;
+        : (element.widget as SignInFormInheritedStreamer).form;
   }
 
   @override
   Widget build(BuildContext context) {
-    return AuthenticationFormInheritedStreamer(
+    return SignInFormInheritedStreamer(
       form: form,
       stream: form.form.statusChanged,
       child: WillPopScope(
@@ -93,8 +91,8 @@ class ReactiveAuthenticationForm extends StatelessWidget {
   }
 }
 
-class AuthenticationFormBuilder extends StatefulWidget {
-  const AuthenticationFormBuilder({
+class SignInFormBuilder extends StatefulWidget {
+  const SignInFormBuilder({
     Key? key,
     this.model,
     this.child,
@@ -103,31 +101,27 @@ class AuthenticationFormBuilder extends StatefulWidget {
     this.initState,
   }) : super(key: key);
 
-  final Authentication? model;
+  final SignIn? model;
 
   final Widget? child;
 
   final WillPopCallback? onWillPop;
 
   final Widget Function(
-          BuildContext context, AuthenticationForm formModel, Widget? child)
-      builder;
+      BuildContext context, SignInForm formModel, Widget? child) builder;
 
-  final void Function(BuildContext context, AuthenticationForm formModel)?
-      initState;
+  final void Function(BuildContext context, SignInForm formModel)? initState;
 
   @override
-  _AuthenticationFormBuilderState createState() =>
-      _AuthenticationFormBuilderState();
+  _SignInFormBuilderState createState() => _SignInFormBuilderState();
 }
 
-class _AuthenticationFormBuilderState extends State<AuthenticationFormBuilder> {
-  late AuthenticationForm _formModel;
+class _SignInFormBuilderState extends State<SignInFormBuilder> {
+  late SignInForm _formModel;
 
   @override
   void initState() {
-    _formModel =
-        AuthenticationForm(AuthenticationForm.formElements(widget.model), null);
+    _formModel = SignInForm(SignInForm.formElements(widget.model), null);
 
     if (_formModel.form.disabled) {
       _formModel.form.markAsDisabled();
@@ -139,10 +133,9 @@ class _AuthenticationFormBuilderState extends State<AuthenticationFormBuilder> {
   }
 
   @override
-  void didUpdateWidget(covariant AuthenticationFormBuilder oldWidget) {
+  void didUpdateWidget(covariant SignInFormBuilder oldWidget) {
     if (widget.model != oldWidget.model) {
-      _formModel = AuthenticationForm(
-          AuthenticationForm.formElements(widget.model), null);
+      _formModel = SignInForm(SignInForm.formElements(widget.model), null);
 
       if (_formModel.form.disabled) {
         _formModel.form.markAsDisabled();
@@ -162,7 +155,7 @@ class _AuthenticationFormBuilderState extends State<AuthenticationFormBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveAuthenticationForm(
+    return ReactiveSignInForm(
       key: ObjectKey(_formModel),
       form: _formModel,
       onWillPop: widget.onWillPop,
@@ -177,20 +170,24 @@ class _AuthenticationFormBuilderState extends State<AuthenticationFormBuilder> {
   }
 }
 
-class AuthenticationForm implements FormModel<Authentication> {
-  AuthenticationForm(
+class SignInForm implements FormModel<SignIn> {
+  SignInForm(
     this.form,
     this.path,
   );
 
   static const String emailControlName = "email";
 
+  static const String otpControlName = "otp";
+
   final FormGroup form;
 
   final String? path;
 
   String emailControlPath() => pathBuilder(emailControlName);
+  String otpControlPath() => pathBuilder(otpControlName);
   String get _emailValue => emailControl.value ?? "";
+  String? get _otpValue => otpControl?.value;
   bool get containsEmail {
     try {
       form.control(emailControlPath());
@@ -200,14 +197,60 @@ class AuthenticationForm implements FormModel<Authentication> {
     }
   }
 
+  bool get containsOtp {
+    try {
+      form.control(otpControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Object? get emailErrors => emailControl.errors;
+  Object? get otpErrors => otpControl?.errors;
   void get emailFocus => form.focus(emailControlPath());
+  void get otpFocus => form.focus(otpControlPath());
+  void otpRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsOtp) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          otpControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            otpControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
   void emailValueUpdate(
     String value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
     emailControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void otpValueUpdate(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    otpControl?.updateValue(value,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
@@ -220,6 +263,15 @@ class AuthenticationForm implements FormModel<Authentication> {
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
+  void otpValuePatch(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    otpControl?.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
   void emailValueReset(
     String value, {
     bool updateParent = true,
@@ -229,8 +281,20 @@ class AuthenticationForm implements FormModel<Authentication> {
   }) =>
       emailControl.reset(
           value: value, updateParent: updateParent, emitEvent: emitEvent);
+  void otpValueReset(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      otpControl?.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
   FormControl<String> get emailControl =>
       form.control(emailControlPath()) as FormControl<String>;
+  FormControl<String>? get otpControl => containsOtp
+      ? form.control(otpControlPath()) as FormControl<String>?
+      : null;
   void emailSetDisabled(
     bool disabled, {
     bool updateParent = true,
@@ -249,19 +313,37 @@ class AuthenticationForm implements FormModel<Authentication> {
     }
   }
 
+  void otpSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      otpControl?.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      otpControl?.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
   @override
-  Authentication get model {
+  SignIn get model {
     final currentForm = path == null ? form : form.control(path!);
 
     if (!currentForm.valid) {
       debugPrint(
-          '[${path ?? 'AuthenticationForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+          '[${path ?? 'SignInForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
     }
-    return Authentication(email: _emailValue);
+    return SignIn(email: _emailValue, otp: _otpValue);
   }
 
   void submit({
-    required void Function(Authentication model) onValid,
+    required void Function(SignIn model) onValid,
     void Function()? onNotValid,
   }) {
     form.markAllAsTouched();
@@ -274,15 +356,15 @@ class AuthenticationForm implements FormModel<Authentication> {
 
   @override
   void updateValue(
-    Authentication value, {
+    SignIn value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
-      form.updateValue(AuthenticationForm.formElements(value).rawValue,
+      form.updateValue(SignInForm.formElements(value).rawValue,
           updateParent: updateParent, emitEvent: emitEvent);
   @override
   void reset({
-    Authentication? value,
+    SignIn? value,
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
@@ -292,10 +374,17 @@ class AuthenticationForm implements FormModel<Authentication> {
           emitEvent: emitEvent);
   String pathBuilder(String? pathItem) =>
       [path, pathItem].whereType<String>().join(".");
-  static FormGroup formElements(Authentication? authentication) => FormGroup({
+  static FormGroup formElements(SignIn? signIn) => FormGroup({
         emailControlName: FormControl<String>(
-            value: authentication?.email,
+            value: signIn?.email,
             validators: [requiredValidator, emailValidator],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        otpControlName: FormControl<String>(
+            value: signIn?.otp,
+            validators: [],
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,
@@ -307,8 +396,8 @@ class AuthenticationForm implements FormModel<Authentication> {
           disabled: false);
 }
 
-class ReactiveAuthenticationFormArrayBuilder<T> extends StatelessWidget {
-  const ReactiveAuthenticationFormArrayBuilder({
+class ReactiveSignInFormArrayBuilder<T> extends StatelessWidget {
+  const ReactiveSignInFormArrayBuilder({
     Key? key,
     this.control,
     this.formControl,
@@ -320,18 +409,18 @@ class ReactiveAuthenticationFormArrayBuilder<T> extends StatelessWidget {
 
   final FormArray<T>? formControl;
 
-  final FormArray<T>? Function(AuthenticationForm formModel)? control;
-
-  final Widget Function(BuildContext context, List<Widget> itemList,
-      AuthenticationForm formModel)? builder;
+  final FormArray<T>? Function(SignInForm formModel)? control;
 
   final Widget Function(
-          BuildContext context, int i, T? item, AuthenticationForm formModel)
-      itemBuilder;
+          BuildContext context, List<Widget> itemList, SignInForm formModel)?
+      builder;
+
+  final Widget Function(
+      BuildContext context, int i, T? item, SignInForm formModel) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveAuthenticationForm.of(context);
+    final formModel = ReactiveSignInForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);
@@ -367,9 +456,8 @@ class ReactiveAuthenticationFormArrayBuilder<T> extends StatelessWidget {
   }
 }
 
-class ReactiveAuthenticationFormFormGroupArrayBuilder<V>
-    extends StatelessWidget {
-  const ReactiveAuthenticationFormFormGroupArrayBuilder({
+class ReactiveSignInFormFormGroupArrayBuilder<V> extends StatelessWidget {
+  const ReactiveSignInFormFormGroupArrayBuilder({
     Key? key,
     this.extended,
     this.getExtended,
@@ -382,18 +470,18 @@ class ReactiveAuthenticationFormFormGroupArrayBuilder<V>
   final ExtendedControl<List<Map<String, Object?>?>, List<V>>? extended;
 
   final ExtendedControl<List<Map<String, Object?>?>, List<V>> Function(
-      AuthenticationForm formModel)? getExtended;
-
-  final Widget Function(BuildContext context, List<Widget> itemList,
-      AuthenticationForm formModel)? builder;
+      SignInForm formModel)? getExtended;
 
   final Widget Function(
-          BuildContext context, int i, V? item, AuthenticationForm formModel)
-      itemBuilder;
+          BuildContext context, List<Widget> itemList, SignInForm formModel)?
+      builder;
+
+  final Widget Function(
+      BuildContext context, int i, V? item, SignInForm formModel) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveAuthenticationForm.of(context);
+    final formModel = ReactiveSignInForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);

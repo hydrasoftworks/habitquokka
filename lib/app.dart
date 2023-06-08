@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
@@ -39,14 +38,8 @@ class App extends StatelessWidget {
         builder: (context) => StoreProvider<AppState>(
           store: store,
           child: MaterialApp.router(
-            theme: light.copyWith(
-              textTheme: GoogleFonts.notoSansTextTheme(light.textTheme),
-              extensions: AppThemeExtensions.app,
-            ),
-            darkTheme: dark.copyWith(
-              textTheme: GoogleFonts.notoSansTextTheme(dark.textTheme),
-              extensions: AppThemeExtensions.app,
-            ),
+            theme: light.enhanced,
+            darkTheme: dark.enhanced,
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
             onGenerateTitle: (context) => L10n.of(context).appNameLong,

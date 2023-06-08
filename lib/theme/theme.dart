@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:habitquokka/theme/colors.dart';
 import 'package:habitquokka/theme/spacing.dart';
 
@@ -22,5 +24,16 @@ extension GetAppThemeExtensions on ThemeData {
 
   ArgumentError get _extensionNotRegistered => ArgumentError(
         'Extension must be registered in themeExtensions list',
+      );
+}
+
+extension EnhanceTheme on ThemeData {
+  ThemeData get enhanced => copyWith(
+        textTheme: GoogleFonts.notoSansTextTheme(textTheme),
+        extensions: AppThemeExtensions.app,
+        inputDecorationTheme: const InputDecorationTheme(
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          border: OutlineInputBorder(),
+        ),
       );
 }

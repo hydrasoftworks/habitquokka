@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker_image.dart';
 
 class ImageOriginText extends StatelessWidget {
@@ -41,7 +42,7 @@ class _UnsplashImageOriginText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text.rich(
       TextSpan(
-        text: 'Photo by ',
+        text: L10n.of(context).trackerDetailsPageAuthorLabelPart1,
         children: <InlineSpan>[
           WidgetSpan(
             alignment: PlaceholderAlignment.baseline,
@@ -51,7 +52,9 @@ class _UnsplashImageOriginText extends StatelessWidget {
               url: '${image.pageUrl}?utm_source=$_appName&utm_medium=referral',
             ),
           ),
-          const TextSpan(text: ' on '),
+          TextSpan(
+            text: L10n.of(context).trackerDetailsPageAuthorLabelPart2,
+          ),
           WidgetSpan(
             alignment: PlaceholderAlignment.baseline,
             baseline: TextBaseline.alphabetic,
