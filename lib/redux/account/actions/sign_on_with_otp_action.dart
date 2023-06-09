@@ -1,20 +1,28 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'package:habitquokka/redux/redux.dart';
 
 class SignOnWithOTPAction extends Action {
   SignOnWithOTPAction({
     required this.username,
     required this.email,
+    required this.redirect,
   });
 
   final String username;
   final String email;
+  final String redirect;
 
   @override
   Future<AppState?> reduce() async {
+    final domain = Environment.isDebug
+        ? dotenv.get('DEBUG_APP_URL')
+        : dotenv.get('APP_URL');
+
     await env.supabase.auth.signInWithOtp(
       email: email,
       shouldCreateUser: true,
-      emailRedirectTo: Environment.isDebug ? 'http://localhost:50568/' : null,
+      emailRedirectTo: domain + redirect,
       data: {'username': username},
     );
     return null;

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import 'package:habitquokka/pages/home/pages/authentication/pages/sign_in/sign_in.dart';
 import 'package:habitquokka/pages/home/pages/authentication/pages/sign_on/sign_on.dart';
 import 'package:habitquokka/pages/home/pages/authentication/view_model.dart';
+import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 enum _Mode {
@@ -38,13 +41,19 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                     onSwitchToSignOn: () => setState(
                       () => _mode = _Mode.signOn,
                     ),
-                    onSignIn: widget.viewModel.signIn,
+                    onSignIn: (model) => widget.viewModel.signIn(
+                      model,
+                      _getRedirect(context),
+                    ),
                   ),
                 _Mode.signOn => SignOnPage(
                     onSwitchToSignIn: () => setState(
                       () => _mode = _Mode.signIn,
                     ),
-                    onSignOn: widget.viewModel.signOn,
+                    onSignOn: (model) => widget.viewModel.signOn(
+                      model,
+                      _getRedirect(context),
+                    ),
                   ),
               },
             ),
@@ -52,5 +61,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
         ),
       ),
     );
+  }
+
+  String _getRedirect(BuildContext context) {
+    return GoRouterState.of(context).queryParameters['redirect'] ??
+        AppRoute.onboarding;
   }
 }
