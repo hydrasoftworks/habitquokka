@@ -3,6 +3,7 @@
 > Build better habits, one window at a time
 
 [![Fluter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Supabase](https://img.shields.io/badge/Supabase-2B825B?logo=supabase&logoColor=white)](https://supabase.com)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/db37a603-3dd6-43c9-afd4-17494b69c7bc/deploy-status)](https://app.netlify.com/sites/habitquokka/deploys)
 [![Melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
@@ -38,6 +39,25 @@ fvm dart pub global activate melos
 Then, run `melos bootstrap` in the root of the project to get all the dependencies and generate the translation files and other generated content.
 
 Call `melos run` to see other useful scripts.
+
+## Supabase
+
+Application data are stored on [Supabase](https://supabase.com/). To create a local environment install [Docker Desktop](https://docs.docker.com/desktop/) and [Supabase CLI](https://supabase.com/docs/guides/cli) first.
+
+Next from the project root, call `supabase start`. After a while, you will get project configuration details. If you need more info, consult [this page](https://supabase.com/docs/guides/getting-started/local-development).
+
+## Local environment
+
+In the project root, there is a file named `example.development.json`. Copy it to `development.json`.
+
+```bash
+cp example.development.json development.json
+```
+
+and fill required values before starting the Flutter project.
+
+The environment configuration file can be passed to Flutter with `--dart-define-from-file=[environment].json` parameter.
+
 
 ## Git setup
 

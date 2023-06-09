@@ -8,13 +8,22 @@
       "name": "development",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main.dart"
+      "program": "lib/main.dart",
+      "args": ["--dart-define-from-file", "development.json"]
     },
     {
       "name": "development (web)",
       "request": "launch",
       "type": "dart",
-      "args": ["-d", "chrome", "--web-port", "1337"]
+      "program": "lib/main.dart",
+      "args": [
+        "-d",
+        "chrome",
+        "--web-port",
+        "1337",
+        "--dart-define-from-file",
+        "development.json"
+      ]
     }
   ]
 }

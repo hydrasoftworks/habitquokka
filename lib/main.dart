@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -12,11 +11,14 @@ import 'package:habitquokka/redux/redux.dart';
 void main() async {
   setPathUrlStrategy();
 
-  await dotenv.load(fileName: 'env');
+  if (const String.fromEnvironment('APP_URL').isEmpty) {
+    throw AssertionError(
+        'Environment json file is not set. Use --dart-define-from-file=[environment].json to set it.');
+  }
 
   await Supabase.initialize(
-    url: dotenv.get('SUPABASE_URL'),
-    anonKey: dotenv.get('SUPABASE_API_KEY'),
+    url: const String.fromEnvironment('SUPABASE_URL'),
+    anonKey: const String.fromEnvironment('SUPABASE_API_KEY'),
   );
 
   final store = Store<AppState>(

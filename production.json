@@ -1,0 +1,6 @@
+{
+  "APP_URL": "https://habitquokka.com",
+  "SUPABASE_URL": "https://fvaiwvzlkguwsqutqmgx.supabase.co",
+  "SUPABASE_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2YWl3dnpsa2d1d3NxdXRxbWd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU4ODEzMTcsImV4cCI6MjAwMTQ1NzMxN30.aBN6mbXoKGtzloxNR291RtJQ8F9UQ5xCxI1z9Vfx5HM",
+  "UNSPLASH_APP_NAME": "habit_quokka"
+}

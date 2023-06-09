@@ -1,0 +1,6 @@
+{
+  "APP_URL": "http://localhost:1337",
+  "SUPABASE_URL": "http://localhost:54321",
+  "SUPABASE_API_KEY": "set_your_local_supabase_anon_key_here",
+  "UNSPLASH_APP_NAME": "habit_quokka"
+}

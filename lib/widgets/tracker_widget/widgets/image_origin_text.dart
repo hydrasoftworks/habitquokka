@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
@@ -36,7 +35,7 @@ class _UnsplashImageOriginText extends StatelessWidget {
 
   final TrackerImage image;
 
-  String get _appName => dotenv.get('UNSPLASH_APP_NAME');
+  static const String _appName = String.fromEnvironment('UNSPLASH_APP_NAME');
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,7 @@ class _UnsplashImageOriginText extends StatelessWidget {
           TextSpan(
             text: L10n.of(context).trackerDetailsPageAuthorLabelPart2,
           ),
-          WidgetSpan(
+          const WidgetSpan(
             alignment: PlaceholderAlignment.baseline,
             baseline: TextBaseline.alphabetic,
             child: _LinkButton(

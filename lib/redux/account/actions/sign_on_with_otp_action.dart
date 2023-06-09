@@ -1,5 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'package:habitquokka/redux/redux.dart';
 
 class SignOnWithOTPAction extends Action {
@@ -15,9 +13,7 @@ class SignOnWithOTPAction extends Action {
 
   @override
   Future<AppState?> reduce() async {
-    final domain = Environment.isDebug
-        ? dotenv.get('DEBUG_APP_URL')
-        : dotenv.get('APP_URL');
+    const domain = String.fromEnvironment('APP_URL');
 
     await env.supabase.auth.signInWithOtp(
       email: email,
