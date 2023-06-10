@@ -34,8 +34,9 @@ serve(async (_) => {
   } = result.response;
 
   const data = {
-    rawUrl: raw,
-    pageUrl: html,
+    source: "unsplash",
+    raw_url: raw,
+    page_url: html,
     author: name,
   };
 

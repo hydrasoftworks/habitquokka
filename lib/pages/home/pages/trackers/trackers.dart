@@ -26,6 +26,7 @@ class TrackersPage extends StatelessWidget {
   final List<Tracker> _trackers = const [
     Tracker(
       id: 'Onboarding',
+      ownerId: 'Onboarding-user',
       shortName: 'Habit Quokka',
       name: 'Check out Habit Quokka!',
       image: TrackerImage(
@@ -35,8 +36,6 @@ class TrackersPage extends StatelessWidget {
         pageUrl: 'https://unsplash.com/photos/dXdkpdYCNbo',
         author: 'Luca Bravo',
       ),
-      rows: 5,
-      columns: 6,
       seedColor: 0x0D47A1,
     )
   ];

@@ -7,6 +7,7 @@ abstract class Action extends ReduxAction<AppState> {
   Environment get env => super.env as Environment;
 
   AccountState get accountState => state.accountState;
+  TrackersState get trackersState => state.trackersState;
 
   @override
   Object? wrapError(Object error, StackTrace stackTrace) {

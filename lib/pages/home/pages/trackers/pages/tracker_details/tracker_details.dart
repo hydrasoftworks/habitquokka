@@ -22,7 +22,7 @@ class TrackerDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          tracker.name,
+          tracker.fullName,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

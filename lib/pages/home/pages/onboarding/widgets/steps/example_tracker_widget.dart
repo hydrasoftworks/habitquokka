@@ -21,6 +21,7 @@ class ExampleTrackerWidget extends StatelessWidget {
       child: TrackerWidget(
         tracker: Tracker(
           id: 'Onboarding',
+          ownerId: 'Onboarding-user',
           shortName: L10n.of(context).onboardingPageTrackerShortName,
           name: L10n.of(context).onboardingPageTrackerName,
           image: const TrackerImage(
@@ -30,8 +31,6 @@ class ExampleTrackerWidget extends StatelessWidget {
             pageUrl: 'https://unsplash.com/photos/dXdkpdYCNbo',
             author: 'Luca Bravo',
           ),
-          rows: 5,
-          columns: 6,
           seedColor: seedColor,
         ),
       ),

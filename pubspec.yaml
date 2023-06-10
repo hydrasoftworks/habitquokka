@@ -33,12 +33,15 @@ dependencies:
   async_redux: ^20.0.2
   equatable: ^2.0.5
   copy_with_extension: ^5.0.2
+  json_annotation: ^4.8.1
+  material_color_utilities: ^0.2.0
 
 dev_dependencies:
   build_runner: ^2.4.4
   copy_with_extension_gen: ^5.0.2
   flutter_lints: ^2.0.1
   import_sorter: ^4.6.0
+  json_serializable: ^6.7.0
   melos: ^3.1.0
   reactive_forms_generator: ^1.2.0
 
