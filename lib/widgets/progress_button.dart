@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProgressFilledButton extends StatefulWidget {
-  const ProgressFilledButton({
+class ProgressButton extends StatefulWidget {
+  const ProgressButton({
     super.key,
     required this.label,
     required this.onPressed,
@@ -11,15 +11,15 @@ class ProgressFilledButton extends StatefulWidget {
   final Future<void> Function() onPressed;
 
   @override
-  State<ProgressFilledButton> createState() => _ProgressFilledButtonState();
+  State<ProgressButton> createState() => _ProgressButtonState();
 }
 
-class _ProgressFilledButtonState extends State<ProgressFilledButton> {
+class _ProgressButtonState extends State<ProgressButton> {
   bool _isInIdle = true;
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
+    return TextButton(
       onPressed: _isInIdle
           ? () async {
               setState(() => _isInIdle = false);
@@ -27,6 +27,10 @@ class _ProgressFilledButtonState extends State<ProgressFilledButton> {
               setState(() => _isInIdle = true);
             }
           : null,
+      style: TextButton.styleFrom(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      ),
       child: _isInIdle
           ? Text(widget.label)
           : const SizedBox(

@@ -43,7 +43,7 @@
   "newTrackerPageShortNameRequiredValidation": "Short name is required.",
   "newTrackerPageNameLabel": "Tracker name",
   "newTrackerPageNameTooltip": "Visible on the tracker details.",
-  "newTrackerPageNameHint": "Learn japanese for 10 minutes a day",
+  "newTrackerPageNameHint": "Learn Japanese for 10 minutes a day",
   "newTrackerPageTitle": "Create a new tracker",
   "newTrackerPageCreateButtonLabel": "Create",
   "trackerDetailsPageAuthorLabelPart1": "Photo by ",

@@ -6,6 +6,7 @@ import 'package:habitquokka/pages/home/pages/authentication/pages/sign_in/sign_i
 import 'package:habitquokka/pages/home/pages/authentication/pages/sign_on/sign_on.dart';
 import 'package:habitquokka/pages/home/pages/authentication/view_model.dart';
 import 'package:habitquokka/router/route.dart';
+import 'package:habitquokka/theme/theme.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
 enum _Mode {
@@ -35,7 +36,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
         child: PanelContainer(
           child: Center(
             child: SizedBox(
-              width: 600,
+              width: Theme.of(context).appSize.modalWidth,
               child: switch (_mode) {
                 _Mode.signIn => SignInPage(
                     onSwitchToSignOn: () => setState(

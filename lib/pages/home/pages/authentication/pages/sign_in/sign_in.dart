@@ -7,7 +7,7 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/pages/home/pages/authentication/models/sign_in.dart';
 import 'package:habitquokka/pages/home/pages/authentication/widgets/switch_page.dart';
 import 'package:habitquokka/theme/theme.dart';
-import 'package:habitquokka/widgets/progress_filled_button.dart';
+import 'package:habitquokka/widgets/progress_button.dart';
 
 typedef OnSignIn = Future<void> Function(SignIn);
 
@@ -104,7 +104,7 @@ class _FormState extends State<_Form> {
             ),
           ),
         SizedBox(height: Theme.of(context).appSpacing.medium),
-        ProgressFilledButton(
+        ProgressButton(
           onPressed: _submitForm,
           label: L10n.of(context).authenticationPageButtonLabel,
         ),

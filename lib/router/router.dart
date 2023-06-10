@@ -67,7 +67,7 @@ class AppRouter {
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: const TrackersPage(selectedTrackerId: null),
+                child: const TrackersPageConnector(selectedTrackerId: null),
               );
             },
             routes: [
@@ -79,7 +79,7 @@ class AppRouter {
                     ...state.pathParameters,
                     ...state.queryParameters,
                   },
-                  builder: (context) => const NewTrackerAlertPage(),
+                  builder: (context) => const NewTrackerPageConnector(),
                 ),
               ),
             ],
@@ -90,7 +90,7 @@ class AppRouter {
             pageBuilder: (BuildContext context, GoRouterState state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: TrackersPage(
+                child: TrackersPageConnector(
                   selectedTrackerId: state.pathParameters['trackerId'],
                 ),
               );

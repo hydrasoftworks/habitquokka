@@ -16,6 +16,10 @@ abstract class Action extends ReduxAction<AppState> {
           message,
           cause: error,
         ),
+      PostgrestException(message: var message) => UserException(
+          message,
+          cause: error,
+        ),
       _ => super.wrapError(error, stackTrace)
     };
   }

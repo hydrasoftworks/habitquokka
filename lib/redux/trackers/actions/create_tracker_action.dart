@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' show NetworkImage;
+
 import 'package:habitquokka/models/seed_color.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/models/tracker_image.dart';
@@ -25,6 +26,7 @@ class CreateTrackerAction extends Action {
 
     final trackerImage = TrackerImage.fromJson(response.data);
 
+    // TODO: This operations blocks UI. Should be callend in an isolate.
     final seedColor = await seedColorFromImageProvider(
       NetworkImage(trackerImage.rawUrl),
     );
@@ -38,9 +40,18 @@ class CreateTrackerAction extends Action {
       seedColor: seedColor.value,
     );
 
-    final createdTracker =
-        await env.supabase.from('trackers').insert(tracker.toJson()).select();
+    final createdTrackerData = await env.supabase
+        .from('trackers')
+        .insert(tracker.toJson())
+        .select()
+        .single();
 
-    return null;
+    final createdTracker = Tracker.fromJson(createdTrackerData);
+
+    return state.copyWith(
+      trackersState: trackersState.copyWith(
+        trackers: [createdTracker, ...trackersState.trackers],
+      ),
+    );
   }
 }
