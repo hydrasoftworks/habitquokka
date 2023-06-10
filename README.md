@@ -13,6 +13,27 @@ Habit Quokka is an online habit-tracking app that uses a unique design inspired 
 
 ## Build from source code
 
+## Local environment
+
+### Flutter environment
+
+In the project root, there is a file named `environment.json`. Copy it to `development.json`.
+
+```bash
+cp environment.json development.json
+```
+
+and fill required values before starting the Flutter project.
+
+### Supabase environment
+
+Similarly, in the `supabase` directory, there is a file `.env`. Before running a local server, you need to create a config and fill it with your secrets.
+
+```bash
+cp ./supabase/.env ./supabase/.env.development
+```
+
+
 ### Flutter
 
 The frontend application is built with Flutter and uses [FVM](https://fvm.app/) to manage Flutter versions. The easiest way is to install FVM with `brew`.
@@ -40,24 +61,19 @@ Then, run `melos bootstrap` in the root of the project to get all the dependenci
 
 Call `melos run` to see other useful scripts.
 
+The environment configuration file can be passed to Flutter on run with `--dart-define-from-file=[environment].json` parameter.
+
 ## Supabase
 
 Application data are stored on [Supabase](https://supabase.com/). To create a local environment install [Docker Desktop](https://docs.docker.com/desktop/) and [Supabase CLI](https://supabase.com/docs/guides/cli) first.
 
 Next from the project root, call `supabase start`. After a while, you will get project configuration details. If you need more info, consult [this page](https://supabase.com/docs/guides/getting-started/local-development).
 
-## Local environment
-
-In the project root, there is a file named `example.development.json`. Copy it to `development.json`.
+To share edge functions, a separate command must be used:
 
 ```bash
-cp example.development.json development.json
+supabase functions serve --env-file ./supabase/.env.development
 ```
-
-and fill required values before starting the Flutter project.
-
-The environment configuration file can be passed to Flutter with `--dart-define-from-file=[environment].json` parameter.
-
 
 ## Git setup
 
