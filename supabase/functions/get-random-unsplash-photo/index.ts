@@ -28,14 +28,14 @@ serve(async (_) => {
   }
 
   const {
-    urls: { raw },
+    urls: { full },
     user: { name },
     links: { html },
   } = result.response;
 
   const data = {
     source: "unsplash",
-    raw_url: raw,
+    image_url: full,
     page_url: html,
     author: name,
   };

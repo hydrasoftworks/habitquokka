@@ -32,7 +32,7 @@ class CreateTrackerAction extends Action {
     final trackerImage = TrackerImage.fromJson(response.data);
 
     final seedColor = await seedColorFromImageProvider(
-      NetworkImage(trackerImage.rawUrl),
+      NetworkImage(trackerImage.imageUrl),
     );
 
     final tracker = Tracker(

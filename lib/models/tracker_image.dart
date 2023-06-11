@@ -8,7 +8,7 @@ enum ImageSource { unsplash }
 class TrackerImage {
   const TrackerImage({
     required this.source,
-    required this.rawUrl,
+    required this.imageUrl,
     required this.pageUrl,
     required this.author,
   });
@@ -17,7 +17,7 @@ class TrackerImage {
       _$TrackerImageFromJson(json);
 
   final ImageSource source;
-  final String rawUrl;
+  final String imageUrl;
   final String pageUrl;
   final String author;
 
