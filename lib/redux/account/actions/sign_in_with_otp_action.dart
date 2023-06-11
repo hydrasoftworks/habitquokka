@@ -1,3 +1,6 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'package:habitquokka/models/exception_code.dart';
 import 'package:habitquokka/redux/redux.dart';
 
 class SignInWithOTPAction extends Action {
@@ -19,5 +22,17 @@ class SignInWithOTPAction extends Action {
       emailRedirectTo: domain + redirect,
     );
     return null;
+  }
+
+  @override
+  Object? wrapError(Object error, StackTrace stackTrace) {
+    return switch (error) {
+      AuthException(message: var message, statusCode: "400") => UserException(
+          message,
+          code: const AppExceptionCode(Code.signInActionUserNotFound),
+          cause: error,
+        ),
+      _ => super.wrapError(error, stackTrace)
+    };
   }
 }

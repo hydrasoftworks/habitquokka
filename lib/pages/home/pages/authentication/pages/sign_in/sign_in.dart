@@ -9,7 +9,7 @@ import 'package:habitquokka/pages/home/pages/authentication/widgets/switch_page.
 import 'package:habitquokka/theme/theme.dart';
 import 'package:habitquokka/widgets/progress_button.dart';
 
-typedef OnSignIn = Future<void> Function(SignIn);
+typedef OnSignIn = Future<bool> Function(SignIn);
 
 class SignInPage extends StatelessWidget {
   const SignInPage({
@@ -78,7 +78,6 @@ class _FormState extends State<_Form> {
           formControl: widget.formModel.emailControl,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.continueAction,
-          readOnly: _showOTPField,
           validationMessages: {
             ValidationMessage.required: (_) =>
                 L10n.of(context).authenticationPageEmailRequiredValidation,
@@ -115,7 +114,7 @@ class _FormState extends State<_Form> {
   Future<void> _submitForm() async {
     widget.formModel.form.markAllAsTouched();
     if (!widget.formModel.form.valid) return;
-    await widget.onSignIn(widget.formModel.model);
-    setState(() => _showOTPField = true);
+    final completed = await widget.onSignIn(widget.formModel.model);
+    if (completed) setState(() => _showOTPField = true);
   }
 }

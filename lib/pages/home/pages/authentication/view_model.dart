@@ -4,17 +4,20 @@ import 'package:habitquokka/pages/home/pages/authentication/models/sign_in.dart'
 import 'package:habitquokka/pages/home/pages/authentication/models/sign_on.dart';
 import 'package:habitquokka/redux/redux.dart';
 
-typedef OnSignOnWithOTP = Future<void> Function(
+typedef OnSignOnWithOTP = Future<bool> Function(
   String username,
   String email,
   String redirect,
 );
-typedef OnSignInWithOTP = Future<void> Function(
+typedef OnSignInWithOTP = Future<bool> Function(
   String email,
   String redirect,
 );
-typedef OnVerifyOTP = Future<void> Function(
-    String email, String otp, OtpType type);
+typedef OnVerifyOTP = Future<bool> Function(
+  String email,
+  String otp,
+  OtpType type,
+);
 
 class ViewModel extends Vm {
   ViewModel({
@@ -30,7 +33,7 @@ class ViewModel extends Vm {
   final OnSignInWithOTP onSignInWithOTP;
   final OnVerifyOTP onVerifyOTP;
 
-  Future<void> signIn(SignIn model, String redirect) {
+  Future<bool> signIn(SignIn model, String redirect) {
     final otp = model.otp;
     if (otp == null || otp.isEmpty) {
       return onSignInWithOTP(model.email, redirect);
@@ -39,7 +42,7 @@ class ViewModel extends Vm {
     }
   }
 
-  Future<void> signOn(SignOn model, String redirect) {
+  Future<bool> signOn(SignOn model, String redirect) {
     final otp = model.otp;
     if (otp == null || otp.isEmpty) {
       return onSignOnWithOTP(model.username, model.email, redirect);

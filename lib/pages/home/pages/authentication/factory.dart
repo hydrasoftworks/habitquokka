@@ -18,12 +18,12 @@ class Factory
             email: email,
             redirect: redirect,
           ),
-        ),
+        ).then((status) => status.isFinished),
         onSignInWithOTP: (email, redirect) => dispatchAsync(
           SignInWithOTPAction(email: email, redirect: redirect),
-        ),
+        ).then((status) => status.isFinished),
         onVerifyOTP: (email, otp, type) => dispatchAsync(
           VerifyOTPAction(email: email, otp: otp, type: type),
-        ),
+        ).then((status) => status.isFinished),
       );
 }

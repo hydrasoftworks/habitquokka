@@ -4,6 +4,7 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/redux/redux.dart';
 
 enum Code {
+  signInActionUserNotFound,
   createTrackerActionUserNotLoggedIn,
 }
 
@@ -26,6 +27,7 @@ class AppExceptionCode extends ExceptionCode {
     return {
       Code.createTrackerActionUserNotLoggedIn:
           l10n.userExceptionCreateTrackerActionUserNotLoggedIn,
+      Code.signInActionUserNotFound: l10n.userExceptionSignInActionUserNotFound,
     };
   }
 }

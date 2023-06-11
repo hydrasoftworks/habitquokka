@@ -5,6 +5,7 @@
   "generalCancel": "Cancel",
   "emptyPageLabel": "Page not found",
   "userExceptionCreateTrackerActionUserNotLoggedIn": "You must be logged in to create a tracker.",
+  "userExceptionSignInActionUserNotFound": "Your credentials are invalid. Make sure you have registered first.",
   "homePageDestinationOnboardingLabel": "Home",
   "homePageDestinationOnboardingTooltip": "Home page",
   "homePageDestinationTrackerLabel": "My Trackers",
