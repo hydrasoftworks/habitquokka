@@ -8,11 +8,9 @@ class Factory extends VmFactory<AppState, NewTrackerPageConnector, ViewModel> {
 
   @override
   ViewModel fromStore() => ViewModel(
+        trackerCreatedEvt: state.trackersState.trackerCreatedEvt,
         onCreateTracker: (name, shortName) => dispatchAsync(
-          CreateTrackerAction(
-            name: name,
-            shortName: shortName,
-          ),
+          CreateTrackerAction(name: name, shortName: shortName),
         ),
       );
 }

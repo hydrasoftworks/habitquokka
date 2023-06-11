@@ -36,9 +36,10 @@ extension EnhanceTheme on ThemeData {
   ThemeData get enhanced => copyWith(
         textTheme: GoogleFonts.notoSansTextTheme(textTheme),
         extensions: AppThemeExtensions.app,
-        inputDecorationTheme: const InputDecorationTheme(
+        inputDecorationTheme: InputDecorationTheme(
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
+          hintStyle: TextStyle(color: hintColor.withOpacity(0.3)),
         ),
       );
 }

@@ -8,6 +8,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
+import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/tracker_details.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/trackers_list/trackers_list.dart';
@@ -18,11 +19,9 @@ import 'package:habitquokka/widgets/panel_container.dart';
 class TrackersPage extends StatelessWidget {
   const TrackersPage({
     super.key,
-    required this.selectedTrackerId,
     required this.viewModel,
   });
 
-  final String? selectedTrackerId;
   final ViewModel viewModel;
 
   @override
@@ -34,28 +33,46 @@ class TrackersPage extends StatelessWidget {
   }
 
   Widget _buildSinglePage(BuildContext context) {
-    if (selectedTrackerId != null) {
-      return _buildTrackerDetails(context, isSplitPage: false);
+    final selectedTracker = viewModel.selectedTracker;
+    if (selectedTracker != null) {
+      return _buildTrackerDetails(
+        context,
+        tracker: selectedTracker,
+        isSplitPage: false,
+      );
     }
-    return _buildTrackersList(context, isSplitPage: false);
+    return _buildTrackersList(
+      context,
+      selectedTracker: selectedTracker,
+      isSplitPage: false,
+    );
   }
 
   Widget _buildSplitPage(BuildContext context) {
+    final selectedTracker = viewModel.selectedTracker;
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
             width: math.max(30.screenWidth, 300),
-            child: _buildTrackersList(context, isSplitPage: true),
+            child: _buildTrackersList(
+              context,
+              selectedTracker: selectedTracker,
+              isSplitPage: true,
+            ),
           ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(
                 top: PanelContainer.defaultPadding.top,
               ),
-              child: (selectedTrackerId != null)
-                  ? _buildTrackerDetails(context, isSplitPage: true)
+              child: (selectedTracker != null)
+                  ? _buildTrackerDetails(
+                      context,
+                      tracker: selectedTracker,
+                      isSplitPage: true,
+                    )
                   : EmptyPage(
                       emoji: Emoji.emptyTracker,
                       text: L10n.of(context).trackersPageNoTrackerSelectedLabel,
@@ -69,6 +86,7 @@ class TrackersPage extends StatelessWidget {
 
   Widget _buildTrackersList(
     BuildContext context, {
+    required Tracker? selectedTracker,
     required bool isSplitPage,
   }) {
     return TrackersListPage(
@@ -76,7 +94,7 @@ class TrackersPage extends StatelessWidget {
         GoRouter.of(context).go(AppRoute.trackerDetails(tracker.id));
       },
       trackers: viewModel.trackers,
-      selectedTrackerId: selectedTrackerId,
+      selectedTracker: selectedTracker,
       padding: PanelContainer.defaultPadding.copyWith(
         right: isSplitPage ? PanelContainer.defaultPadding.right / 2 : null,
       ),
@@ -85,11 +103,9 @@ class TrackersPage extends StatelessWidget {
 
   Widget _buildTrackerDetails(
     BuildContext context, {
+    required Tracker tracker,
     required bool isSplitPage,
   }) {
-    final tracker = viewModel.trackers.firstWhere(
-      (tracker) => tracker.id == selectedTrackerId,
-    );
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) => _changeTheme(context, tracker.seedColor),
     );

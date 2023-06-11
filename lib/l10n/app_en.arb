@@ -4,6 +4,7 @@
   "appNameLong": "Habit Quokka - Build better habits, one window at a time",
   "generalCancel": "Cancel",
   "emptyPageLabel": "Page not found",
+  "userExceptionCreateTrackerActionUserNotLoggedIn": "You must be logged in to create a tracker.",
   "homePageDestinationOnboardingLabel": "Home",
   "homePageDestinationOnboardingTooltip": "Home page",
   "homePageDestinationTrackerLabel": "My Trackers",

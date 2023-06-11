@@ -95,7 +95,6 @@ class Emoji {
     AnimatedEmojis.muscle,
     AnimatedEmojis.clap,
     AnimatedEmojis.thumbsUp,
-    AnimatedEmojis.raisingHands,
     AnimatedEmojis.wave,
     AnimatedEmojis.victory,
     AnimatedEmojis.crossedFingers,

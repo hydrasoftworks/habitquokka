@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:habitquokka/redux/redux.dart';
@@ -17,6 +19,10 @@ abstract class Action extends ReduxAction<AppState> {
           cause: error,
         ),
       PostgrestException(message: var message) => UserException(
+          message,
+          cause: error,
+        ),
+      TimeoutException(message: var message) => UserException(
           message,
           cause: error,
         ),

@@ -33,10 +33,12 @@ class _ProgressButtonState extends State<ProgressButton> {
       ),
       child: _isInIdle
           ? Text(widget.label)
-          : const SizedBox(
+          : SizedBox(
               height: 18,
               width: 18,
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
     );
   }

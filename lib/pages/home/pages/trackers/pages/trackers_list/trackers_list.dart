@@ -12,13 +12,13 @@ class TrackersListPage extends StatelessWidget {
   const TrackersListPage({
     super.key,
     required this.trackers,
-    required this.selectedTrackerId,
+    required this.selectedTracker,
     required this.padding,
     required this.onTrackerSelected,
   });
 
   final List<Tracker> trackers;
-  final String? selectedTrackerId;
+  final Tracker? selectedTracker;
   final EdgeInsets padding;
   final void Function(Tracker) onTrackerSelected;
 
@@ -39,7 +39,7 @@ class TrackersListPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    selected: tracker.id == selectedTrackerId,
+                    selected: tracker.id == selectedTracker?.id,
                     onTap: () => onTrackerSelected(tracker),
                     title: Text(
                       tracker.shortName,

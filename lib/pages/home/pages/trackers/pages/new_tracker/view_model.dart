@@ -8,9 +8,11 @@ typedef OnCreateTracker = Future<void> Function(
 
 class ViewModel extends Vm {
   ViewModel({
+    required this.trackerCreatedEvt,
     required this.onCreateTracker,
-  }) : super(equals: []);
+  }) : super(equals: [trackerCreatedEvt]);
 
+  final Event<String> trackerCreatedEvt;
   final OnCreateTracker onCreateTracker;
 
   Future<void> createTracker(NewTracker model) {

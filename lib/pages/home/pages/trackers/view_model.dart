@@ -4,7 +4,12 @@ import 'package:habitquokka/redux/redux.dart';
 class ViewModel extends Vm {
   ViewModel({
     required this.trackers,
-  }) : super(equals: [trackers]);
+    required this.selectedTracker,
+  }) : super(equals: [
+          trackers,
+          selectedTracker,
+        ]);
 
   final List<Tracker> trackers;
+  final Tracker? selectedTracker;
 }

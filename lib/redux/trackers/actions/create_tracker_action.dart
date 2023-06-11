@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart' show NetworkImage;
 
-import 'package:habitquokka/models/seed_color.dart';
+import 'package:habitquokka/helpers/seed_color.dart';
+import 'package:habitquokka/models/exception_code.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/redux/redux.dart';
+import 'package:habitquokka/redux/trackers/actions/get_trackers_action.dart';
 
 class CreateTrackerAction extends Action {
   CreateTrackerAction({
@@ -18,7 +20,10 @@ class CreateTrackerAction extends Action {
   Future<AppState?> reduce() async {
     final userId = env.supabase.auth.currentUser?.id;
     if (userId == null) {
-      throw const UserException('You must be logged in to create a tracker.');
+      throw const UserException(
+        'User not logged in.',
+        code: AppExceptionCode(Code.createTrackerActionUserNotLoggedIn),
+      );
     }
 
     final response =
@@ -26,7 +31,6 @@ class CreateTrackerAction extends Action {
 
     final trackerImage = TrackerImage.fromJson(response.data);
 
-    // TODO: This operations blocks UI. Should be callend in an isolate.
     final seedColor = await seedColorFromImageProvider(
       NetworkImage(trackerImage.rawUrl),
     );
@@ -50,8 +54,13 @@ class CreateTrackerAction extends Action {
 
     return state.copyWith(
       trackersState: trackersState.copyWith(
-        trackers: [createdTracker, ...trackersState.trackers],
+        trackerCreatedEvt: Event<String>(createdTracker.id),
       ),
     );
+  }
+
+  @override
+  void after() {
+    dispatch(GetTrackersAction());
   }
 }

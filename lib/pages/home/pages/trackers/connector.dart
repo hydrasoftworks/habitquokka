@@ -17,10 +17,9 @@ class TrackersPageConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ViewModel>(
-      vm: () => Factory(this),
+      vm: () => Factory(this, selectedTrackerId: selectedTrackerId),
       onInit: (store) => store.dispatch(GetTrackersAction()),
       builder: (context, viewModel) => TrackersPage(
-        selectedTrackerId: selectedTrackerId,
         viewModel: viewModel,
       ),
     );
