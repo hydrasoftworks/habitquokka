@@ -1,7 +1,12 @@
+import { corsHeaders } from "../_shared/cors.ts";
 import { createApi } from "https://esm.sh/unsplash-js@7.0.18";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-serve(async (_) => {
+serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
   const unsplash = createApi({
     accessKey: Deno.env.get("UNSPLASH_ACCESS_KEY") || "",
   });
@@ -21,7 +26,7 @@ serve(async (_) => {
         details: result.errors[0],
       }),
       {
-        headers: { "Content-Type": "application/json" },
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
       }
     );
@@ -41,6 +46,6 @@ serve(async (_) => {
   };
 
   return new Response(JSON.stringify(data), {
-    headers: { "Content-Type": "application/json" },
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
 });

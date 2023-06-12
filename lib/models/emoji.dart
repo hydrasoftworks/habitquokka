@@ -76,7 +76,6 @@ class Emoji {
     AnimatedEmojis.redHeart,
     AnimatedEmojis.yellowHeart,
     AnimatedEmojis.greenHeart,
-    AnimatedEmojis.lightBlueHeart,
     AnimatedEmojis.blueHeart,
     AnimatedEmojis.purpleHeart,
     AnimatedEmojis.pinkHeart,
