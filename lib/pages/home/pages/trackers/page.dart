@@ -110,8 +110,8 @@ class TrackersPage extends StatelessWidget {
       (timeStamp) => _changeTheme(context, tracker.seedColor),
     );
 
-    return TrackerDetailsPage(
-      key: ValueKey('$TrackerDetailsPage-${tracker.id}'),
+    return TrackerDetailsPageConnector(
+      key: ValueKey('$TrackerDetailsPageConnector-${tracker.id}'),
       tracker: tracker,
       padding: PanelContainer.defaultPadding.copyWith(
         top: 0,

@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:habitquokka/models/tracker_image.dart';
@@ -5,7 +6,7 @@ import 'package:habitquokka/models/tracker_image.dart';
 part 'tracker.g.dart';
 
 @JsonSerializable()
-class Tracker {
+class Tracker extends Equatable {
   const Tracker({
     required this.id,
     required this.ownerId,
@@ -33,6 +34,9 @@ class Tracker {
   final bool randomizeNumbers;
 
   String get fullName => name ?? shortName;
+
+  @override
+  List<Object?> get props => [id, shortName, name];
 
   Map<String, dynamic> toJson() => _$TrackerToJson(this);
 }

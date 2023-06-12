@@ -11,12 +11,19 @@ import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/widgets/tracker_widget/widgets/image_origin_text.dart';
 import 'package:habitquokka/widgets/tracker_widget/widgets/windows.dart';
 
+typedef OnWindowPressed = void Function(String);
+
 class TrackerWidget extends StatefulWidget {
   const TrackerWidget({
     super.key,
     required this.tracker,
+    required this.opened,
+    required this.onWindowPressed,
   });
+
   final Tracker tracker;
+  final Set<String> opened;
+  final OnWindowPressed onWindowPressed;
 
   @override
   State<TrackerWidget> createState() => _TrackerWidgetState();
@@ -25,10 +32,10 @@ class TrackerWidget extends StatefulWidget {
 class _TrackerWidgetState extends State<TrackerWidget> {
   late List<int> _indexes;
   late List<AnimatedEmojiData> _emojis;
-  final Set<String> _opened = {};
+
   bool _isDataLoaded = false;
 
-  bool get _areAllWindowsOpened => _opened.length == _indexes.length;
+  bool get _areAllWindowsOpened => widget.opened.length == _indexes.length;
 
   @override
   void initState() {
@@ -69,18 +76,12 @@ class _TrackerWidgetState extends State<TrackerWidget> {
             fit: BoxFit.cover,
           ),
           Windows(
-            onWindowPressed: (key) {
-              setState(
-                () => _opened.contains(key)
-                    ? _opened.remove(key)
-                    : _opened.add(key),
-              );
-            },
+            onWindowPressed: widget.onWindowPressed,
             rows: widget.tracker.rows,
             columns: widget.tracker.columns,
             indexes: _indexes,
             emojis: _emojis,
-            opened: _opened,
+            opened: widget.opened,
           ),
           if (_areAllWindowsOpened)
             Align(

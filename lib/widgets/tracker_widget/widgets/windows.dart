@@ -4,7 +4,7 @@ import 'package:animated_emoji/emojis.dart';
 
 import 'package:habitquokka/widgets/tracker_widget/widgets/window.dart';
 
-typedef WindowPressedCallback = void Function(String);
+typedef OnWindowPressed = void Function(String);
 
 class Windows extends StatelessWidget {
   const Windows({
@@ -22,7 +22,7 @@ class Windows extends StatelessWidget {
   final List<int> indexes;
   final List<AnimatedEmojiData> emojis;
   final Set<String> opened;
-  final WindowPressedCallback onWindowPressed;
+  final OnWindowPressed onWindowPressed;
 
   @override
   Widget build(BuildContext context) {

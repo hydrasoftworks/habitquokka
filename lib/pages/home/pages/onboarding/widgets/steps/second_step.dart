@@ -7,6 +7,7 @@ import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/example_tr
 import 'package:habitquokka/theme/theme.dart';
 
 const int _seedColor = 0xFFb3e2a2;
+const Set<String> _opened = {'1-2', '4-1', '1-0', '1-3', '3-5', '2-4'};
 
 class SecondStepMobile extends StatelessWidget {
   const SecondStepMobile({super.key});
@@ -22,7 +23,12 @@ class SecondStepMobile extends StatelessWidget {
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
-          const Flexible(child: ExampleTrackerWidget(seedColor: _seedColor)),
+          const Flexible(
+            child: ExampleTrackerWidget(
+              opened: _opened,
+              seedColor: _seedColor,
+            ),
+          ),
         ],
       ),
     );
@@ -40,7 +46,12 @@ class SecondStepDesktop extends StatelessWidget {
         children: [
           const Expanded(
             flex: 5,
-            child: Center(child: ExampleTrackerWidget(seedColor: _seedColor)),
+            child: Center(
+              child: ExampleTrackerWidget(
+                opened: _opened,
+                seedColor: _seedColor,
+              ),
+            ),
           ),
           SizedBox(width: Theme.of(context).appSpacing.medium),
           Expanded(

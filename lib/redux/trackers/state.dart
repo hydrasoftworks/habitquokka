@@ -10,21 +10,25 @@ part 'state.g.dart';
 class TrackersState extends Equatable {
   const TrackersState({
     required this.trackers,
+    required this.openedForTracker,
     required this.trackerCreatedEvt,
   });
 
   factory TrackersState.initial() => TrackersState(
         trackers: const [],
+        openedForTracker: const {},
         trackerCreatedEvt: Event<String>.spent(),
       );
 
   final List<Tracker> trackers;
+  final Map<String, Set<String>> openedForTracker;
 
   final Event<String> trackerCreatedEvt;
 
   @override
   List<Object?> get props => [
         trackers,
+        openedForTracker,
         trackerCreatedEvt,
       ];
 }

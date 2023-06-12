@@ -6,22 +6,41 @@ import 'package:habitquokka/models/tracker_image.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/widgets/theme_wrapper.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
-class ExampleTrackerWidget extends StatelessWidget {
+class ExampleTrackerWidget extends StatefulWidget {
   const ExampleTrackerWidget({
     super.key,
+    this.opened = const {},
     required this.seedColor,
   });
 
   final int seedColor;
+  final Set<String> opened;
+
+  @override
+  State<ExampleTrackerWidget> createState() => _ExampleTrackerWidgetState();
+}
+
+class _ExampleTrackerWidgetState extends State<ExampleTrackerWidget> {
+  late Set<String> _opened;
+
+  @override
+  void initState() {
+    super.initState();
+    _opened = Set.of(widget.opened);
+  }
 
   @override
   Widget build(BuildContext context) {
     return ThemeWrapper(
-      seedColor: Color(seedColor),
+      seedColor: Color(widget.seedColor),
       child: TrackerWidget(
+        opened: _opened,
+        onWindowPressed: (key) => setState(
+          () => _opened.contains(key) ? _opened.remove(key) : _opened.add(key),
+        ),
         tracker: Tracker(
-          id: 'Onboarding',
-          ownerId: 'Onboarding-user',
+          id: 'onboarding',
+          ownerId: 'onboarding-user',
           shortName: L10n.of(context).onboardingPageTrackerShortName,
           name: L10n.of(context).onboardingPageTrackerName,
           image: const TrackerImage(
@@ -31,7 +50,7 @@ class ExampleTrackerWidget extends StatelessWidget {
             pageUrl: 'https://unsplash.com/photos/dXdkpdYCNbo',
             author: 'Luca Bravo',
           ),
-          seedColor: seedColor,
+          seedColor: widget.seedColor,
         ),
       ),
     );
