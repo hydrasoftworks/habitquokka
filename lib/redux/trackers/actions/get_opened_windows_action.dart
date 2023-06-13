@@ -8,11 +8,11 @@ class GetOpenedWindowsAction extends Action {
   Future<AppState?> reduce() async {
     final result = await env.supabase
         .from('windows')
-        .select()
+        .select<Map<String, dynamic>?>()
         .eq('tracker_id', trackerId)
-        .single();
+        .maybeSingle();
 
-    final opened = result['opened'];
+    final opened = result?['opened'];
     if (opened == null) return null;
 
     return state.copyWith(
