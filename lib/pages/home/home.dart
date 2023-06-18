@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/home_destination.dart';
+import 'package:habitquokka/widgets/logo.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -30,13 +31,13 @@ class HomePage extends StatelessWidget {
               context,
               key: Key('$HomePage-primary-navigation-medium'),
               selectedIndex: selectedIndex,
-              extended: false,
+              isExtended: false,
             ),
             Breakpoints.large: _buildPrimaryNavigation(
               context,
               key: Key('$HomePage-primary-navigation-large'),
               selectedIndex: selectedIndex,
-              extended: true,
+              isExtended: true,
             ),
           },
         ),
@@ -75,15 +76,16 @@ class HomePage extends StatelessWidget {
     BuildContext context, {
     required Key key,
     required int selectedIndex,
-    required bool extended,
+    required bool isExtended,
   }) {
     return SlotLayout.from(
       key: key,
       builder: (context) => AdaptiveScaffold.standardNavigationRail(
         selectedIndex: selectedIndex,
-        extended: extended,
+        extended: isExtended,
         padding: EdgeInsets.zero,
         onDestinationSelected: (index) => onDestinationSelected(context, index),
+        leading: Logo(isExtended: isExtended),
         destinations: _destinations
             .map((destination) => destination.model(context))
             .map(AdaptiveScaffold.toRailDestination)
