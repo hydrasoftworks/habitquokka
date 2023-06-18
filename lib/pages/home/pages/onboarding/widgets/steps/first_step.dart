@@ -17,7 +17,6 @@ class FirstStepMobile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(Theme.of(context).appSpacing.small),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _TitleWidget(
             textStyle: Theme.of(context).textTheme.displaySmall,

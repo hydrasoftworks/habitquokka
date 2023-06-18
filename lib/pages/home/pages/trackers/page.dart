@@ -127,7 +127,6 @@ class TrackersPage extends StatelessWidget {
       light: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
           seedColor: color,
-          brightness: Brightness.light,
         ),
         useMaterial3: true,
       ),

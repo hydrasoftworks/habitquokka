@@ -17,7 +17,6 @@ class SecondStepMobile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(Theme.of(context).appSpacing.small),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _DescriptionWidget(
             textStyle: Theme.of(context).textTheme.bodyLarge,

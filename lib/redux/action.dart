@@ -14,15 +14,15 @@ abstract class Action extends ReduxAction<AppState> {
   @override
   Object? wrapError(Object error, StackTrace stackTrace) {
     return switch (error) {
-      AuthException(message: var message) => UserException(
+      AuthException(message: final message) => UserException(
           message,
           cause: error,
         ),
-      PostgrestException(message: var message) => UserException(
+      PostgrestException(message: final message) => UserException(
           message,
           cause: error,
         ),
-      TimeoutException(message: var message) => UserException(
+      TimeoutException(message: final message) => UserException(
           message,
           cause: error,
         ),

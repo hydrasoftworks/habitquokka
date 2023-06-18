@@ -83,7 +83,7 @@ class _LinkButton extends StatelessWidget {
     final Uri uri = Uri.parse(url);
 
     if (!await launchUrl(uri)) {
-      throw 'Could not launch $uri';
+      throw Exception('Could not launch $uri');
     }
   }
 

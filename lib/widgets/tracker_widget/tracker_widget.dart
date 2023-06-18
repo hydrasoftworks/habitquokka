@@ -43,7 +43,7 @@ class _TrackerWidgetState extends State<TrackerWidget> {
     _setupLists();
   }
 
-  void _setupLists() async {
+  Future<void> _setupLists() async {
     final seed = await murmur3a(widget.tracker.id);
 
     _indexes = List.generate(

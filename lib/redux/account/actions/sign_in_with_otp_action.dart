@@ -27,7 +27,7 @@ class SignInWithOTPAction extends Action {
   @override
   Object? wrapError(Object error, StackTrace stackTrace) {
     return switch (error) {
-      AuthException(message: var message, statusCode: "400") => UserException(
+      AuthException(message: final message, statusCode: '400') => UserException(
           message,
           code: const AppExceptionCode(Code.signInActionUserNotFound),
           cause: error,

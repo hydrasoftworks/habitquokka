@@ -44,7 +44,7 @@ class AppRouter {
         routes: <RouteBase>[
           GoRoute(
             path: AppRoute.onboarding,
-            pageBuilder: (BuildContext context, GoRouterState state) {
+            pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
                 child: const OnboardingPage(),
@@ -54,7 +54,7 @@ class AppRouter {
           GoRoute(
             path: AppRoute.authentication(),
             redirect: AuthenticatedGuard.redirect,
-            pageBuilder: (BuildContext context, GoRouterState state) {
+            pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
                 child: const AuthenticationPageConnector(),
@@ -64,7 +64,7 @@ class AppRouter {
           GoRoute(
             path: AppRoute.trackers,
             redirect: UnauthenticatedGuard.redirect,
-            pageBuilder: (BuildContext context, GoRouterState state) {
+            pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
                 child: const TrackersPageConnector(selectedTrackerId: null),
@@ -87,7 +87,7 @@ class AppRouter {
           GoRoute(
             path: AppRoute.trackerDetails(':trackerId'),
             redirect: UnauthenticatedGuard.redirect,
-            pageBuilder: (BuildContext context, GoRouterState state) {
+            pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
                 child: TrackersPageConnector(
@@ -99,7 +99,7 @@ class AppRouter {
           GoRoute(
             path: AppRoute.settings,
             redirect: UnauthenticatedGuard.redirect,
-            pageBuilder: (BuildContext context, GoRouterState state) {
+            pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
                 child: const SettingsPageConnector(),

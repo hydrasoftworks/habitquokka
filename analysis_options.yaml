@@ -3,3 +3,49 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - "**/*.gform.dart"
+    - lib/l10n/**
+    - lib/**.g.dart
+    - lib/helpers/seed_color.dart
+    
+  errors:
+    missing_enum_constant_in_switch: error
+
+linter:
+  rules:
+    - sort_constructors_first
+    - sort_unnamed_constructors_first
+    - always_declare_return_types
+    - avoid_bool_literals_in_conditional_expressions
+    - avoid_positional_boolean_parameters
+    - avoid_returning_this
+    - avoid_slow_async_io
+    - avoid_types_on_closure_parameters
+    - avoid_unused_constructor_parameters
+    - avoid_void_async
+    - cancel_subscriptions
+    - invariant_booleans
+    - join_return_with_assignment
+    - literal_only_boolean_expressions
+    - no_adjacent_strings_in_list
+    - only_throw_errors
+    - parameter_assignments
+    - prefer_constructors_over_static_methods
+    - prefer_final_in_for_each
+    - prefer_final_locals
+    - prefer_foreach
+    - prefer_int_literals
+    - prefer_interpolation_to_compose_strings
+    - prefer_single_quotes
+    - sort_child_properties_last
+    - throw_in_finally
+    - type_annotate_public_apis
+    - unnecessary_await_in_return
+    - unnecessary_null_aware_assignments
+    - unnecessary_parenthesis
+    - unnecessary_statements
+    - use_named_constants
+    - use_setters_to_change_properties
+    - use_string_buffers
+    - unnecessary_lambdas
+    - avoid_redundant_argument_values
+    - use_super_parameters
