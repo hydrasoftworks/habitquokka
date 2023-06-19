@@ -10,6 +10,8 @@
 
 [![License](https://img.shields.io/github/license/hydrasoftworks/habitquokka)](https://github.com/hydrasoftworks/habitquokka/blob/master/LICENSE)
 
+![Habit Quokka Logo](/web/icons/icon-rounded.png)
+
 Habit Quokka is an online habit-tracking app that uses a unique design inspired by advent calendars. Users can create habit trackers for any habit they want to follow and open a window on the grid every time they perform that habit. This reveals a hidden image one step at a time and makes building good habits fun and playful. The app's design is a refreshing change from traditional habit trackers, and it motivates users to stick to their habits.
 
 ## Build from source code

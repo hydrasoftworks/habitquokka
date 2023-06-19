@@ -3,6 +3,7 @@ import 'package:habitquokka/router/route.dart';
 enum HomeDestination {
   onboarding,
   trackers,
+  pricing,
   settings;
 
   String get path {
@@ -11,6 +12,8 @@ enum HomeDestination {
         return AppRoute.onboarding;
       case HomeDestination.trackers:
         return AppRoute.trackers;
+      case HomeDestination.pricing:
+        return AppRoute.pricing;
       case HomeDestination.settings:
         return AppRoute.settings;
     }

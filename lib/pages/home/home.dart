@@ -136,6 +136,13 @@ extension _Model on HomeDestination {
           selectedIcon: const Icon(Icons.view_module),
           tooltip: L10n.of(context).homePageDestinationTrackerTooltip,
         );
+      case HomeDestination.pricing:
+        return NavigationDestination(
+          label: L10n.of(context).homePageDestinationPricingLabel,
+          icon: const Icon(Icons.free_breakfast_outlined),
+          selectedIcon: const Icon(Icons.free_breakfast),
+          tooltip: L10n.of(context).homePageDestinationPricingTooltip,
+        );
       case HomeDestination.settings:
         return NavigationDestination(
           label: L10n.of(context).homePageDestinationSettingsLabel,
