@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
+import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/theme/theme.dart';
 
 class ThirdStepMobile extends StatelessWidget {
@@ -17,6 +20,8 @@ class ThirdStepMobile extends StatelessWidget {
           _DescriptionWidget(
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),
+          SizedBox(height: Theme.of(context).appSpacing.medium),
+          const Flexible(child: _CTAWidget()),
         ],
       ),
     );
@@ -33,9 +38,15 @@ class ThirdStepDesktop extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 4,
             child: _DescriptionWidget(
               textStyle: Theme.of(context).textTheme.headlineSmall,
             ),
+          ),
+          SizedBox(height: Theme.of(context).appSpacing.large),
+          const Expanded(
+            flex: 5,
+            child: _CTAWidget(),
           ),
         ],
       ),
@@ -57,6 +68,34 @@ class _DescriptionWidget extends StatelessWidget {
           color: Theme.of(context).colorScheme.onPrimaryContainer,
         ),
       ),
+    );
+  }
+}
+
+class _CTAWidget extends StatelessWidget {
+  const _CTAWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 300,
+          height: 300,
+          child: CircleAvatar(
+            child: SvgPicture.asset('assets/logo.svg'),
+          ),
+        ),
+        FilledButton(
+          onPressed: () => GoRouter.of(context).go(AppRoute.trackers),
+          style: FilledButton.styleFrom(
+            textStyle: Theme.of(context).textTheme.headlineSmall,
+            visualDensity: VisualDensity.standard,
+          ),
+          child: Text(L10n.of(context).onboardingStep3CTAButtonLabel),
+        ),
+      ],
     );
   }
 }
