@@ -37,11 +37,14 @@ class _SupabaseSwitchWindowAction extends Action {
 
   @override
   Future<AppState?> reduce() async {
-    await env.supabase.from('windows').upsert({
-      'tracker_id': trackerId,
-      'opened': opened.toList(growable: false),
-      'updated_at': DateTime.now().toIso8601String(),
-    });
+    await env.supabase.from('windows').upsert(
+      {
+        'tracker_id': trackerId,
+        'opened': opened.toList(growable: false),
+        'updated_at': DateTime.now().toIso8601String(),
+      },
+      onConflict: 'tracker_id',
+    );
     return null;
   }
 }
