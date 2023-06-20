@@ -23,7 +23,7 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         message: "There was an error while retrieving the Unsplash photo.",
-        details: result.errors[0],
+        details: error,
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
