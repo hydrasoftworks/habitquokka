@@ -1,7 +1,7 @@
 [build]
   command = '''
     export PATH="$PATH":"$HOME/.pub-cache/bin" \
-    && ln -s ~/flutter .fvm/flutter_sdk \
+    && export MELOS_SDK_PATH=~/flutter \
     && dart pub global activate melos \
     && melos bootstrap \
     && melos run build:web
