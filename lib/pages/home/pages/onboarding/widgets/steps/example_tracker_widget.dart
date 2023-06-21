@@ -48,6 +48,7 @@ class _ExampleTrackerWidgetState extends State<ExampleTrackerWidget> {
             imageUrl:
                 'https://images.unsplash.com/photo-1571164330912-270c6d07e212?crop=entropy&cs=srgb&fm=jpg&ixid=M3wyMTI5MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODU3OTUzODF8&ixlib=rb-4.0.3&q=85',
             pageUrl: 'https://unsplash.com/photos/dXdkpdYCNbo',
+            authorUrl: 'https://unsplash.com/@lucabravo',
             author: 'Luca Bravo',
           ),
           seedColor: widget.seedColor,

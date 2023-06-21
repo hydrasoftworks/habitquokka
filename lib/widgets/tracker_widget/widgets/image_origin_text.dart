@@ -48,7 +48,8 @@ class _UnsplashImageOriginText extends StatelessWidget {
             baseline: TextBaseline.alphabetic,
             child: _LinkButton(
               urlLabel: image.author,
-              url: '${image.pageUrl}?utm_source=$_appName&utm_medium=referral',
+              url:
+                  '${image.authorUrl}?utm_source=$_appName&utm_medium=referral',
             ),
           ),
           TextSpan(

@@ -34,14 +34,18 @@ serve(async (req) => {
 
   const {
     urls: { full },
-    user: { name },
-    links: { html },
+    user: {
+      name,
+      links: { html: author_url },
+    },
+    links: { html: page_url },
   } = result.response;
 
   const data = {
     source: "unsplash",
     image_url: full,
-    page_url: html,
+    page_url,
+    author_url,
     author: name,
   };
 

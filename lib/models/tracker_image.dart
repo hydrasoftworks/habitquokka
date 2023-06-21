@@ -10,6 +10,7 @@ class TrackerImage {
     required this.source,
     required this.imageUrl,
     required this.pageUrl,
+    required this.authorUrl,
     required this.author,
   });
 
@@ -19,6 +20,7 @@ class TrackerImage {
   final ImageSource source;
   final String imageUrl;
   final String pageUrl;
+  final String authorUrl;
   final String author;
 
   Map<String, dynamic> toJson() => _$TrackerImageToJson(this);
