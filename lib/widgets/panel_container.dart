@@ -80,8 +80,24 @@ class PanelContainer extends StatelessWidget {
     this.bottomBorderRadius = 12,
   });
 
-  static const defaultPadding = EdgeInsets.all(AppSpacing.initialMedium);
-  static const defaultMargin = EdgeInsets.all(AppSpacing.initialSmall);
+  static const EdgeInsets defaultPadding =
+      EdgeInsets.all(AppSpacing.initialMedium);
+  static const EdgeInsets defaultMargin =
+      EdgeInsets.all(AppSpacing.initialSmall);
+
+  static EdgeInsets leftPadding({
+    required bool isSplitPage,
+  }) =>
+      defaultPadding.copyWith(
+        left: isSplitPage ? PanelContainer.defaultPadding.left / 2 : null,
+      );
+
+  static EdgeInsets rightPadding({
+    required bool isSplitPage,
+  }) =>
+      defaultPadding.copyWith(
+        right: isSplitPage ? PanelContainer.defaultPadding.right / 2 : null,
+      );
 
   /// The child widget to be wrapped with the container.
   final Widget child;

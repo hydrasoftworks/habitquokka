@@ -3,6 +3,7 @@ import 'package:animated_emoji/animated_emoji.dart';
 class Emoji {
   static const notFound = AnimatedEmojis.sad;
   static const emptyTracker = AnimatedEmojis.turtle;
+  static const settings = AnimatedEmojis.rocket;
 
   static const List<AnimatedEmojiData> all = [
     AnimatedEmojis.smileWithBigEyes,

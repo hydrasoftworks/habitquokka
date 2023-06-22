@@ -5,6 +5,7 @@ class AppRoute {
   static const String newTracker = '$trackers/new';
   static const String pricing = '/pricing';
   static const String settings = '/settings';
+  static const String settingsLicenses = '/settings/licenses';
   static String authentication([String? redirectPath]) =>
       '/auth${redirectPath != null ? '?redirect=$redirectPath' : ''}';
 }

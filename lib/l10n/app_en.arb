@@ -55,5 +55,7 @@
   "trackerDetailsPageAuthorLabelPart2": " on ",
   "pricingPageTitle": "It's free!",
   "pricingPageSubtitle": "Learning good habits should be a right, not a privilege, which is why Habit Quokka is free.\nTo ensure that it remains free for all end users forever, I consider various ways to generate income, such as donations, sponsored content, and non-tracking ads.\n\nIf you would like to support Habit Quokka, please feel free to contact me.",
-  "settingsPageSignOutButtonLabel": "Log out"
+  "settingsPageSignOutButtonLabel": "Log out",
+  "settingsPageNoPageSelectedLabel": "Select an option from menu.",
+  "settingsMenuPageDestinationLicensesLabel": "Licenses"
 }

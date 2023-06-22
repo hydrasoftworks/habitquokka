@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/router/route.dart';
+import 'package:habitquokka/theme/assets.dart';
 
 class Logo extends StatelessWidget {
   const Logo({
@@ -32,7 +33,7 @@ class Logo extends StatelessWidget {
                   Theme.of(context).colorScheme.brightness == Brightness.light
                       ? Theme.of(context).colorScheme.primaryContainer
                       : Theme.of(context).colorScheme.primary,
-              child: SvgPicture.asset('assets/logo.svg'),
+              child: SvgPicture.asset(AppAssets.logo),
             ),
           ),
         ),

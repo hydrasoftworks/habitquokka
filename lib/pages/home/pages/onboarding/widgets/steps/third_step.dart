@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/router/route.dart';
+import 'package:habitquokka/theme/assets.dart';
 import 'package:habitquokka/theme/theme.dart';
 
 class ThirdStepMobile extends StatelessWidget {
@@ -84,7 +85,7 @@ class _CTAWidget extends StatelessWidget {
           width: 300,
           height: 300,
           child: CircleAvatar(
-            child: SvgPicture.asset('assets/logo.svg'),
+            child: SvgPicture.asset(AppAssets.logo),
           ),
         ),
         FilledButton(

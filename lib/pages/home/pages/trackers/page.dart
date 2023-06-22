@@ -67,7 +67,7 @@ class TrackersPage extends StatelessWidget {
               padding: EdgeInsets.only(
                 top: PanelContainer.defaultPadding.top,
               ),
-              child: (selectedTracker != null)
+              child: selectedTracker != null
                   ? _buildTrackerDetails(
                       context,
                       tracker: selectedTracker,
@@ -95,9 +95,7 @@ class TrackersPage extends StatelessWidget {
       },
       trackers: viewModel.trackers,
       selectedTracker: selectedTracker,
-      padding: PanelContainer.defaultPadding.copyWith(
-        right: isSplitPage ? PanelContainer.defaultPadding.right / 2 : null,
-      ),
+      padding: PanelContainer.rightPadding(isSplitPage: isSplitPage),
     );
   }
 
@@ -110,13 +108,13 @@ class TrackersPage extends StatelessWidget {
       (timeStamp) => _changeTheme(context, tracker.seedColor),
     );
 
+    final padding =
+        PanelContainer.leftPadding(isSplitPage: isSplitPage).copyWith(top: 0);
+
     return TrackerDetailsPageConnector(
       key: ValueKey('$TrackerDetailsPageConnector-${tracker.id}'),
       tracker: tracker,
-      padding: PanelContainer.defaultPadding.copyWith(
-        top: 0,
-        left: isSplitPage ? PanelContainer.defaultPadding.left / 2 : null,
-      ),
+      padding: padding,
     );
   }
 
