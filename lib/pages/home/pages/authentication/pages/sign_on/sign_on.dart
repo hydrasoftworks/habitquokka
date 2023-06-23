@@ -119,6 +119,7 @@ class _FormState extends State<_Form> {
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
         ],
+        // TODO: Make links clickable
         Text(L10n.of(context).authenticationPageLegalLabel),
         SizedBox(height: Theme.of(context).appSpacing.large),
         ProgressButton(

@@ -60,6 +60,10 @@ class MenuPage extends StatelessWidget {
 extension _Name on SettingsDestination {
   String name(BuildContext context) {
     switch (this) {
+      case SettingsDestination.termsOfService:
+        return L10n.of(context).settingsMenuPageDestinationTermsOfServiceLabel;
+      case SettingsDestination.privacyPolicy:
+        return L10n.of(context).settingsMenuPageDestinationPrivacyPolicyLabel;
       case SettingsDestination.licenses:
         return L10n.of(context).settingsMenuPageDestinationLicensesLabel;
     }

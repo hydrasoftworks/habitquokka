@@ -117,6 +117,30 @@ class AppRouter {
             },
           ),
           GoRoute(
+            path: AppRoute.settingsTermsOfService,
+            redirect: UnauthenticatedGuard.redirect,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const SettingsPageConnector(
+                  SettingsDestination.termsOfService,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.settingsPrivacyPolicy,
+            redirect: UnauthenticatedGuard.redirect,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const SettingsPageConnector(
+                  SettingsDestination.privacyPolicy,
+                ),
+              );
+            },
+          ),
+          GoRoute(
             path: AppRoute.settingsLicenses,
             redirect: UnauthenticatedGuard.redirect,
             pageBuilder: (context, state) {

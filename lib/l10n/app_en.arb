@@ -38,7 +38,7 @@
   "authenticationPageOTPLabel": "Code (required)",
   "authenticationPageOTPTooltip": "Code received in the email.",
   "authenticationPageOTPHint": "123456",
-  "authenticationPageLegalLabel": "By signing in you agree to our Terms and Conditions and Privacy Policy.",
+  "authenticationPageLegalLabel": "By signing in you agree to our Terms of Service and Privacy Policy.",
   "authenticationPageButtonLabel": "Continue",
   "trackersPageNoTrackerSelectedLabel": "Select or create a tracker to get started!",
   "trackersListPageNewTrackerButtonLabel": "Create a tracker",
@@ -57,5 +57,7 @@
   "pricingPageSubtitle": "Learning good habits should be a right, not a privilege, which is why Habit Quokka is free.\nTo ensure that it remains free for all end users forever, I consider various ways to generate income, such as donations, sponsored content, and non-tracking ads.\n\nIf you would like to support Habit Quokka, please feel free to contact me.",
   "settingsPageSignOutButtonLabel": "Log out",
   "settingsPageNoPageSelectedLabel": "Select an option from menu.",
+  "settingsMenuPageDestinationTermsOfServiceLabel": "Terms of Service",
+  "settingsMenuPageDestinationPrivacyPolicyLabel": "Privacy Policy",
   "settingsMenuPageDestinationLicensesLabel": "Licenses"
 }

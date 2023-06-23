@@ -9,6 +9,7 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/settings_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
+import 'package:habitquokka/pages/home/pages/settings/pages/markdown/markdown.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/menu/menu.dart';
 import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
 import 'package:habitquokka/theme/assets.dart';
@@ -86,9 +87,18 @@ class SettingsPage extends StatelessWidget {
     BuildContext context, {
     required bool isSplitPage,
   }) {
-    // final padding =
-    //     PanelContainer.leftPadding(isSplitPage: isSplitPage).copyWith(top: 0);
+    final padding =
+        PanelContainer.leftPadding(isSplitPage: isSplitPage).copyWith(top: 0);
+
     return switch (secondary) {
+      SettingsDestination.termsOfService => MarkdownPage(
+          padding: padding,
+          asset: 'assets/terms.md',
+        ),
+      SettingsDestination.privacyPolicy => MarkdownPage(
+          padding: padding,
+          asset: 'assets/policy.md',
+        ),
       SettingsDestination.licenses => LicensePage(
           applicationName: L10n.of(context).appName,
           applicationVersion: viewModel.version,
