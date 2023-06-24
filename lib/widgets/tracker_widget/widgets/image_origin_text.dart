@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker_image.dart';
+import 'package:habitquokka/widgets/inline_span_button.dart';
 
 class ImageOriginText extends StatelessWidget {
   const ImageOriginText({
@@ -43,25 +44,19 @@ class _UnsplashImageOriginText extends StatelessWidget {
       TextSpan(
         text: L10n.of(context).trackerDetailsPageAuthorLabelPart1,
         children: <InlineSpan>[
-          WidgetSpan(
-            alignment: PlaceholderAlignment.baseline,
-            baseline: TextBaseline.alphabetic,
-            child: _LinkButton(
-              urlLabel: image.author,
-              url:
-                  '${image.authorUrl}?utm_source=$_appName&utm_medium=referral',
+          inlineSpanButton(
+            label: image.author,
+            onPressed: () => _launchUrl(
+              '${image.authorUrl}?utm_source=$_appName&utm_medium=referral',
             ),
           ),
           TextSpan(
             text: L10n.of(context).trackerDetailsPageAuthorLabelPart2,
           ),
-          const WidgetSpan(
-            alignment: PlaceholderAlignment.baseline,
-            baseline: TextBaseline.alphabetic,
-            child: _LinkButton(
-              urlLabel: 'Unsplash',
-              url:
-                  'https://unsplash.com/?utm_source=$_appName&utm_medium=referral',
+          inlineSpanButton(
+            label: 'Unsplash',
+            onPressed: () => _launchUrl(
+              'https://unsplash.com/?utm_source=$_appName&utm_medium=referral',
             ),
           ),
         ],
@@ -69,16 +64,6 @@ class _UnsplashImageOriginText extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyMedium,
     );
   }
-}
-
-class _LinkButton extends StatelessWidget {
-  const _LinkButton({
-    required this.urlLabel,
-    required this.url,
-  });
-
-  final String urlLabel;
-  final String url;
 
   Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
@@ -86,23 +71,5 @@ class _LinkButton extends StatelessWidget {
     if (!await launchUrl(uri)) {
       throw Exception('Could not launch $uri');
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => _launchUrl(url),
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(2),
-        ),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        visualDensity: VisualDensity.compact,
-        minimumSize: Size.zero,
-        textStyle: Theme.of(context).textTheme.bodyMedium,
-      ),
-      child: Text(urlLabel),
-    );
   }
 }

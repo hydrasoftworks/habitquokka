@@ -25,6 +25,7 @@ class MenuPage extends StatelessWidget {
     return Scaffold(
       body: PanelContainer(
         surfaceColor: SurfaceColor.surfaceContainerLow,
+        padding: padding,
         child: Column(
           children: [
             Expanded(
@@ -38,7 +39,7 @@ class MenuPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     selected: location == destination.path,
-                    title: Text(destination.name(context)),
+                    title: Text(destination.name(L10n.of(context))),
                   );
                 },
               ),
@@ -54,18 +55,5 @@ class MenuPage extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-extension _Name on SettingsDestination {
-  String name(BuildContext context) {
-    switch (this) {
-      case SettingsDestination.termsOfService:
-        return L10n.of(context).settingsMenuPageDestinationTermsOfServiceLabel;
-      case SettingsDestination.privacyPolicy:
-        return L10n.of(context).settingsMenuPageDestinationPrivacyPolicyLabel;
-      case SettingsDestination.licenses:
-        return L10n.of(context).settingsMenuPageDestinationLicensesLabel;
-    }
   }
 }

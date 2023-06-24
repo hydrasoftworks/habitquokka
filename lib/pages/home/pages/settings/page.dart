@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
@@ -12,6 +13,7 @@ import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/markdown/markdown.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/menu/menu.dart';
 import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
+import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/theme/assets.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
@@ -87,17 +89,20 @@ class SettingsPage extends StatelessWidget {
     BuildContext context, {
     required bool isSplitPage,
   }) {
-    final padding =
-        PanelContainer.leftPadding(isSplitPage: isSplitPage).copyWith(top: 0);
+    final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
 
     return switch (secondary) {
       SettingsDestination.termsOfService => MarkdownPage(
+          onBackPressed: () => GoRouter.of(context).go(AppRoute.settings),
           padding: padding,
-          asset: 'assets/terms.md',
+          title: secondary?.name(L10n.of(context)),
+          asset: AppAssets.termOfService,
         ),
       SettingsDestination.privacyPolicy => MarkdownPage(
+          onBackPressed: () => GoRouter.of(context).go(AppRoute.settings),
           padding: padding,
-          asset: 'assets/policy.md',
+          title: secondary?.name(L10n.of(context)),
+          asset: AppAssets.privacyPolicy,
         ),
       SettingsDestination.licenses => LicensePage(
           applicationName: L10n.of(context).appName,

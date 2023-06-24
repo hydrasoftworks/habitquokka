@@ -31,7 +31,7 @@ class TrackerDetailsPage extends StatelessWidget {
         ),
       ),
       body: PanelContainer(
-        padding: padding,
+        padding: padding.copyWith(top: 0),
         child: Center(
           child: TrackerWidget(
             tracker: viewModel.tracker,

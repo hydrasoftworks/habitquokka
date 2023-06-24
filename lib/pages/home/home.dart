@@ -124,31 +124,31 @@ extension _Model on HomeDestination {
     switch (this) {
       case HomeDestination.onboarding:
         return NavigationDestination(
-          label: L10n.of(context).homePageDestinationOnboardingLabel,
+          label: L10n.of(context).homeDestinationOnboardingLabel,
           icon: const Icon(Icons.home_outlined),
           selectedIcon: const Icon(Icons.home_filled),
-          tooltip: L10n.of(context).homePageDestinationOnboardingTooltip,
+          tooltip: L10n.of(context).homeDestinationOnboardingTooltip,
         );
       case HomeDestination.trackers:
         return NavigationDestination(
-          label: L10n.of(context).homePageDestinationTrackerLabel,
+          label: L10n.of(context).homeDestinationTrackerLabel,
           icon: const Icon(Icons.view_module_outlined),
           selectedIcon: const Icon(Icons.view_module),
-          tooltip: L10n.of(context).homePageDestinationTrackerTooltip,
+          tooltip: L10n.of(context).homeDestinationTrackerTooltip,
         );
       case HomeDestination.pricing:
         return NavigationDestination(
-          label: L10n.of(context).homePageDestinationPricingLabel,
+          label: L10n.of(context).homeDestinationPricingLabel,
           icon: const Icon(Icons.free_breakfast_outlined),
           selectedIcon: const Icon(Icons.free_breakfast),
-          tooltip: L10n.of(context).homePageDestinationPricingTooltip,
+          tooltip: L10n.of(context).homeDestinationPricingTooltip,
         );
       case HomeDestination.settings:
         return NavigationDestination(
-          label: L10n.of(context).homePageDestinationSettingsLabel,
+          label: L10n.of(context).homeDestinationSettingsLabel,
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          tooltip: L10n.of(context).homePageDestinationSettingsTooltip,
+          tooltip: L10n.of(context).homeDestinationSettingsTooltip,
         );
     }
   }

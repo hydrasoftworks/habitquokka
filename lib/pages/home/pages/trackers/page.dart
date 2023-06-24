@@ -108,8 +108,7 @@ class TrackersPage extends StatelessWidget {
       (timeStamp) => _changeTheme(context, tracker.seedColor),
     );
 
-    final padding =
-        PanelContainer.leftPadding(isSplitPage: isSplitPage).copyWith(top: 0);
+    final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
 
     return TrackerDetailsPageConnector(
       key: ValueKey('$TrackerDetailsPageConnector-${tracker.id}'),

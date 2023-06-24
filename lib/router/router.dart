@@ -12,12 +12,14 @@ import 'package:habitquokka/pages/home/home.dart';
 import 'package:habitquokka/pages/home/pages/authentication/authentication.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/home/pages/pricing/pricing.dart';
+import 'package:habitquokka/pages/home/pages/settings/pages/markdown/markdown.dart';
 import 'package:habitquokka/pages/home/pages/settings/settings.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
 import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
 import 'package:habitquokka/redux/redux.dart';
 import 'package:habitquokka/router/guards.dart';
 import 'package:habitquokka/router/route.dart';
+import 'package:habitquokka/theme/assets.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -148,6 +150,32 @@ class AppRouter {
                 state: state,
                 child: const SettingsPageConnector(
                   SettingsDestination.licenses,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.termsOfService,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: MarkdownPage(
+                  title: L10n.of(context).settingsDestinationTermsOfService,
+                  asset: AppAssets.termOfService,
+                  onBackPressed: () => GoRouter.of(context).pop(),
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.privacyPolicy,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: MarkdownPage(
+                  title: L10n.of(context).settingsDestinationPrivacyPolicy,
+                  asset: AppAssets.privacyPolicy,
+                  onBackPressed: () => GoRouter.of(context).pop(),
                 ),
               );
             },
