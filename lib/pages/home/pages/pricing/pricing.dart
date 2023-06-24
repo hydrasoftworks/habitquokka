@@ -13,7 +13,6 @@ class PricingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PanelContainer(
-        surfaceColor: SurfaceColor.surfaceContainerLow,
         child: Center(
           child: SizedBox(
             width: Theme.of(context).appSize.modalWidth,

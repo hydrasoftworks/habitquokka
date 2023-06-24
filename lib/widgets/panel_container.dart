@@ -70,7 +70,7 @@ class PanelContainer extends StatelessWidget {
   const PanelContainer({
     super.key,
     required this.child,
-    this.surfaceColor = SurfaceColor.surfaceContainer,
+    this.surfaceColor = SurfaceColor.surfaceContainerLow,
     this.customColor,
     this.padding = defaultPadding,
     this.margin = defaultMargin,

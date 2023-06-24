@@ -24,7 +24,6 @@ class MenuPage extends StatelessWidget {
 
     return Scaffold(
       body: PanelContainer(
-        surfaceColor: SurfaceColor.surfaceContainerLow,
         padding: padding,
         child: Column(
           children: [

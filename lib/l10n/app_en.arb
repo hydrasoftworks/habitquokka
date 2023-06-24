@@ -14,9 +14,13 @@
   "homeDestinationPricingTooltip": "Pricing page",
   "homeDestinationSettingsLabel": "Settings",
   "homeDestinationSettingsTooltip": "Settings page",
-  "settingsDestinationTermsOfService": "Terms of Service",
-  "settingsDestinationPrivacyPolicy": "Privacy Policy",
-  "settingsDestinationLicenses": "Licenses",
+  "homeDestinationAboutLabel": "About",
+  "homeDestinationAboutTooltip": "About page",
+  "settingsDestinationProfile": "Profile",
+  "aboutDestinationHelp": "Help",
+  "aboutDestinationTermsOfService": "Terms of Service",
+  "aboutDestinationPrivacyPolicy": "Privacy Policy",
+  "aboutDestinationLicenses": "Licenses",
   "onboardingPageTrackerShortName": "Habit Quokka",
   "onboardingPageTrackerName": "Visit Habit Quokka daily!",
   "onboardingPageStep1DescriptionLabel": "Welcome to Habit Quokka – the fun habit tracking app inspired by advent calendars! Create a tracker for any habit you want to follow and start building good habits today.",
@@ -63,5 +67,6 @@
   "pricingPageTitle": "It's free!",
   "pricingPageSubtitle": "Learning good habits should be a right, not a privilege, which is why Habit Quokka is free.\nTo ensure that it remains free for all end users forever, I consider various ways to generate income, such as donations, sponsored content, and non-tracking ads.\n\nIf you would like to support Habit Quokka, please feel free to contact me.",
   "settingsPageSignOutButtonLabel": "Log out",
-  "settingsPageNoPageSelectedLabel": "Select an option from menu."
+  "settingsPageNoPageSelectedLabel": "Select an option from menu.",
+  "aboutPageNoPageSelectedLabel": "Select an option from menu."
 }

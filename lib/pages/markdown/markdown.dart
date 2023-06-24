@@ -29,7 +29,6 @@ class MarkdownPage extends StatelessWidget {
       ),
       body: PanelContainer(
         padding: padding.copyWith(top: 0),
-        surfaceColor: SurfaceColor.surfaceContainerLow,
         child: FutureBuilder(
           future: rootBundle.loadString(asset),
           builder: (context, snapshot) {

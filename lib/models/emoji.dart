@@ -4,6 +4,7 @@ class Emoji {
   static const notFound = AnimatedEmojis.sad;
   static const emptyTracker = AnimatedEmojis.turtle;
   static const settings = AnimatedEmojis.rocket;
+  static const about = AnimatedEmojis.flyingSaucer;
 
   static const List<AnimatedEmojiData> all = [
     AnimatedEmojis.smileWithBigEyes,

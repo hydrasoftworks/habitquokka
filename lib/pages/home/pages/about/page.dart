@@ -2,25 +2,30 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
+import 'package:habitquokka/models/about_destination.dart';
 import 'package:habitquokka/models/emoji.dart';
-import 'package:habitquokka/models/settings_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
-import 'package:habitquokka/pages/home/pages/settings/pages/menu/menu.dart';
-import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
+import 'package:habitquokka/pages/home/pages/about/pages/menu/menu.dart';
+import 'package:habitquokka/pages/home/pages/about/view_model.dart';
+import 'package:habitquokka/pages/markdown/markdown.dart';
+import 'package:habitquokka/router/route.dart';
+import 'package:habitquokka/theme/assets.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({
+class AboutPage extends StatelessWidget {
+  const AboutPage({
     super.key,
     required this.secondary,
     required this.viewModel,
   });
 
   final ViewModel viewModel;
-  final SettingsDestination? secondary;
+  final AboutDestination? secondary;
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +89,37 @@ class SettingsPage extends StatelessWidget {
     BuildContext context, {
     required bool isSplitPage,
   }) {
-    // final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
+    final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
 
     return switch (secondary) {
-      SettingsDestination.profile => Container(),
+      AboutDestination.help => MarkdownPage(
+          onBackPressed: () => GoRouter.of(context).go(AppRoute.about),
+          padding: padding,
+          title: secondary?.name(L10n.of(context)),
+          asset: AppAssets.help,
+        ),
+      AboutDestination.termsOfService => MarkdownPage(
+          onBackPressed: () => GoRouter.of(context).go(AppRoute.about),
+          padding: padding,
+          title: secondary?.name(L10n.of(context)),
+          asset: AppAssets.termOfService,
+        ),
+      AboutDestination.privacyPolicy => MarkdownPage(
+          onBackPressed: () => GoRouter.of(context).go(AppRoute.about),
+          padding: padding,
+          title: secondary?.name(L10n.of(context)),
+          asset: AppAssets.privacyPolicy,
+        ),
+      AboutDestination.licenses => LicensePage(
+          applicationName: L10n.of(context).appName,
+          applicationVersion: viewModel.version,
+          applicationIcon: CircleAvatar(
+            child: SvgPicture.asset(AppAssets.logo),
+          ),
+        ),
       _ => EmptyPage(
-          emoji: Emoji.settings,
-          text: L10n.of(context).settingsPageNoPageSelectedLabel,
+          emoji: Emoji.about,
+          text: L10n.of(context).aboutPageNoPageSelectedLabel,
         ),
     };
   }

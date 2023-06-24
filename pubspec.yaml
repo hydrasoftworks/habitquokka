@@ -56,6 +56,7 @@ flutter:
     - assets/logo.svg
     - assets/terms.md
     - assets/policy.md
+    - assets/help.md
 
 import_sorter:
   comments: false

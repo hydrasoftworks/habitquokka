@@ -26,7 +26,6 @@ class TrackersListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PanelContainer(
-        surfaceColor: SurfaceColor.surfaceContainerLow,
         padding: padding,
         child: Column(
           children: [

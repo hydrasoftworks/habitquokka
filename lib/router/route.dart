@@ -8,9 +8,13 @@ class AppRoute {
   static const String pricing = '/pricing';
 
   static const String settings = '/settings';
-  static const String settingsTermsOfService = '/settings/terms';
-  static const String settingsPrivacyPolicy = '/settings/policy';
-  static const String settingsLicenses = '/settings/licenses';
+  static const String settingsProfile = '/settings/profile';
+
+  static const String about = '/about';
+  static const String aboutHelp = '/about/help';
+  static const String aboutTermsOfService = '/about/terms';
+  static const String aboutPrivacyPolicy = '/about/policy';
+  static const String aboutLicenses = '/about/licenses';
 
   static String authentication([String? redirectPath]) =>
       '/auth${redirectPath != null ? '?redirect=$redirectPath' : ''}';

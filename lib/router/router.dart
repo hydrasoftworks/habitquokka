@@ -4,18 +4,20 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
+import 'package:habitquokka/models/about_destination.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/home_destination.dart';
 import 'package:habitquokka/models/settings_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
+import 'package:habitquokka/pages/home/pages/about/about.dart';
 import 'package:habitquokka/pages/home/pages/authentication/authentication.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/home/pages/pricing/pricing.dart';
-import 'package:habitquokka/pages/home/pages/settings/pages/markdown/markdown.dart';
 import 'package:habitquokka/pages/home/pages/settings/settings.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
 import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
+import 'package:habitquokka/pages/markdown/markdown.dart';
 import 'package:habitquokka/redux/redux.dart';
 import 'package:habitquokka/router/guards.dart';
 import 'package:habitquokka/router/route.dart';
@@ -119,37 +121,66 @@ class AppRouter {
             },
           ),
           GoRoute(
-            path: AppRoute.settingsTermsOfService,
+            path: AppRoute.settingsProfile,
             redirect: UnauthenticatedGuard.redirect,
             pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
                 child: const SettingsPageConnector(
-                  SettingsDestination.termsOfService,
+                  SettingsDestination.profile,
                 ),
               );
             },
           ),
           GoRoute(
-            path: AppRoute.settingsPrivacyPolicy,
-            redirect: UnauthenticatedGuard.redirect,
+            path: AppRoute.about,
             pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: const SettingsPageConnector(
-                  SettingsDestination.privacyPolicy,
+                child: const AboutPageConnector(null),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.aboutHelp,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const AboutPageConnector(
+                  AboutDestination.help,
                 ),
               );
             },
           ),
           GoRoute(
-            path: AppRoute.settingsLicenses,
-            redirect: UnauthenticatedGuard.redirect,
+            path: AppRoute.aboutTermsOfService,
             pageBuilder: (context, state) {
               return _PageBuilder.from<void>(
                 state: state,
-                child: const SettingsPageConnector(
-                  SettingsDestination.licenses,
+                child: const AboutPageConnector(
+                  AboutDestination.termsOfService,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.aboutPrivacyPolicy,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const AboutPageConnector(
+                  AboutDestination.privacyPolicy,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.aboutLicenses,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const AboutPageConnector(
+                  AboutDestination.licenses,
                 ),
               );
             },
@@ -160,7 +191,7 @@ class AppRouter {
               return _PageBuilder.from<void>(
                 state: state,
                 child: MarkdownPage(
-                  title: L10n.of(context).settingsDestinationTermsOfService,
+                  title: L10n.of(context).aboutDestinationTermsOfService,
                   asset: AppAssets.termOfService,
                   onBackPressed: () => GoRouter.of(context).pop(),
                 ),
@@ -173,7 +204,7 @@ class AppRouter {
               return _PageBuilder.from<void>(
                 state: state,
                 child: MarkdownPage(
-                  title: L10n.of(context).settingsDestinationPrivacyPolicy,
+                  title: L10n.of(context).aboutDestinationPrivacyPolicy,
                   asset: AppAssets.privacyPolicy,
                   onBackPressed: () => GoRouter.of(context).pop(),
                 ),

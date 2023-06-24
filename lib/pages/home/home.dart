@@ -150,6 +150,13 @@ extension _Model on HomeDestination {
           selectedIcon: const Icon(Icons.settings),
           tooltip: L10n.of(context).homeDestinationSettingsTooltip,
         );
+      case HomeDestination.about:
+        return NavigationDestination(
+          label: L10n.of(context).homeDestinationAboutLabel,
+          icon: const Icon(Icons.info_outlined),
+          selectedIcon: const Icon(Icons.info),
+          tooltip: L10n.of(context).homeDestinationAboutTooltip,
+        );
     }
   }
 }
