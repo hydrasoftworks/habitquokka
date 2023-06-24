@@ -6,8 +6,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
-import 'package:habitquokka/models/settings_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
+import 'package:habitquokka/pages/home/pages/settings/models/settings_destination.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/menu/menu.dart';
 import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
 import 'package:habitquokka/widgets/panel_container.dart';

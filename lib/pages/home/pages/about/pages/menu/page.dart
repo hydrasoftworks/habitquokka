@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/models/about_destination.dart';
+import 'package:habitquokka/pages/home/pages/about/models/about_destination.dart';
 import 'package:habitquokka/pages/home/pages/about/pages/menu/view_model.dart';
 import 'package:habitquokka/widgets/panel_container.dart';
 

@@ -7,14 +7,24 @@ part 'state.g.dart';
 class AccountState extends Equatable {
   const AccountState({
     required this.isAuthenticated,
+    required this.interestedInCommunityFeature,
   });
 
   factory AccountState.initial() => const AccountState(
         isAuthenticated: false,
+        interestedInCommunityFeature: false,
       );
 
+  static const String usernameKey = 'username';
+  static const String interestedInCommunityFeatureKey =
+      'interested_in_community_feature';
+
   final bool isAuthenticated;
+  final bool interestedInCommunityFeature;
 
   @override
-  List<Object?> get props => [isAuthenticated];
+  List<Object?> get props => [
+        isAuthenticated,
+        interestedInCommunityFeature,
+      ];
 }

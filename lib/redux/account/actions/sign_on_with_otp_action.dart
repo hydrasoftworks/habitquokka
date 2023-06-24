@@ -19,7 +19,7 @@ class SignOnWithOTPAction extends Action {
       email: email,
       shouldCreateUser: true,
       emailRedirectTo: domain + redirect,
-      data: {'username': username},
+      data: {AccountState.usernameKey: username},
     );
     return null;
   }

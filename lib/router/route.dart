@@ -7,6 +7,8 @@ class AppRoute {
 
   static const String pricing = '/pricing';
 
+  static const String community = '/community';
+
   static const String settings = '/settings';
   static const String settingsProfile = '/settings/profile';
 

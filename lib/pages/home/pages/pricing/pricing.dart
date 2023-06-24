@@ -13,11 +13,11 @@ class PricingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PanelContainer(
-        child: Center(
+        child: Align(
           child: SizedBox(
             width: Theme.of(context).appSize.modalWidth,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
+              shrinkWrap: true,
               children: [
                 Text(
                   L10n.of(context).pricingPageTitle,

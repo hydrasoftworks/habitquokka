@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitquokka/models/about_destination.dart';
 import 'package:habitquokka/pages/home/pages/about/factory.dart';
+import 'package:habitquokka/pages/home/pages/about/models/about_destination.dart';
 import 'package:habitquokka/pages/home/pages/about/page.dart';
 import 'package:habitquokka/pages/home/pages/about/view_model.dart';
 import 'package:habitquokka/redux/actions/get_version_action.dart';

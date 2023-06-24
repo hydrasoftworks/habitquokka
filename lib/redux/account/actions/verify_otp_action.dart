@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'package:habitquokka/redux/account/actions/set_user_details_action.dart';
 import 'package:habitquokka/redux/redux.dart';
 
 class VerifyOTPAction extends Action {
@@ -20,6 +21,8 @@ class VerifyOTPAction extends Action {
       token: otp,
       type: type,
     );
+
+    dispatch(SetUserDetailsAction(response.user));
 
     return state.copyWith(
       accountState: accountState.copyWith(

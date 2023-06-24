@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/models/about_destination.dart';
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
+import 'package:habitquokka/pages/home/pages/about/models/about_destination.dart';
 import 'package:habitquokka/pages/home/pages/about/pages/menu/menu.dart';
 import 'package:habitquokka/pages/home/pages/about/view_model.dart';
 import 'package:habitquokka/pages/markdown/markdown.dart';

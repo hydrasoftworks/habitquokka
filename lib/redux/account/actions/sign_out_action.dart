@@ -7,6 +7,7 @@ class SignOutAction extends Action {
     return state.copyWith(
       accountState: accountState.copyWith(
         isAuthenticated: false,
+        interestedInCommunityFeature: false,
       ),
     );
   }

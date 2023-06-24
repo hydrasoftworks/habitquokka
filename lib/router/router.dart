@@ -4,16 +4,17 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/models/about_destination.dart';
 import 'package:habitquokka/models/emoji.dart';
-import 'package:habitquokka/models/home_destination.dart';
-import 'package:habitquokka/models/settings_destination.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
+import 'package:habitquokka/pages/home/models/home_destination.dart';
 import 'package:habitquokka/pages/home/pages/about/about.dart';
+import 'package:habitquokka/pages/home/pages/about/models/about_destination.dart';
 import 'package:habitquokka/pages/home/pages/authentication/authentication.dart';
+import 'package:habitquokka/pages/home/pages/community/community.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/home/pages/pricing/pricing.dart';
+import 'package:habitquokka/pages/home/pages/settings/models/settings_destination.dart';
 import 'package:habitquokka/pages/home/pages/settings/settings.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/new_tracker/new_tracker.dart';
 import 'package:habitquokka/pages/home/pages/trackers/trackers.dart';
@@ -107,6 +108,16 @@ class AppRouter {
               return _PageBuilder.from<void>(
                 state: state,
                 child: const PricingPage(),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.community,
+            redirect: UnauthenticatedGuard.redirect,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const CommunityPageConnector(),
               );
             },
           ),

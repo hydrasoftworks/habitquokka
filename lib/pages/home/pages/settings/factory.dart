@@ -6,7 +6,5 @@ class Factory extends VmFactory<AppState, SettingsPageConnector, ViewModel> {
   Factory(super.widget);
 
   @override
-  ViewModel fromStore() => ViewModel(
-        version: state.version,
-      );
+  ViewModel fromStore() => ViewModel();
 }

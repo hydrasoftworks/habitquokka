@@ -4,6 +4,7 @@ enum HomeDestination {
   onboarding,
   trackers,
   pricing,
+  community,
   settings,
   about;
 
@@ -15,6 +16,8 @@ enum HomeDestination {
         return AppRoute.trackers;
       case HomeDestination.pricing:
         return AppRoute.pricing;
+      case HomeDestination.community:
+        return AppRoute.community;
       case HomeDestination.settings:
         return AppRoute.settings;
       case HomeDestination.about:

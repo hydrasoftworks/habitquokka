@@ -6,7 +6,7 @@ import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/models/home_destination.dart';
+import 'package:habitquokka/pages/home/models/home_destination.dart';
 import 'package:habitquokka/widgets/logo.dart';
 
 class HomePage extends StatelessWidget {
@@ -142,6 +142,13 @@ extension _Model on HomeDestination {
           icon: const Icon(Icons.free_breakfast_outlined),
           selectedIcon: const Icon(Icons.free_breakfast),
           tooltip: L10n.of(context).homeDestinationPricingTooltip,
+        );
+      case HomeDestination.community:
+        return NavigationDestination(
+          label: L10n.of(context).homeDestinationCommunityLabel,
+          icon: const Icon(Icons.groups_2_outlined),
+          selectedIcon: const Icon(Icons.groups_2),
+          tooltip: L10n.of(context).homeDestinationCommunityTooltip,
         );
       case HomeDestination.settings:
         return NavigationDestination(
