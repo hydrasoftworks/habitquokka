@@ -36,9 +36,9 @@ class EditTrackerPage extends StatelessWidget {
           builder: (context, formModel, child) => _Form(
             formModel: formModel,
             onEditTracker: (model) async {
-              final scaffold = Scaffold.of(context);
+              final router = GoRouter.of(context);
               await viewModel.editTracker(model);
-              scaffold.closeEndDrawer();
+              router.pop();
             },
             onDeleteTracker: () async {
               final router = GoRouter.of(context);
@@ -70,7 +70,6 @@ class _Form extends StatelessWidget {
         vertical: Theme.of(context).appSpacing.medium,
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           ReactiveTextField<String>(
             formControl: formModel.shortNameControl,

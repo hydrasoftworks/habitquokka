@@ -1,5 +1,6 @@
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/redux/redux.dart';
+import 'package:habitquokka/redux/trackers/actions/get_trackers_action.dart';
 
 class EditTrackerAction extends Action {
   EditTrackerAction({
@@ -14,7 +15,16 @@ class EditTrackerAction extends Action {
 
   @override
   Future<AppState?> reduce() async {
-    // TODO: implement reduce
+    await env.supabase.from('trackers').update({
+      'name': name,
+      'short_name': shortName,
+      'updated_at': DateTime.now().toIso8601String(),
+    }).eq('id', tracker.id);
     return null;
+  }
+
+  @override
+  void after() {
+    dispatch(GetTrackersAction());
   }
 }

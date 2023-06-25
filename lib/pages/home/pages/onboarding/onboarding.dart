@@ -7,6 +7,7 @@ import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/first_step
 import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/second_step.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/third_step.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/widgets/theme_wrapper.dart';
+import 'package:habitquokka/theme/theme.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -42,12 +43,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
         scrollDirection: Axis.vertical,
         preloadPagesCount: 3,
         children: [
-          // First step is using initial theme
-          OnboardingStep(
-            onPreviousPressed: null,
-            onNextPressed: _onNextPressed,
-            mobile: (_) => const FirstStepMobile(),
-            desktop: (_) => const FirstStepDesktop(),
+          ThemeWrapper(
+            seedColor: AppColors.initial,
+            child: OnboardingStep(
+              onPreviousPressed: null,
+              onNextPressed: _onNextPressed,
+              mobile: (_) => const FirstStepMobile(),
+              desktop: (_) => const FirstStepDesktop(),
+            ),
           ),
           ThemeWrapper(
             seedColor: const Color(0xFFeff4e2),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
+
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/factory.dart';
 import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/page.dart';
@@ -24,9 +26,33 @@ class TrackerDetailsPageConnector extends StatelessWidget {
       onInit: (store) => store.dispatch(
         GetOpenedWindowsAction(tracker.id),
       ),
+      onInitialBuild: (context, store, viewModel) {
+        if (context == null) return;
+        _changeTheme(context, tracker.seedColor);
+      },
       builder: (context, viewModel) => TrackerDetailsPage(
         viewModel: viewModel,
         padding: padding,
+      ),
+    );
+  }
+
+  void _changeTheme(BuildContext context, int seedColor) {
+    final color = Color(seedColor);
+
+    AdaptiveTheme.of(context).setTheme(
+      light: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: color,
+        ),
+        useMaterial3: true,
+      ),
+      dark: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: color,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
       ),
     );
   }

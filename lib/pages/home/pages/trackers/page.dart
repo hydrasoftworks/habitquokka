@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -104,36 +103,11 @@ class TrackersPage extends StatelessWidget {
     required Tracker tracker,
     required bool isSplitPage,
   }) {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) => _changeTheme(context, tracker.seedColor),
-    );
-
     final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
-
     return TrackerDetailsPageConnector(
       key: ValueKey('$TrackerDetailsPageConnector-${tracker.id}'),
       tracker: tracker,
       padding: padding,
-    );
-  }
-
-  void _changeTheme(BuildContext context, int seedColor) {
-    final color = Color(seedColor);
-
-    AdaptiveTheme.of(context).setTheme(
-      light: ThemeData.from(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: color,
-        ),
-        useMaterial3: true,
-      ),
-      dark: ThemeData.from(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: color,
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-      ),
     );
   }
 }

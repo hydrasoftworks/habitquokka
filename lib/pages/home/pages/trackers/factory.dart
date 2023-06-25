@@ -11,6 +11,7 @@ class Factory extends VmFactory<AppState, TrackersPageConnector, ViewModel> {
   });
 
   final String? selectedTrackerId;
+
   @override
   ViewModel fromStore() => ViewModel(
         trackers: state.trackersState.trackers,
