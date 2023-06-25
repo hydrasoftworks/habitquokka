@@ -4,10 +4,14 @@ class ProgressButton extends StatefulWidget {
   const ProgressButton({
     super.key,
     required this.label,
+    this.foregroundColor,
+    this.backgroundColor,
     required this.onPressed,
   });
 
   final String label;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
   final Future<void> Function() onPressed;
 
   @override
@@ -28,8 +32,10 @@ class _ProgressButtonState extends State<ProgressButton> {
             }
           : null,
       style: TextButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        backgroundColor:
+            widget.backgroundColor ?? Theme.of(context).colorScheme.primary,
+        foregroundColor:
+            widget.foregroundColor ?? Theme.of(context).colorScheme.onPrimary,
       ),
       child: _isInIdle
           ? Text(widget.label)

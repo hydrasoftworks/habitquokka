@@ -72,21 +72,21 @@ class _Form extends StatelessWidget {
             formControl: formModel.shortNameControl,
             validationMessages: {
               ValidationMessage.required: (_) =>
-                  L10n.of(context).newTrackerPageShortNameRequiredValidation,
+                  L10n.of(context).trackerFormShortNameRequiredValidation,
             },
             decoration: InputDecoration(
-              labelText: L10n.of(context).newTrackerPageShortNameLabel,
-              helperText: L10n.of(context).newTrackerPageShortNameTooltip,
-              hintText: L10n.of(context).newTrackerPageShortNameHint,
+              labelText: L10n.of(context).trackerFormShortNameLabel,
+              helperText: L10n.of(context).trackerFormShortNameTooltip,
+              hintText: L10n.of(context).trackerFormShortNameHint,
             ),
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
           ReactiveTextField<String>(
             formControl: formModel.nameControl,
             decoration: InputDecoration(
-              labelText: L10n.of(context).newTrackerPageNameLabel,
-              helperText: L10n.of(context).newTrackerPageNameTooltip,
-              hintText: L10n.of(context).newTrackerPageNameHint,
+              labelText: L10n.of(context).trackerFormNameLabel,
+              helperText: L10n.of(context).trackerFormNameTooltip,
+              hintText: L10n.of(context).trackerFormNameHint,
             ),
           ),
         ],
