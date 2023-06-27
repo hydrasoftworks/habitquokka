@@ -6,7 +6,7 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/pages/home/pages/settings/models/settings_destination.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/menu/view_model.dart';
 import 'package:habitquokka/router/route.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({
@@ -23,7 +23,7 @@ class MenuPage extends StatelessWidget {
     final location = GoRouterState.of(context).location;
 
     return Scaffold(
-      body: PanelContainer(
+      body: Panel(
         padding: padding,
         child: Column(
           children: [

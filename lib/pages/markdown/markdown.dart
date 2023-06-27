@@ -4,12 +4,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class MarkdownPage extends StatelessWidget {
   const MarkdownPage({
     super.key,
-    this.padding = PanelContainer.defaultPadding,
+    this.padding = Panel.defaultPadding,
     required this.title,
     required this.asset,
     required this.onBackPressed,
@@ -27,7 +27,7 @@ class MarkdownPage extends StatelessWidget {
         title: Text(title ?? ''),
         leading: BackButton(onPressed: onBackPressed),
       ),
-      body: PanelContainer(
+      body: Panel(
         padding: padding.copyWith(top: 0),
         child: FutureBuilder(
           future: rootBundle.loadString(asset),

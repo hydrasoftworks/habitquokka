@@ -17,6 +17,7 @@ class Factory
   ViewModel fromStore() => ViewModel(
         tracker: tracker,
         opened: state.trackersState.openedForTracker[tracker.id] ?? {},
+        seedColor: tracker.seedColor,
         onWindowPressed: (key) => dispatch(
           SwitchWindowAction(trackerId: tracker.id, key: key),
         ),

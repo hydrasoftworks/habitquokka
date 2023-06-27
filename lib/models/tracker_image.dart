@@ -12,6 +12,7 @@ class TrackerImage {
     required this.pageUrl,
     required this.authorUrl,
     required this.author,
+    required this.createdAt,
   });
 
   factory TrackerImage.fromJson(Map<String, dynamic> json) =>
@@ -22,6 +23,10 @@ class TrackerImage {
   final String pageUrl;
   final String authorUrl;
   final String author;
+  @JsonKey(defaultValue: _defaultDate)
+  final DateTime createdAt;
 
   Map<String, dynamic> toJson() => _$TrackerImageToJson(this);
 }
+
+DateTime _defaultDate() => DateTime.now();

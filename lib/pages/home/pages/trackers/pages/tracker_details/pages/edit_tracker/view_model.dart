@@ -7,12 +7,14 @@ typedef OnEditTracker = Future<void> Function(
   String shortName,
 );
 
+typedef OnRegenerateImage = Future<void> Function();
 typedef OnDeleteTracker = Future<void> Function();
 
 class ViewModel extends Vm {
   ViewModel({
     required this.tracker,
     required this.onEditTracker,
+    required this.onRegenerateImage,
     required this.onDeleteTracker,
   }) : super(equals: [
           tracker,
@@ -20,6 +22,7 @@ class ViewModel extends Vm {
 
   final Tracker tracker;
   final OnEditTracker onEditTracker;
+  final OnRegenerateImage onRegenerateImage;
   final OnDeleteTracker onDeleteTracker;
 
   EditTracker get initialModel => EditTracker(

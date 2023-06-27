@@ -6,6 +6,7 @@ import 'package:habitquokka/redux/redux.dart';
 enum Code {
   signInActionUserNotFound,
   createTrackerActionUserNotLoggedIn,
+  regenerateImageAPIUsageLimit,
 }
 
 class AppExceptionCode extends ExceptionCode {
@@ -28,6 +29,8 @@ class AppExceptionCode extends ExceptionCode {
       Code.createTrackerActionUserNotLoggedIn:
           l10n.userExceptionCreateTrackerActionUserNotLoggedIn,
       Code.signInActionUserNotFound: l10n.userExceptionSignInActionUserNotFound,
+      Code.regenerateImageAPIUsageLimit:
+          l10n.userExceptionRegenerateImageAPIUsageLimit,
     };
   }
 }

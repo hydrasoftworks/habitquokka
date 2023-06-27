@@ -38,6 +38,7 @@ class NewTrackerPage extends StatelessWidget {
           ],
           content: SizedBox(
             width: Theme.of(context).appSize.modalWidth,
+            height: 250,
             child: _Form(formModel: formModel),
           ),
         );
@@ -65,8 +66,8 @@ class _Form extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         vertical: Theme.of(context).appSpacing.medium,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: ListView(
+        shrinkWrap: true,
         children: [
           ReactiveTextField<String>(
             formControl: formModel.shortNameControl,

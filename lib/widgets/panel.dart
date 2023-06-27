@@ -55,19 +55,19 @@ enum SurfaceColor {
   }
 }
 
-/// The [PanelContainer] is a wrapper widget for widgets. The container allows you to select the surface background color, container
+/// The [Panel] is a wrapper widget for widgets. The container allows you to select the surface background color, container
 /// dimensions, and border radius.
 /// Example of usage:
 ///
 /// ```dart
-/// PanelContainer(
+/// Panel(
 ///   child: YourWidget(),
 ///   surfaceColor: SurfaceColor.primaryVariant,
 ///   padding: EdgeInsets.all(16),
 /// )
 /// ```
-class PanelContainer extends StatelessWidget {
-  const PanelContainer({
+class Panel extends StatelessWidget {
+  const Panel({
     super.key,
     required this.child,
     this.surfaceColor = SurfaceColor.surfaceContainerLow,
@@ -89,14 +89,14 @@ class PanelContainer extends StatelessWidget {
     required bool isSplitPage,
   }) =>
       defaultPadding.copyWith(
-        left: isSplitPage ? PanelContainer.defaultPadding.left / 2 : null,
+        left: isSplitPage ? Panel.defaultPadding.left / 2 : null,
       );
 
   static EdgeInsets rightPadding({
     required bool isSplitPage,
   }) =>
       defaultPadding.copyWith(
-        right: isSplitPage ? PanelContainer.defaultPadding.right / 2 : null,
+        right: isSplitPage ? Panel.defaultPadding.right / 2 : null,
       );
 
   /// The child widget to be wrapped with the container.

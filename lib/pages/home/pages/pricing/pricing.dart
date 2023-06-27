@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/theme/theme.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class PricingPage extends StatelessWidget {
   const PricingPage({super.key});
@@ -12,7 +12,7 @@ class PricingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PanelContainer(
+      body: Panel(
         child: Align(
           child: SizedBox(
             width: Theme.of(context).appSize.modalWidth,

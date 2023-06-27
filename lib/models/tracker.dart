@@ -17,6 +17,8 @@ class Tracker extends Equatable {
     this.columns = 6,
     required this.seedColor,
     this.randomizeNumbers = true,
+    required this.updatedAt,
+    required this.createdAt,
   });
 
   factory Tracker.fromJson(Map<String, dynamic> json) =>
@@ -32,11 +34,13 @@ class Tracker extends Equatable {
   final int columns;
   final int seedColor;
   final bool randomizeNumbers;
+  final DateTime updatedAt;
+  final DateTime createdAt;
 
   String get fullName => name ?? shortName;
 
   @override
-  List<Object?> get props => [id, shortName, name];
+  List<Object?> get props => [id, updatedAt];
 
   Map<String, dynamic> toJson() => _$TrackerToJson(this);
 }

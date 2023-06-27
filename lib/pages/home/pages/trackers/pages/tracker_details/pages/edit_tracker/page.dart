@@ -8,10 +8,11 @@ import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/page
 import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/pages/edit_tracker/view_model.dart';
 import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/theme/theme.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 import 'package:habitquokka/widgets/progress_button.dart';
 
 typedef OnEditTracker = Future<void> Function(EditTracker);
+typedef OnRegenerateImage = Future<void> Function();
 typedef OnDeleteTracker = Future<void> Function();
 
 class EditTrackerPage extends StatelessWidget {
@@ -29,17 +30,18 @@ class EditTrackerPage extends StatelessWidget {
         title: Text(L10n.of(context).editTrackerPageTitle),
         leading: const CloseButton(),
       ),
-      body: PanelContainer(
-        padding: PanelContainer.defaultPadding.copyWith(top: 0),
+      body: Panel(
+        padding: Panel.defaultPadding.copyWith(top: 0),
         child: EditTrackerFormBuilder(
           model: viewModel.initialModel,
           builder: (context, formModel, child) => _Form(
             formModel: formModel,
             onEditTracker: (model) async {
-              final router = GoRouter.of(context);
+              final router = Navigator.of(context);
               await viewModel.editTracker(model);
               router.pop();
             },
+            onRegenerateImage: viewModel.onRegenerateImage,
             onDeleteTracker: () async {
               final router = GoRouter.of(context);
               await viewModel.onDeleteTracker();
@@ -56,11 +58,13 @@ class _Form extends StatelessWidget {
   const _Form({
     required this.formModel,
     required this.onEditTracker,
+    required this.onRegenerateImage,
     required this.onDeleteTracker,
   });
 
   final EditTrackerForm formModel;
   final OnEditTracker onEditTracker;
+  final OnRegenerateImage onRegenerateImage;
   final OnDeleteTracker onDeleteTracker;
 
   @override
@@ -69,7 +73,8 @@ class _Form extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         vertical: Theme.of(context).appSpacing.medium,
       ),
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
         children: [
           ReactiveTextField<String>(
             formControl: formModel.shortNameControl,
@@ -93,16 +98,40 @@ class _Form extends StatelessWidget {
             ),
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
-          ProgressButton(
-            onPressed: _submitForm,
-            label: L10n.of(context).editTrackerSaveButtonLabel,
+          Center(
+            child: ProgressButton(
+              onPressed: _submitForm,
+              label: L10n.of(context).editTrackerSaveButtonLabel,
+            ),
           ),
-          const Spacer(),
-          ProgressButton(
-            onPressed: onDeleteTracker,
-            foregroundColor: Theme.of(context).colorScheme.onError,
-            backgroundColor: Theme.of(context).colorScheme.error,
-            label: L10n.of(context).editTrackerDeleteButtonLabel,
+          const SizedBox(height: 80),
+          const Divider(),
+          Text(
+            L10n.of(context).editTrackerPageDangerZoneTitle,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          SizedBox(height: Theme.of(context).appSpacing.small),
+          Text(
+            L10n.of(context).editTrackerPageDangerZoneSubtitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          SizedBox(height: Theme.of(context).appSpacing.medium),
+          Center(
+            child: ProgressButton(
+              onPressed: onRegenerateImage,
+              foregroundColor: Theme.of(context).colorScheme.onError,
+              backgroundColor: Theme.of(context).colorScheme.error,
+              label: L10n.of(context).editTrackerRegenerateButtonLabel,
+            ),
+          ),
+          SizedBox(height: Theme.of(context).appSpacing.medium),
+          Center(
+            child: ProgressButton(
+              onPressed: onDeleteTracker,
+              foregroundColor: Theme.of(context).colorScheme.onError,
+              backgroundColor: Theme.of(context).colorScheme.error,
+              label: L10n.of(context).editTrackerDeleteButtonLabel,
+            ),
           ),
         ],
       ),

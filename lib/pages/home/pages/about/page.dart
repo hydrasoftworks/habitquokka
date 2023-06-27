@@ -15,7 +15,7 @@ import 'package:habitquokka/pages/home/pages/about/view_model.dart';
 import 'package:habitquokka/pages/markdown/markdown.dart';
 import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/theme/assets.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({
@@ -63,7 +63,7 @@ class AboutPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(
-                top: PanelContainer.defaultPadding.top,
+                top: Panel.defaultPadding.top,
               ),
               child: _buildSecondaryPage(
                 context,
@@ -81,7 +81,7 @@ class AboutPage extends StatelessWidget {
     required bool isSplitPage,
   }) {
     return MenuPageConnector(
-      padding: PanelContainer.rightPadding(isSplitPage: isSplitPage),
+      padding: Panel.rightPadding(isSplitPage: isSplitPage),
     );
   }
 
@@ -89,7 +89,7 @@ class AboutPage extends StatelessWidget {
     BuildContext context, {
     required bool isSplitPage,
   }) {
-    final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
+    final padding = Panel.leftPadding(isSplitPage: isSplitPage);
 
     return switch (secondary) {
       AboutDestination.help => MarkdownPage(

@@ -29,7 +29,7 @@ void main() async {
     environment: Environment(
       supabase: Supabase.instance.client,
     ),
-    actionObservers: kDebugMode ? [ConsoleActionObserver()] : null,
+    actionObservers: Environment.isDebug ? [ConsoleActionObserver()] : null,
   );
 
   store.dispatch(CheckAuthenticationAction());

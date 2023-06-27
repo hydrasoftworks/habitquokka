@@ -6,7 +6,7 @@ import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/theme/theme.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class TrackersListPage extends StatelessWidget {
   const TrackersListPage({
@@ -25,7 +25,7 @@ class TrackersListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PanelContainer(
+      body: Panel(
         padding: padding,
         child: Column(
           children: [

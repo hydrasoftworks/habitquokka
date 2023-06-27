@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:habitquokka/pages/home/pages/onboarding/widgets/change_page_button.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 typedef WidgetBuilder = Widget Function(BuildContext);
 
@@ -29,7 +29,7 @@ class OnboardingStep extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        PanelContainer(
+        Panel(
           customColor: Theme.of(context).colorScheme.primaryContainer,
           child: ScreenTypeLayout.builder(
             mobile: mobile,

@@ -23,12 +23,10 @@ class TrackerDetailsPageConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ViewModel>(
       vm: () => Factory(this, tracker: tracker),
-      onInit: (store) => store.dispatch(
-        GetOpenedWindowsAction(tracker.id),
-      ),
+      onInit: (store) => store.dispatch(GetOpenedWindowsAction(tracker.id)),
       onInitialBuild: (context, store, viewModel) {
         if (context == null) return;
-        _changeTheme(context, tracker.seedColor);
+        _changeTheme(context, viewModel.tracker.seedColor);
       },
       builder: (context, viewModel) => TrackerDetailsPage(
         viewModel: viewModel,

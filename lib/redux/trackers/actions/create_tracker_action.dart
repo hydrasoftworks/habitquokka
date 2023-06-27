@@ -42,6 +42,8 @@ class CreateTrackerAction extends Action {
       name: name,
       image: trackerImage,
       seedColor: seedColor.value,
+      updatedAt: DateTime.now(),
+      createdAt: DateTime.now(),
     );
 
     final createdTrackerData = await env.supabase

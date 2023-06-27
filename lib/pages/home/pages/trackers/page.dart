@@ -13,7 +13,7 @@ import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/trac
 import 'package:habitquokka/pages/home/pages/trackers/pages/trackers_list/trackers_list.dart';
 import 'package:habitquokka/pages/home/pages/trackers/view_model.dart';
 import 'package:habitquokka/router/route.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class TrackersPage extends StatelessWidget {
   const TrackersPage({
@@ -64,7 +64,7 @@ class TrackersPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(
-                top: PanelContainer.defaultPadding.top,
+                top: Panel.defaultPadding.top,
               ),
               child: selectedTracker != null
                   ? _buildTrackerDetails(
@@ -94,7 +94,7 @@ class TrackersPage extends StatelessWidget {
       },
       trackers: viewModel.trackers,
       selectedTracker: selectedTracker,
-      padding: PanelContainer.rightPadding(isSplitPage: isSplitPage),
+      padding: Panel.rightPadding(isSplitPage: isSplitPage),
     );
   }
 
@@ -103,7 +103,7 @@ class TrackersPage extends StatelessWidget {
     required Tracker tracker,
     required bool isSplitPage,
   }) {
-    final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
+    final padding = Panel.leftPadding(isSplitPage: isSplitPage);
     return TrackerDetailsPageConnector(
       key: ValueKey('$TrackerDetailsPageConnector-${tracker.id}'),
       tracker: tracker,

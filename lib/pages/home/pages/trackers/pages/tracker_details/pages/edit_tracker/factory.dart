@@ -4,6 +4,7 @@ import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/page
 import 'package:habitquokka/redux/redux.dart';
 import 'package:habitquokka/redux/trackers/actions/delete_tracker_action.dart';
 import 'package:habitquokka/redux/trackers/actions/edit_tracker_action.dart';
+import 'package:habitquokka/redux/trackers/actions/regenerate_tracker_image_action.dart';
 
 class Factory extends VmFactory<AppState, EditTrackerPageConnector, ViewModel> {
   Factory(
@@ -22,6 +23,9 @@ class Factory extends VmFactory<AppState, EditTrackerPageConnector, ViewModel> {
             name: name,
             shortName: shortName,
           ),
+        ),
+        onRegenerateImage: () => dispatchAsync(
+          RegenerateTrackerImageAction(tracker: tracker),
         ),
         onDeleteTracker: () => dispatchAsync(
           DeleteTrackerAction(tracker: tracker),

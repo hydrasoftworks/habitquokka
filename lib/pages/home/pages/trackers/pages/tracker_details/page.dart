@@ -7,7 +7,7 @@ import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/page
 import 'package:habitquokka/pages/home/pages/trackers/pages/tracker_details/view_model.dart';
 import 'package:habitquokka/router/route.dart';
 import 'package:habitquokka/theme/theme.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 import 'package:habitquokka/widgets/tracker_widget/tracker_widget.dart';
 
 class TrackerDetailsPage extends StatelessWidget {
@@ -48,7 +48,7 @@ class TrackerDetailsPage extends StatelessWidget {
           tracker: viewModel.tracker,
         ),
       ),
-      body: PanelContainer(
+      body: Panel(
         padding: padding.copyWith(top: 0),
         child: Center(
           child: TrackerWidget(

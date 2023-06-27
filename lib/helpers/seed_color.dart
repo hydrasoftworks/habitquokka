@@ -91,7 +91,7 @@ Future<ui.Image> _imageProviderToScaled(ImageProvider imageProvider) async {
     throw Exception('Failed to render image: $exception');
   });
 
-  loadFailureTimeout = Timer(const Duration(seconds: 5), () {
+  loadFailureTimeout = Timer(const Duration(seconds: 30), () {
     stream.removeListener(listener);
     imageCompleter.completeError(
         TimeoutException('Timeout occurred trying to load image'));

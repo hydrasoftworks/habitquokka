@@ -10,7 +10,7 @@ import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/pages/settings/models/settings_destination.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/menu/menu.dart';
 import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
-import 'package:habitquokka/widgets/panel_container.dart';
+import 'package:habitquokka/widgets/panel.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
@@ -58,7 +58,7 @@ class SettingsPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(
-                top: PanelContainer.defaultPadding.top,
+                top: Panel.defaultPadding.top,
               ),
               child: _buildSecondaryPage(
                 context,
@@ -76,7 +76,7 @@ class SettingsPage extends StatelessWidget {
     required bool isSplitPage,
   }) {
     return MenuPageConnector(
-      padding: PanelContainer.rightPadding(isSplitPage: isSplitPage),
+      padding: Panel.rightPadding(isSplitPage: isSplitPage),
     );
   }
 
