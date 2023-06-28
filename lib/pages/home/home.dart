@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
     final selectedIndex = _selectedIndex(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: AdaptiveLayout(
         internalAnimations: false,
         primaryNavigation: SlotLayout(
