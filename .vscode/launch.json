@@ -21,6 +21,8 @@
         "chrome",
         "--web-port",
         "1337",
+        "--web-renderer",
+        "canvaskit",
         "--dart-define-from-file",
         "development.json"
       ]
