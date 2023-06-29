@@ -104,9 +104,11 @@ class _FormState extends State<_Form> {
               ),
             ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
-          ProgressButton(
-            onPressed: _submitForm,
-            label: L10n.of(context).authenticationPageButtonLabel,
+          Center(
+            child: ProgressButton(
+              onPressed: _submitForm,
+              label: L10n.of(context).authenticationPageButtonLabel,
+            ),
           ),
         ],
       ),

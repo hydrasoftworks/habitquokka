@@ -15,13 +15,10 @@ class HomePage extends StatelessWidget {
     required this.child,
   });
 
-  final List<HomeDestination> _destinations = HomeDestination.values;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    final selectedIndex = _selectedIndex(context);
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: AdaptiveLayout(
@@ -31,13 +28,11 @@ class HomePage extends StatelessWidget {
             Breakpoints.medium: _buildPrimaryNavigation(
               context,
               key: Key('$HomePage-primary-navigation-medium'),
-              selectedIndex: selectedIndex,
               isExtended: false,
             ),
             Breakpoints.large: _buildPrimaryNavigation(
               context,
               key: Key('$HomePage-primary-navigation-large'),
-              selectedIndex: selectedIndex,
               isExtended: true,
             ),
           },
@@ -47,7 +42,6 @@ class HomePage extends StatelessWidget {
             Breakpoints.small: _buildBottomNavigation(
               context,
               key: Key('$HomePage-bottom-navigation-small'),
-              selectedIndex: selectedIndex,
             ),
           },
         ),
@@ -63,31 +57,48 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  int _selectedIndex(BuildContext context) {
+  int _selectedIndex(
+    BuildContext context,
+    List<HomeDestination> destinations,
+  ) {
     final path = GoRouterState.of(context).location;
-    final selectedIndex = _destinations.lastIndexWhere(
-      (destination) =>
-          path.startsWith(destination.path) ||
-          path.contains('redirect=${destination.path}'),
+    return destinations.lastIndexWhere(
+      (destination) {
+        // Each destination starts with a /, so we need to handle that case separately.
+        if (destination == HomeDestination.onboarding) {
+          return path == destination.path;
+        }
+        return path.startsWith(destination.path) ||
+            path.contains('redirect=${destination.path}');
+      },
     );
-    return math.max(selectedIndex, 0);
   }
 
   SlotLayoutConfig _buildPrimaryNavigation(
     BuildContext context, {
     required Key key,
-    required int selectedIndex,
     required bool isExtended,
   }) {
+    const destinations = [
+      HomeDestination.onboarding,
+      HomeDestination.trackers,
+      HomeDestination.pricing,
+      HomeDestination.community,
+      HomeDestination.settings,
+      HomeDestination.about,
+    ];
+    final selectedIndex = math.max(_selectedIndex(context, destinations), 0);
+
     return SlotLayout.from(
       key: key,
       builder: (context) => AdaptiveScaffold.standardNavigationRail(
         selectedIndex: selectedIndex,
         extended: isExtended,
         padding: EdgeInsets.zero,
-        onDestinationSelected: (index) => onDestinationSelected(context, index),
+        onDestinationSelected: (index) =>
+            _onDestinationSelected(context, destinations[index]),
         leading: Logo(isExtended: isExtended),
-        destinations: _destinations
+        destinations: destinations
             .map((destination) => destination.model(context))
             .map(AdaptiveScaffold.toRailDestination)
             .toList(growable: false),
@@ -98,24 +109,37 @@ class HomePage extends StatelessWidget {
   SlotLayoutConfig _buildBottomNavigation(
     BuildContext context, {
     required Key key,
-    required int selectedIndex,
   }) {
+    const List<HomeDestination> destinations = [
+      HomeDestination.onboarding,
+      HomeDestination.trackers,
+      HomeDestination.settings,
+      HomeDestination.more,
+    ];
+    var selectedIndex = _selectedIndex(context, destinations);
+    selectedIndex = selectedIndex == -1
+        ? destinations.indexOf(HomeDestination.more)
+        : selectedIndex;
+
     return SlotLayout.from(
       key: key,
       inAnimation: AdaptiveScaffold.bottomToTop,
       outAnimation: AdaptiveScaffold.topToBottom,
       builder: (context) => AdaptiveScaffold.standardBottomNavigationBar(
         currentIndex: selectedIndex,
-        onDestinationSelected: (index) => onDestinationSelected(context, index),
-        destinations: _destinations
+        onDestinationSelected: (index) =>
+            _onDestinationSelected(context, destinations[index]),
+        destinations: destinations
             .map((destination) => destination.model(context))
             .toList(growable: false),
       ),
     );
   }
 
-  void onDestinationSelected(BuildContext context, int index) {
-    final destination = _destinations[index];
+  void _onDestinationSelected(
+    BuildContext context,
+    HomeDestination destination,
+  ) {
     GoRouter.of(context).go(destination.path);
   }
 }
@@ -125,45 +149,52 @@ extension _Model on HomeDestination {
     switch (this) {
       case HomeDestination.onboarding:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationOnboardingLabel,
+          label: name(L10n.of(context)),
           icon: const Icon(Icons.home_outlined),
           selectedIcon: const Icon(Icons.home_filled),
           tooltip: L10n.of(context).homeDestinationOnboardingTooltip,
         );
       case HomeDestination.trackers:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationTrackerLabel,
+          label: name(L10n.of(context)),
           icon: const Icon(Icons.view_module_outlined),
           selectedIcon: const Icon(Icons.view_module),
           tooltip: L10n.of(context).homeDestinationTrackerTooltip,
         );
       case HomeDestination.pricing:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationPricingLabel,
+          label: name(L10n.of(context)),
           icon: const Icon(Icons.free_breakfast_outlined),
           selectedIcon: const Icon(Icons.free_breakfast),
           tooltip: L10n.of(context).homeDestinationPricingTooltip,
         );
       case HomeDestination.community:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationCommunityLabel,
+          label: name(L10n.of(context)),
           icon: const Icon(Icons.groups_2_outlined),
           selectedIcon: const Icon(Icons.groups_2),
           tooltip: L10n.of(context).homeDestinationCommunityTooltip,
         );
       case HomeDestination.settings:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationSettingsLabel,
+          label: name(L10n.of(context)),
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
           tooltip: L10n.of(context).homeDestinationSettingsTooltip,
         );
       case HomeDestination.about:
         return NavigationDestination(
-          label: L10n.of(context).homeDestinationAboutLabel,
+          label: name(L10n.of(context)),
           icon: const Icon(Icons.info_outlined),
           selectedIcon: const Icon(Icons.info),
           tooltip: L10n.of(context).homeDestinationAboutTooltip,
+        );
+      case HomeDestination.more:
+        return NavigationDestination(
+          label: name(L10n.of(context)),
+          icon: const Icon(Icons.more_vert_outlined),
+          selectedIcon: const Icon(Icons.more_vert),
+          tooltip: L10n.of(context).homeDestinationMoreTooltip,
         );
     }
   }

@@ -19,6 +19,8 @@
   "homeDestinationSettingsTooltip": "Settings page",
   "homeDestinationAboutLabel": "About",
   "homeDestinationAboutTooltip": "About page",
+  "homeDestinationMoreLabel": "More",
+  "homeDestinationMoreTooltip": "More page",
   "settingsDestinationProfile": "Profile",
   "aboutDestinationHelp": "Help",
   "aboutDestinationTermsOfService": "Terms of Service",

@@ -18,6 +18,8 @@ class AppRoute {
   static const String aboutPrivacyPolicy = '/about/policy';
   static const String aboutLicenses = '/about/licenses';
 
+  static const String more = '/more';
+
   static String authentication([String? redirectPath]) =>
       '/auth${redirectPath != null ? '?redirect=$redirectPath' : ''}';
   static const String termsOfService = '/terms';

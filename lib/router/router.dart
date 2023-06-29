@@ -12,6 +12,7 @@ import 'package:habitquokka/pages/home/pages/about/about.dart';
 import 'package:habitquokka/pages/home/pages/about/models/about_destination.dart';
 import 'package:habitquokka/pages/home/pages/authentication/authentication.dart';
 import 'package:habitquokka/pages/home/pages/community/community.dart';
+import 'package:habitquokka/pages/home/pages/more/more.dart';
 import 'package:habitquokka/pages/home/pages/onboarding/onboarding.dart';
 import 'package:habitquokka/pages/home/pages/pricing/pricing.dart';
 import 'package:habitquokka/pages/home/pages/settings/models/settings_destination.dart';
@@ -182,6 +183,15 @@ class AppRouter {
                 child: const AboutPageConnector(
                   AboutDestination.privacyPolicy,
                 ),
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoute.more,
+            pageBuilder: (context, state) {
+              return _PageBuilder.from<void>(
+                state: state,
+                child: const MorePage(),
               );
             },
           ),
