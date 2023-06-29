@@ -22,6 +22,7 @@ class MenuPage extends StatelessWidget {
     final location = GoRouterState.of(context).location;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Panel(
         padding: padding,
         child: ListView.builder(

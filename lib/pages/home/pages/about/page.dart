@@ -50,6 +50,7 @@ class AboutPage extends StatelessWidget {
 
   Widget _buildSplitPage(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

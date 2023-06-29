@@ -12,6 +12,7 @@ class PricingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Panel(
         child: Align(
           child: SizedBox(

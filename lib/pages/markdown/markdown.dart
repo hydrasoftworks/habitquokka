@@ -23,6 +23,7 @@ class MarkdownPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(title ?? ''),
         leading: BackButton(onPressed: onBackPressed),
@@ -35,6 +36,7 @@ class MarkdownPage extends StatelessWidget {
             final data = snapshot.data;
             if (snapshot.hasData && data != null) {
               return Markdown(
+                selectable: true,
                 onTapLink: (text, href, title) {
                   if (href == null) return;
                   launchUrl(Uri.parse(href));

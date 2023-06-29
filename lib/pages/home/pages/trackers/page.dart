@@ -50,6 +50,7 @@ class TrackersPage extends StatelessWidget {
   Widget _buildSplitPage(BuildContext context) {
     final selectedTracker = viewModel.selectedTracker;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

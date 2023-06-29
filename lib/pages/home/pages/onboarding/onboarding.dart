@@ -38,6 +38,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PreloadPageView(
         controller: _pageController,
         scrollDirection: Axis.vertical,

@@ -26,6 +26,7 @@ class EditTrackerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(L10n.of(context).editTrackerPageTitle),
         leading: const CloseButton(),
@@ -67,74 +68,78 @@ class _Form extends StatelessWidget {
   final OnRegenerateImage onRegenerateImage;
   final OnDeleteTracker onDeleteTracker;
 
+  // On mobile devices keyboard disappears when user opens it.
+  // This is a workaround to keep keyboard open.
+  static final GlobalKey _shortNameKey = GlobalKey();
+  static final GlobalKey _nameControlKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: Theme.of(context).appSpacing.medium,
-      ),
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          ReactiveTextField<String>(
-            formControl: formModel.shortNameControl,
-            validationMessages: {
-              ValidationMessage.required: (_) =>
-                  L10n.of(context).trackerFormShortNameRequiredValidation,
-            },
-            decoration: InputDecoration(
-              labelText: L10n.of(context).trackerFormShortNameLabel,
-              helperText: L10n.of(context).trackerFormShortNameTooltip,
-              hintText: L10n.of(context).trackerFormShortNameHint,
-            ),
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        SizedBox(height: Theme.of(context).appSpacing.medium),
+        ReactiveTextField<String>(
+          key: _shortNameKey,
+          formControl: formModel.shortNameControl,
+          validationMessages: {
+            ValidationMessage.required: (_) =>
+                L10n.of(context).trackerFormShortNameRequiredValidation,
+          },
+          decoration: InputDecoration(
+            labelText: L10n.of(context).trackerFormShortNameLabel,
+            helperText: L10n.of(context).trackerFormShortNameTooltip,
+            hintText: L10n.of(context).trackerFormShortNameHint,
           ),
-          SizedBox(height: Theme.of(context).appSpacing.medium),
-          ReactiveTextField<String>(
-            formControl: formModel.nameControl,
-            decoration: InputDecoration(
-              labelText: L10n.of(context).trackerFormNameLabel,
-              helperText: L10n.of(context).trackerFormNameTooltip,
-              hintText: L10n.of(context).trackerFormNameHint,
-            ),
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.medium),
+        ReactiveTextField<String>(
+          key: _nameControlKey,
+          formControl: formModel.nameControl,
+          decoration: InputDecoration(
+            labelText: L10n.of(context).trackerFormNameLabel,
+            helperText: L10n.of(context).trackerFormNameTooltip,
+            hintText: L10n.of(context).trackerFormNameHint,
           ),
-          SizedBox(height: Theme.of(context).appSpacing.medium),
-          Center(
-            child: ProgressButton(
-              onPressed: _submitForm,
-              label: L10n.of(context).editTrackerSaveButtonLabel,
-            ),
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.medium),
+        Center(
+          child: ProgressButton(
+            onPressed: _submitForm,
+            label: L10n.of(context).editTrackerSaveButtonLabel,
           ),
-          const SizedBox(height: 80),
-          const Divider(),
-          Text(
-            L10n.of(context).editTrackerPageDangerZoneTitle,
-            style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(height: 80),
+        const Divider(),
+        Text(
+          L10n.of(context).editTrackerPageDangerZoneTitle,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.small),
+        Text(
+          L10n.of(context).editTrackerPageDangerZoneSubtitle,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.medium),
+        Center(
+          child: ProgressButton(
+            onPressed: onRegenerateImage,
+            foregroundColor: Theme.of(context).colorScheme.onError,
+            backgroundColor: Theme.of(context).colorScheme.error,
+            label: L10n.of(context).editTrackerRegenerateButtonLabel,
           ),
-          SizedBox(height: Theme.of(context).appSpacing.small),
-          Text(
-            L10n.of(context).editTrackerPageDangerZoneSubtitle,
-            style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.medium),
+        Center(
+          child: ProgressButton(
+            onPressed: onDeleteTracker,
+            foregroundColor: Theme.of(context).colorScheme.onError,
+            backgroundColor: Theme.of(context).colorScheme.error,
+            label: L10n.of(context).editTrackerDeleteButtonLabel,
           ),
-          SizedBox(height: Theme.of(context).appSpacing.medium),
-          Center(
-            child: ProgressButton(
-              onPressed: onRegenerateImage,
-              foregroundColor: Theme.of(context).colorScheme.onError,
-              backgroundColor: Theme.of(context).colorScheme.error,
-              label: L10n.of(context).editTrackerRegenerateButtonLabel,
-            ),
-          ),
-          SizedBox(height: Theme.of(context).appSpacing.medium),
-          Center(
-            child: ProgressButton(
-              onPressed: onDeleteTracker,
-              foregroundColor: Theme.of(context).colorScheme.onError,
-              backgroundColor: Theme.of(context).colorScheme.error,
-              label: L10n.of(context).editTrackerDeleteButtonLabel,
-            ),
-          ),
-        ],
-      ),
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.medium),
+      ],
     );
   }
 
