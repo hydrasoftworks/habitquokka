@@ -47,5 +47,11 @@ void _registerFontsLicenses() {
       ['font: Noto Sans'],
       await rootBundle.loadString('assets/fonts/Noto_Sans/OFL.txt'),
     );
+    yield LicenseEntryWithLineBreaks(
+      ['Noto Animated Emoji'],
+      await rootBundle.loadString(
+        'assets/licenses/noto-animated-emoji-cc-by-40.txt',
+      ),
+    );
   });
 }

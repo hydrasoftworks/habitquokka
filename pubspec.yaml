@@ -53,6 +53,7 @@ flutter:
   assets:
     - assets/fonts/Lilita_One/
     - assets/fonts/Noto_Sans/
+    - assets/licenses/noto-animated-emoji-cc-by-40.txt
     - assets/logo.svg
     - assets/terms.md
     - assets/policy.md
