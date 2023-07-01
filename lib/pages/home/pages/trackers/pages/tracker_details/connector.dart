@@ -28,6 +28,12 @@ class TrackerDetailsPageConnector extends StatelessWidget {
         if (context == null) return;
         _changeTheme(context, viewModel.tracker.seedColor);
       },
+      onWillChange: (context, store, previousVm, newVm) {
+        if (context == null) return;
+        final seedColor = newVm.seedColorChangedEvt.consume();
+        if (seedColor == null) return;
+        _changeTheme(context, seedColor.value);
+      },
       builder: (context, viewModel) => TrackerDetailsPage(
         viewModel: viewModel,
         padding: padding,

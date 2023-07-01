@@ -38,7 +38,11 @@ class RegenerateTrackerImageAction extends Action {
       'updated_at': DateTime.now().toIso8601String(),
     }).eq('id', tracker.id);
 
-    return null;
+    return state.copyWith(
+      trackersState: trackersState.copyWith(
+        seedColorChangedEvt: Event(seedColor),
+      ),
+    );
   }
 
   @override

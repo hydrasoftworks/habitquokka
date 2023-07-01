@@ -41,6 +41,7 @@ class TrackerDetailsPage extends StatelessWidget {
               tooltip: L10n.of(context).trackerDetailsPageEditDrawerButtonLabel,
             ),
           ),
+          SizedBox(width: Theme.of(context).appSpacing.small),
         ],
       ),
       endDrawer: Drawer(

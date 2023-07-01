@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:habitquokka/models/tracker.dart';
 import 'package:habitquokka/redux/redux.dart';
 
@@ -7,12 +9,16 @@ class ViewModel extends Vm {
   ViewModel({
     required this.tracker,
     required this.opened,
-    required this.seedColor,
+    required this.seedColorChangedEvt,
     required this.onWindowPressed,
-  }) : super(equals: [tracker, opened, seedColor]);
+  }) : super(equals: [
+          tracker,
+          opened,
+          seedColorChangedEvt,
+        ]);
 
   final Tracker tracker;
   final Set<String> opened;
-  final int seedColor;
+  final Event<ui.Color> seedColorChangedEvt;
   final OnWindowPressed onWindowPressed;
 }
