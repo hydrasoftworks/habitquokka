@@ -19,7 +19,7 @@ class Windows extends StatelessWidget {
 
   final int rows;
   final int columns;
-  final List<int> indexes;
+  final Map<String, int> indexes;
   final List<AnimatedEmojiData> emojis;
   final Set<String> opened;
   final OnWindowPressed onWindowPressed;
@@ -48,7 +48,7 @@ class Windows extends StatelessWidget {
       key: ValueKey(key),
       aspectRatio: 1,
       child: Window(
-        text: indexes[index].toString(),
+        text: indexes[key].toString(),
         emoji: emojis[index],
         isOpened: opened.contains(key),
         onPressed: () => onWindowPressed(key),

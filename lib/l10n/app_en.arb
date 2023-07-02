@@ -65,6 +65,7 @@
   "trackerFormNameLabel": "Tracker name",
   "trackerFormNameTooltip": "Visible on the tracker details.",
   "trackerFormNameHint": "Learn Japanese for 10 minutes a day",
+  "trackerFormRandomizeNumbersLabel": "Randomize windows numbers",
   "newTrackerPageTitle": "Create a new tracker",
   "newTrackerPageCreateButtonLabel": "Create",
   "trackerDetailsPageAuthorLabelPart1": "Photo by ",

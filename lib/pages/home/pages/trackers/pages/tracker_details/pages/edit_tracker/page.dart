@@ -103,6 +103,11 @@ class _Form extends StatelessWidget {
           ),
         ),
         SizedBox(height: Theme.of(context).appSpacing.medium),
+        ReactiveSwitchListTile(
+          formControl: formModel.randomizeNumbersControl,
+          title: Text(L10n.of(context).trackerFormRandomizeNumbersLabel),
+        ),
+        SizedBox(height: Theme.of(context).appSpacing.medium),
         Center(
           child: ProgressButton(
             onPressed: _submitForm,

@@ -8,6 +8,7 @@ import 'package:murmur3/murmur3.dart';
 
 import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/models/tracker.dart';
+import 'package:habitquokka/widgets/tracker_widget/extensions/tracker_numbers.dart';
 import 'package:habitquokka/widgets/tracker_widget/widgets/image_origin_text.dart';
 import 'package:habitquokka/widgets/tracker_widget/widgets/windows.dart';
 
@@ -30,12 +31,12 @@ class TrackerWidget extends StatefulWidget {
 }
 
 class _TrackerWidgetState extends State<TrackerWidget> {
-  late List<int> _indexes;
+  late Map<String, int> _numbers;
   late List<AnimatedEmojiData> _emojis;
 
   bool _isDataLoaded = false;
 
-  bool get _areAllWindowsOpened => widget.opened.length == _indexes.length;
+  bool get _areAllWindowsOpened => widget.opened.length == _numbers.length;
 
   @override
   void initState() {
@@ -43,20 +44,28 @@ class _TrackerWidgetState extends State<TrackerWidget> {
     _setupLists();
   }
 
+  @override
+  void didUpdateWidget(TrackerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.tracker != widget.tracker) {
+      _setupLists();
+    }
+  }
+
   Future<void> _setupLists() async {
     final seed = await murmur3a(widget.tracker.id);
 
-    _indexes = List.generate(
-      widget.tracker.rows * widget.tracker.columns,
-      (index) => index + 1,
-    );
     _emojis = List.of(Emoji.all);
+    final random = math.Random(seed);
+    _emojis.shuffle(random);
+
     if (widget.tracker.randomizeNumbers) {
-      final random = math.Random(seed);
-      _indexes.shuffle(random);
-      _emojis.shuffle(random);
+      _numbers = widget.tracker.randomizedNumbers(random);
+    } else {
+      _numbers = widget.tracker.orderedNumbers();
     }
-    _emojis = _emojis.take(_indexes.length).toList(growable: false);
+
+    _emojis = _emojis.take(_numbers.length).toList(growable: false);
     setState(() => _isDataLoaded = true);
   }
 
@@ -79,7 +88,7 @@ class _TrackerWidgetState extends State<TrackerWidget> {
             onWindowPressed: widget.onWindowPressed,
             rows: widget.tracker.rows,
             columns: widget.tracker.columns,
-            indexes: _indexes,
+            indexes: _numbers,
             emojis: _emojis,
             opened: widget.opened,
           ),

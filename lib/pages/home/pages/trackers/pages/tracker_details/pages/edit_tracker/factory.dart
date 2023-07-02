@@ -17,11 +17,13 @@ class Factory extends VmFactory<AppState, EditTrackerPageConnector, ViewModel> {
   @override
   ViewModel fromStore() => ViewModel(
         tracker: tracker,
-        onEditTracker: (name, shortName) => dispatchAsync(
+        onEditTracker: (name, shortName, {required randomizeNumbers}) =>
+            dispatchAsync(
           EditTrackerAction(
             tracker: tracker,
             name: name,
             shortName: shortName,
+            randomizeNumbers: randomizeNumbers,
           ),
         ),
         onRegenerateImage: () => dispatchAsync(

@@ -4,8 +4,9 @@ import 'package:habitquokka/redux/redux.dart';
 
 typedef OnEditTracker = Future<void> Function(
   String? name,
-  String shortName,
-);
+  String shortName, {
+  required bool randomizeNumbers,
+});
 
 typedef OnRegenerateImage = Future<void> Function();
 typedef OnDeleteTracker = Future<void> Function();
@@ -28,12 +29,14 @@ class ViewModel extends Vm {
   EditTracker get initialModel => EditTracker(
         name: tracker.name,
         shortName: tracker.shortName,
+        randomizeNumbers: tracker.randomizeNumbers,
       );
 
   Future<void> editTracker(EditTracker model) async {
     await onEditTracker(
       model.name,
       model.shortName,
+      randomizeNumbers: model.randomizeNumbers,
     );
   }
 }

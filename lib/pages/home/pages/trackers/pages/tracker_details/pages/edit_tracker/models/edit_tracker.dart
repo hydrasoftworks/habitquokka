@@ -9,8 +9,10 @@ class EditTracker {
   const EditTracker({
     @FormControlAnnotation() this.name,
     @FormControlAnnotation(validators: [requiredValidator]) this.shortName = '',
+    @FormControlAnnotation() this.randomizeNumbers = true,
   });
 
   final String? name;
   final String shortName;
+  final bool randomizeNumbers;
 }

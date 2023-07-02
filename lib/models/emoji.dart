@@ -146,7 +146,6 @@ class Emoji {
     AnimatedEmojis.octopus,
     AnimatedEmojis.jellyfish,
     AnimatedEmojis.snail,
-    AnimatedEmojis.mosquito,
     AnimatedEmojis.butterfly,
     AnimatedEmojis.pawPrints,
     AnimatedEmojis.tomato,
