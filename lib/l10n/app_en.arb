@@ -3,6 +3,7 @@
   "appName": "Habit Quokka",
   "appNameLong": "Habit Quokka - Build better habits, one window at a time",
   "generalCancel": "Cancel",
+  "generalDelete": "Delete",
   "emptyPageLabel": "Page not found",
   "userExceptionCreateTrackerActionUserNotLoggedIn": "You must be logged in to create a tracker.",
   "userExceptionSignInActionUserNotFound": "Your credentials are invalid. Make sure you have registered first.",
@@ -85,5 +86,11 @@
   "communityPageInterestedInCommunity": "Count me in!",
   "settingsPageSignOutButtonLabel": "Log out",
   "settingsPageNoPageSelectedLabel": "Select an option from the menu.",
+  "profilePageTitle": "Profile",
+  "profilePageDangerZoneTitle": "Danger Zone",
+  "profilePageDangerZoneSubtitle": "These actions are irreversible.",
+  "profilePageDeleteButtonLabel": "Delete account",
+  "profilePageDeleteAccountDialogTitle": "Delete account?",
+  "profilePageDeleteAccountDialogSubtitle": "Are you sure you want to delete your account? All your data will be permanently deleted.",
   "aboutPageNoPageSelectedLabel": "Select an option from the menu."
 }

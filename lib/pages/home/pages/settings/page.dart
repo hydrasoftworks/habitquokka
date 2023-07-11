@@ -9,6 +9,7 @@ import 'package:habitquokka/models/emoji.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/pages/settings/models/settings_destination.dart';
 import 'package:habitquokka/pages/home/pages/settings/pages/menu/menu.dart';
+import 'package:habitquokka/pages/home/pages/settings/pages/profile/profile.dart';
 import 'package:habitquokka/pages/home/pages/settings/view_model.dart';
 import 'package:habitquokka/widgets/panel.dart';
 
@@ -85,10 +86,12 @@ class SettingsPage extends StatelessWidget {
     BuildContext context, {
     required bool isSplitPage,
   }) {
-    // final padding = PanelContainer.leftPadding(isSplitPage: isSplitPage);
+    final padding = Panel.leftPadding(isSplitPage: isSplitPage);
 
     return switch (secondary) {
-      SettingsDestination.profile => Container(),
+      SettingsDestination.profile => ProfilePageConnector(
+          padding: padding,
+        ),
       _ => EmptyPage(
           emoji: Emoji.settings,
           text: L10n.of(context).settingsPageNoPageSelectedLabel,
