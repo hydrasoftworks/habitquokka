@@ -25,6 +25,7 @@ class TrackerDetailsPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           viewModel.tracker.fullName,
           maxLines: 1,
