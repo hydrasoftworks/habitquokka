@@ -3,7 +3,7 @@ name: habitquokka
 sdkPath: .fvm/flutter_sdk
 
 packages:
-  - '.'
+  - "."
 
 command:
   bootstrap:
@@ -37,7 +37,6 @@ scripts:
 
   build:web:
     description: Build web.
-    run: flutter build web --web-renderer canvaskit --release --dart-define-from-file=$ENVIRONMENT_FILE --build-number=$COMMIT_REF
+    run: flutter build web --web-renderer canvaskit --release --dart-define-from-file=$ENVIRONMENT_FILE
     env:
       ENVIRONMENT_FILE: production.json
-      COMMIT_REF: 1

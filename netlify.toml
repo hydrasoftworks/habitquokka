@@ -4,7 +4,7 @@
     && export MELOS_SDK_PATH=~/flutter \
     && dart pub global activate melos \
     && melos bootstrap \
-    && melos run build:web
+    && melos run build:web -- --build-number=$COMMIT_REF
   '''
   publish = "build/web"
 
