@@ -10,12 +10,14 @@ class Window extends StatefulWidget {
     required this.text,
     required this.emoji,
     required this.isOpened,
+    required this.isHighlighted,
     required this.onPressed,
   });
 
   final String text;
   final AnimatedEmojiData? emoji;
   final bool isOpened;
+  final bool isHighlighted;
   final VoidCallback onPressed;
 
   static final AutoSizeGroup _autoSizeGroup = AutoSizeGroup();
@@ -33,7 +35,11 @@ class _WindowState extends State<Window> {
     return FilledButton(
       onHover: (value) => setState(() => _isHovered = value),
       onPressed: widget.onPressed,
-      style: _buildButtonStyle(context, isOpened: widget.isOpened),
+      style: _buildButtonStyle(
+        context,
+        isOpened: widget.isOpened,
+        isHighlighted: widget.isHighlighted,
+      ),
       child: _buildContent(context),
     );
   }
@@ -74,16 +80,18 @@ class _WindowState extends State<Window> {
   ButtonStyle _buildButtonStyle(
     BuildContext context, {
     required bool isOpened,
+    required bool isHighlighted,
   }) {
+    final foregroundColor = isHighlighted
+        ? Theme.of(context).colorScheme.onPrimaryContainer
+        : Theme.of(context).colorScheme.primary;
+
     return FilledButton.styleFrom(
       backgroundColor: Theme.of(context)
           .colorScheme
           .primaryContainer
           .withOpacity(isOpened ? 0 : 1),
-      foregroundColor: Theme.of(context)
-          .colorScheme
-          .onPrimaryContainer
-          .withOpacity(isOpened ? 0 : 1),
+      foregroundColor: foregroundColor.withOpacity(isOpened ? 0 : 1),
       textStyle: GoogleFonts.lilitaOne(
         textStyle: Theme.of(context).textTheme.displayLarge,
       ),

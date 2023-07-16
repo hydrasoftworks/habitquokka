@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/emojis.dart';
+import 'package:collection/collection.dart';
 
 import 'package:habitquokka/widgets/tracker_widget/widgets/window.dart';
 
@@ -28,6 +29,8 @@ class Windows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final smallestUnopenedKey = _calculateSmallestUnopenedKey(indexes, opened);
+
     return Table(
       children: List.generate(
         rows,
@@ -37,7 +40,11 @@ class Windows extends StatelessWidget {
             (columnIndex) {
               final key = '$rowIndex-$columnIndex';
               final index = rowIndex * columns + columnIndex;
-              return _buildWindow(index, key);
+              return _buildWindow(
+                index: index,
+                key: key,
+                highlighted: smallestUnopenedKey == key,
+              );
             },
           ),
         ),
@@ -45,16 +52,33 @@ class Windows extends StatelessWidget {
     );
   }
 
-  Widget _buildWindow(int index, String key) {
+  Widget _buildWindow({
+    required int index,
+    required String key,
+    required bool highlighted,
+  }) {
     return AspectRatio(
       key: ValueKey(key),
       aspectRatio: 1,
       child: Window(
+        onPressed: () => onWindowPressed(key),
         text: indexes[key].toString(),
         emoji: showEmojis ? emojis[index] : null,
         isOpened: opened.contains(key),
-        onPressed: () => onWindowPressed(key),
+        isHighlighted: highlighted,
       ),
     );
+  }
+
+  String? _calculateSmallestUnopenedKey(
+    Map<String, int> indexes,
+    Set<String> opened,
+  ) {
+    if (indexes.length == opened.length) return null;
+
+    return indexes.entries
+        .sorted((lhs, rhs) => lhs.value.compareTo(rhs.value))
+        .firstWhereOrNull((entry) => !opened.contains(entry.key))
+        ?.key;
   }
 }
