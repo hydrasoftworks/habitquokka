@@ -18,6 +18,7 @@ class ThirdStepMobile extends StatelessWidget {
       padding: EdgeInsets.all(Theme.of(context).appSpacing.small),
       child: Column(
         children: [
+          SizedBox(height: Theme.of(context).appSpacing.medium),
           _DescriptionWidget(
             textStyle: Theme.of(context).textTheme.bodyLarge,
           ),

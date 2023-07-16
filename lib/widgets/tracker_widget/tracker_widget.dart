@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:murmur3/murmur3.dart';
 
 import 'package:habitquokka/models/emoji.dart';
@@ -54,9 +55,9 @@ class _TrackerWidgetState extends State<TrackerWidget> {
 
   Future<void> _setupLists() async {
     final seed = await murmur3a(widget.tracker.id);
+    final random = math.Random(seed);
 
     _emojis = List.of(Emoji.all);
-    final random = math.Random(seed);
     _emojis.shuffle(random);
 
     if (widget.tracker.randomizeNumbers) {
@@ -91,6 +92,7 @@ class _TrackerWidgetState extends State<TrackerWidget> {
             indexes: _numbers,
             emojis: _emojis,
             opened: widget.opened,
+            showEmojis: !Breakpoints.small.isActive(context),
           ),
           if (_areAllWindowsOpened)
             Align(

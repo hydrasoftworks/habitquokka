@@ -14,7 +14,7 @@ class Window extends StatefulWidget {
   });
 
   final String text;
-  final AnimatedEmojiData emoji;
+  final AnimatedEmojiData? emoji;
   final bool isOpened;
   final VoidCallback onPressed;
 
@@ -41,6 +41,8 @@ class _WindowState extends State<Window> {
   Widget _buildContent(BuildContext context) {
     if (widget.isOpened) return const SizedBox();
 
+    final emoji = widget.emoji;
+
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -50,15 +52,16 @@ class _WindowState extends State<Window> {
           minFontSize: 10,
           group: Window._autoSizeGroup,
         ),
-        _ImagePlacement(
-          child: AnimatedEmoji(
-            widget.emoji,
-            animate: _isHovered,
-            source: AnimatedEmojiSource.network,
-            onLoaded: (_) => setState(() => _isLoaded = true),
+        if (emoji != null)
+          _ImagePlacement(
+            child: AnimatedEmoji(
+              emoji,
+              animate: _isHovered,
+              source: AnimatedEmojiSource.network,
+              onLoaded: (_) => setState(() => _isLoaded = true),
+            ),
           ),
-        ),
-        if (!_isLoaded)
+        if (emoji != null && !_isLoaded)
           const _ImagePlacement(
             child: Center(
               child: CircularProgressIndicator(),
