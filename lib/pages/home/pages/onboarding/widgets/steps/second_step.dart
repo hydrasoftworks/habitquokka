@@ -7,7 +7,7 @@ import 'package:habitquokka/pages/home/pages/onboarding/widgets/steps/example_tr
 import 'package:habitquokka/theme/theme.dart';
 
 const int _seedColor = 0xFFb3e2a2;
-const Set<String> _opened = {'0-2', '3-3', '0-5', '1-1', '5-0', '0-4', '3-1'};
+const Set<String> _opened = {'0-2', '3-3', '0-5', '1-1', '4-0', '0-4', '3-1'};
 
 class SecondStepMobile extends StatelessWidget {
   const SecondStepMobile({super.key});
