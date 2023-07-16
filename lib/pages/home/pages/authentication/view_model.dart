@@ -38,7 +38,7 @@ class ViewModel extends Vm {
     if (otp == null || otp.isEmpty) {
       return onSignInWithOTP(model.email, redirect);
     } else {
-      return onVerifyOTP(model.email, otp, OtpType.magiclink);
+      return onVerifyOTP(model.email, otp, OtpType.email);
     }
   }
 
@@ -47,7 +47,7 @@ class ViewModel extends Vm {
     if (otp == null || otp.isEmpty) {
       return onSignOnWithOTP(model.username, model.email, redirect);
     } else {
-      return onVerifyOTP(model.email, otp, OtpType.signup);
+      return onVerifyOTP(model.email, otp, OtpType.email);
     }
   }
 }
