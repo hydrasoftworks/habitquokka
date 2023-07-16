@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
+
 import 'package:habitquokka/theme/spacing.dart';
 
 // Source: https://github.com/egortabula/material3_layout/
@@ -128,6 +130,14 @@ class Panel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Breakpoints.small.isActive(context)) {
+      return Container(
+        padding: margin,
+        color: customColor ?? surfaceColor.color(context),
+        child: child,
+      );
+    }
+
     return Padding(
       padding: padding,
       child: Material(
