@@ -26,6 +26,8 @@ class TrackerImage {
   @JsonKey(defaultValue: _defaultDate)
   final DateTime createdAt;
 
+  String get scaledImageUrl => '$imageUrl&w=1620';
+
   Map<String, dynamic> toJson() => _$TrackerImageToJson(this);
 }
 

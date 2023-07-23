@@ -82,7 +82,7 @@ class _TrackerWidgetState extends State<TrackerWidget> {
         fit: StackFit.expand,
         children: [
           CachedNetworkImage(
-            imageUrl: widget.tracker.image.imageUrl,
+            imageUrl: widget.tracker.image.scaledImageUrl,
             fit: BoxFit.cover,
           ),
           Windows(
