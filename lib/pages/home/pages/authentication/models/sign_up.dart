@@ -1,10 +1,10 @@
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-part 'sign_on.gform.dart';
+part 'sign_up.gform.dart';
 
 @ReactiveFormAnnotation()
-class SignOn {
-  const SignOn({
+class SignUp {
+  const SignUp({
     @FormControlAnnotation(
       validators: [RequiredValidator()],
     )

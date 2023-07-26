@@ -1,7 +1,7 @@
 import 'package:habitquokka/redux/redux.dart';
 
-class SignOnWithOTPAction extends Action {
-  SignOnWithOTPAction({
+class SignUpWithOTPAction extends Action {
+  SignUpWithOTPAction({
     required this.username,
     required this.email,
     required this.redirect,

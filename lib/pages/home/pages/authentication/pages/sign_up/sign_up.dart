@@ -4,33 +4,33 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
-import 'package:habitquokka/pages/home/pages/authentication/models/sign_on.dart';
-import 'package:habitquokka/pages/home/pages/authentication/pages/sign_on/widgets/legal_terms_widget.dart';
+import 'package:habitquokka/pages/home/pages/authentication/models/sign_up.dart';
+import 'package:habitquokka/pages/home/pages/authentication/pages/sign_up/widgets/legal_terms_widget.dart';
 import 'package:habitquokka/pages/home/pages/authentication/widgets/switch_page.dart';
 import 'package:habitquokka/theme/theme.dart';
 import 'package:habitquokka/widgets/progress_button.dart';
 
-typedef OnSignOn = Future<bool> Function(SignOn);
+typedef OnSignUp = Future<bool> Function(SignUp);
 
-class SignOnPage extends StatelessWidget {
-  const SignOnPage({
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({
     super.key,
     required this.onSwitchToSignIn,
-    required this.onSignOn,
+    required this.onSignUp,
   });
 
   final VoidCallback onSwitchToSignIn;
-  final OnSignOn onSignOn;
+  final OnSignUp onSignUp;
 
   @override
   Widget build(BuildContext context) {
-    return SignOnFormBuilder(
-      model: const SignOn(),
+    return SignUpFormBuilder(
+      model: const SignUp(),
       builder: (context, formModel, child) {
         return _Form(
           formModel: formModel,
           onSwitchToSignIn: onSwitchToSignIn,
-          onSignOn: onSignOn,
+          onSignUp: onSignUp,
         );
       },
     );
@@ -41,13 +41,13 @@ class _Form extends StatefulWidget {
   const _Form({
     required this.formModel,
     required this.onSwitchToSignIn,
-    required this.onSignOn,
+    required this.onSignUp,
   });
 
-  final SignOnForm formModel;
+  final SignUpForm formModel;
 
   final VoidCallback onSwitchToSignIn;
-  final OnSignOn onSignOn;
+  final OnSignUp onSignUp;
 
   @override
   State<_Form> createState() => _FormState();
@@ -63,7 +63,7 @@ class _FormState extends State<_Form> {
         shrinkWrap: true,
         children: [
           Text(
-            L10n.of(context).authenticationPageSignOnTitle,
+            L10n.of(context).authenticationPageSignUpTitle,
             style: GoogleFonts.lilitaOne(
               textStyle: Theme.of(context).textTheme.headlineMedium,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -71,8 +71,8 @@ class _FormState extends State<_Form> {
           ),
           SizedBox(height: Theme.of(context).appSpacing.small),
           SwitchPage(
-            labelText: L10n.of(context).authenticationPageSignOnSubtitlePart1,
-            buttonText: L10n.of(context).authenticationPageSignOnSubtitlePart2,
+            labelText: L10n.of(context).authenticationPageSignUpSubtitlePart1,
+            buttonText: L10n.of(context).authenticationPageSignUpSubtitlePart2,
             onPressed: widget.onSwitchToSignIn,
           ),
           SizedBox(height: Theme.of(context).appSpacing.large),
@@ -137,7 +137,7 @@ class _FormState extends State<_Form> {
   Future<void> _submitForm() async {
     widget.formModel.form.markAllAsTouched();
     if (!widget.formModel.form.valid) return;
-    final completed = await widget.onSignOn(widget.formModel.model);
+    final completed = await widget.onSignUp(widget.formModel.model);
     if (completed) setState(() => _showOTPField = true);
   }
 }

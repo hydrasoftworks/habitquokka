@@ -1,7 +1,7 @@
 import 'package:habitquokka/pages/home/pages/authentication/connector.dart';
 import 'package:habitquokka/pages/home/pages/authentication/view_model.dart';
 import 'package:habitquokka/redux/account/actions/sign_in_with_otp_action.dart';
-import 'package:habitquokka/redux/account/actions/sign_on_with_otp_action.dart';
+import 'package:habitquokka/redux/account/actions/sign_up_with_otp_action.dart';
 import 'package:habitquokka/redux/account/actions/verify_otp_action.dart';
 import 'package:habitquokka/redux/redux.dart';
 
@@ -12,8 +12,8 @@ class Factory
   @override
   ViewModel fromStore() => ViewModel(
         isAuthenticated: state.accountState.isAuthenticated,
-        onSignOnWithOTP: (username, email, redirect) => dispatchAsync(
-          SignOnWithOTPAction(
+        onSignUpWithOTP: (username, email, redirect) => dispatchAsync(
+          SignUpWithOTPAction(
             username: username,
             email: email,
             redirect: redirect,

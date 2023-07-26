@@ -14,11 +14,11 @@ typedef OnSignIn = Future<bool> Function(SignIn);
 class SignInPage extends StatelessWidget {
   const SignInPage({
     super.key,
-    required this.onSwitchToSignOn,
+    required this.onSwitchToSignUp,
     required this.onSignIn,
   });
 
-  final VoidCallback onSwitchToSignOn;
+  final VoidCallback onSwitchToSignUp;
   final OnSignIn onSignIn;
 
   @override
@@ -28,7 +28,7 @@ class SignInPage extends StatelessWidget {
       builder: (context, formModel, child) {
         return _Form(
           formModel: formModel,
-          onSwitchToSignOn: onSwitchToSignOn,
+          onSwitchToSignUp: onSwitchToSignUp,
           onSignIn: onSignIn,
         );
       },
@@ -39,13 +39,13 @@ class SignInPage extends StatelessWidget {
 class _Form extends StatefulWidget {
   const _Form({
     required this.formModel,
-    required this.onSwitchToSignOn,
+    required this.onSwitchToSignUp,
     required this.onSignIn,
   });
 
   final SignInForm formModel;
 
-  final VoidCallback onSwitchToSignOn;
+  final VoidCallback onSwitchToSignUp;
   final OnSignIn onSignIn;
 
   @override
@@ -72,7 +72,7 @@ class _FormState extends State<_Form> {
           SwitchPage(
             labelText: L10n.of(context).authenticationPageSignInSubtitlePart1,
             buttonText: L10n.of(context).authenticationPageSignInSubtitlePart2,
-            onPressed: widget.onSwitchToSignOn,
+            onPressed: widget.onSwitchToSignUp,
           ),
           SizedBox(height: Theme.of(context).appSpacing.large),
           ReactiveTextField<String>(

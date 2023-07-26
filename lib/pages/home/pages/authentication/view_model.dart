@@ -1,10 +1,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:habitquokka/pages/home/pages/authentication/models/sign_in.dart';
-import 'package:habitquokka/pages/home/pages/authentication/models/sign_on.dart';
+import 'package:habitquokka/pages/home/pages/authentication/models/sign_up.dart';
 import 'package:habitquokka/redux/redux.dart';
 
-typedef OnSignOnWithOTP = Future<bool> Function(
+typedef OnSignUpWithOTP = Future<bool> Function(
   String username,
   String email,
   String redirect,
@@ -22,14 +22,14 @@ typedef OnVerifyOTP = Future<bool> Function(
 class ViewModel extends Vm {
   ViewModel({
     required this.isAuthenticated,
-    required this.onSignOnWithOTP,
+    required this.onSignUpWithOTP,
     required this.onSignInWithOTP,
     required this.onVerifyOTP,
   }) : super(equals: [isAuthenticated]);
 
   final bool isAuthenticated;
 
-  final OnSignOnWithOTP onSignOnWithOTP;
+  final OnSignUpWithOTP onSignUpWithOTP;
   final OnSignInWithOTP onSignInWithOTP;
   final OnVerifyOTP onVerifyOTP;
 
@@ -42,10 +42,10 @@ class ViewModel extends Vm {
     }
   }
 
-  Future<bool> signOn(SignOn model, String redirect) {
+  Future<bool> signUp(SignUp model, String redirect) {
     final otp = model.otp;
     if (otp == null || otp.isEmpty) {
-      return onSignOnWithOTP(model.username, model.email, redirect);
+      return onSignUpWithOTP(model.username, model.email, redirect);
     } else {
       return onVerifyOTP(model.email, otp, OtpType.email);
     }
