@@ -14,7 +14,7 @@ class UnauthenticatedGuard {
         .state
         .accountState
         .isAuthenticated;
-    return isSignedIn ? null : AppRoute.authentication(state.location);
+    return isSignedIn ? null : AppRoute.authentication(state.uri.toString());
   }
 }
 
@@ -28,7 +28,7 @@ class AuthenticatedGuard {
         .accountState
         .isAuthenticated;
     if (isSignedIn) {
-      return state.queryParameters['redirect'] ?? AppRoute.onboarding;
+      return state.uri.queryParameters['redirect'] ?? AppRoute.onboarding;
     }
 
     return null;

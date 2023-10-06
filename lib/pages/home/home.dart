@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
     BuildContext context,
     List<HomeDestination> destinations,
   ) {
-    final path = GoRouterState.of(context).location;
+    final path = GoRouterState.of(context).uri.toString();
     return destinations.lastIndexWhere(
       (destination) {
         // Each destination starts with a /, so we need to handle that case separately.

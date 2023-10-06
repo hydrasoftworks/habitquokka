@@ -19,7 +19,7 @@ class AuthenticationPageConnector extends StatelessWidget {
         if (context == null) return;
         if (previousVm.isAuthenticated != newVm.isAuthenticated &&
             newVm.isAuthenticated) {
-          final queryParameters = GoRouterState.of(context).queryParameters;
+          final queryParameters = GoRouterState.of(context).uri.queryParameters;
           GoRouter.of(context)
               .go(queryParameters['redirect'] ?? AppRoute.onboarding);
         }

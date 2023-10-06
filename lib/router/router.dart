@@ -81,10 +81,10 @@ class AppRouter {
               GoRoute(
                 path: 'new',
                 pageBuilder: (context, state) => DialogPage(
-                  name: state.location,
+                  name: state.uri.toString(),
                   arguments: {
                     ...state.pathParameters,
-                    ...state.queryParameters,
+                    ...state.uri.queryParameters,
                   },
                   builder: (context) => const NewTrackerPageConnector(),
                 ),
@@ -262,10 +262,10 @@ extension _PageBuilder<T> on NoTransitionPage<T> {
   }) {
     return NoTransitionPage<T>(
       key: state.pageKey,
-      name: state.location,
+      name: state.uri.toString(),
       arguments: {
         ...state.pathParameters,
-        ...state.queryParameters,
+        ...state.uri.queryParameters,
       },
       child: child,
     );

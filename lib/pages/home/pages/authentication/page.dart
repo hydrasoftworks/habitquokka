@@ -66,7 +66,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   }
 
   String _getRedirect(BuildContext context) {
-    return GoRouterState.of(context).queryParameters['redirect'] ??
+    return GoRouterState.of(context).uri.queryParameters['redirect'] ??
         AppRoute.onboarding;
   }
 }
