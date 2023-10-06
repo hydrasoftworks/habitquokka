@@ -2,11 +2,11 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 import 'package:habitquokka/models/profile.dart';
 
-part 'sign_up.gform.dart';
+part 'edit_profile.gform.dart';
 
 @ReactiveFormAnnotation()
-class SignUp {
-  const SignUp({
+class EditProfile {
+  const EditProfile({
     @FormControlAnnotation(
       validators: [
         RequiredValidator(),
@@ -14,14 +14,7 @@ class SignUp {
       ],
     )
     this.username = '',
-    @FormControlAnnotation(
-      validators: [RequiredValidator(), EmailValidator()],
-    )
-    this.email = '',
-    @FormControlAnnotation() this.otp,
   });
 
   final String username;
-  final String email;
-  final String? otp;
 }

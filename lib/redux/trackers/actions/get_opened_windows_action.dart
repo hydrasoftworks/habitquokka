@@ -1,3 +1,5 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'package:habitquokka/redux/redux.dart';
 
 class GetOpenedWindowsAction extends Action {
@@ -8,7 +10,7 @@ class GetOpenedWindowsAction extends Action {
   Future<AppState?> reduce() async {
     final result = await env.supabase
         .from('windows')
-        .select<Map<String, dynamic>?>()
+        .select<PostgrestMap?>()
         .eq('tracker_id', trackerId)
         .maybeSingle();
 
@@ -17,8 +19,10 @@ class GetOpenedWindowsAction extends Action {
 
     return state.copyWith(
       trackersState: trackersState.copyWith(
-        openedForTracker: Map.of(trackersState.openedForTracker)
-          ..[trackerId] = Set<String>.from(opened),
+        openedForTracker: {
+          ...trackersState.openedForTracker,
+          trackerId: Set<String>.from(opened),
+        },
       ),
     );
   }

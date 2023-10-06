@@ -14,13 +14,15 @@ class InterestedInCommunityFeatureAction extends Action {
 
     env.supabase.auth.updateUser(
       UserAttributes(
-        data: Map.of(user.userMetadata ?? {})
-          ..[AccountState.interestedInCommunityFeatureKey] = isInterested,
+        data: {
+          ...user.userMetadata ?? {},
+          AccountState.interestedInCommunityFeatureKey: isInterested,
+        },
       ),
     );
 
     return state.copyWith(
-      accountState: state.accountState.copyWith(
+      accountState: accountState.copyWith(
         interestedInCommunityFeature: isInterested,
       ),
     );

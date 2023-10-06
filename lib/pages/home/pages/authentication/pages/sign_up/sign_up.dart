@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
+import 'package:habitquokka/models/profile.dart';
 import 'package:habitquokka/pages/home/pages/authentication/models/sign_up.dart';
 import 'package:habitquokka/pages/home/pages/authentication/pages/sign_up/widgets/legal_terms_widget.dart';
 import 'package:habitquokka/pages/home/pages/authentication/widgets/switch_page.dart';
@@ -82,12 +83,16 @@ class _FormState extends State<_Form> {
             textInputAction: TextInputAction.continueAction,
             validationMessages: {
               ValidationMessage.required: (_) =>
-                  L10n.of(context).authenticationPageUsernameRequiredValidation,
+                  L10n.of(context).profileFormUsernameRequiredValidation,
+              ValidationMessage.maxLength: (data) =>
+                  L10n.of(context).profileFormUsernameMaxLengthValidation(
+                    Profile.maxUsernameLength,
+                  ),
             },
             decoration: InputDecoration(
-              labelText: L10n.of(context).authenticationPageUsernameLabel,
-              helperText: L10n.of(context).authenticationPageUsernameTooltip,
-              hintText: L10n.of(context).authenticationPageUsernameHint,
+              labelText: L10n.of(context).profileFormUsernameLabel,
+              helperText: L10n.of(context).profileFormUsernameTooltip,
+              hintText: L10n.of(context).profileFormUsernameHint,
             ),
           ),
           SizedBox(height: Theme.of(context).appSpacing.medium),
