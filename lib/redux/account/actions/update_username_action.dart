@@ -22,7 +22,7 @@ class UpdateUsernameAction extends Action {
       ),
     );
 
-    await dispatchAsync(GetProfileAction());
+    await dispatchAndWait(GetProfileAction());
 
     return null;
   }

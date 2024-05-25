@@ -52,7 +52,7 @@ enum SurfaceColor {
           3,
         );
       case SurfaceColor.surfaceContainerHighest:
-        return Theme.of(context).colorScheme.surfaceVariant;
+        return Theme.of(context).colorScheme.surfaceContainerHighest;
     }
   }
 }

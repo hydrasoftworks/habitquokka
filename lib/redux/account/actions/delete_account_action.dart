@@ -5,7 +5,7 @@ class DeleteAccountAction extends Action {
   @override
   Future<AppState?> reduce() async {
     await env.supabase.rpc('delete_account');
-    dispatchAsync(SignOutAction());
+    dispatchAndWait(SignOutAction());
     return null;
   }
 }

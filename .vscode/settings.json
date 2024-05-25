@@ -1,17 +1,17 @@
 {
-  "dart.flutterSdkPath": ".fvm/flutter_sdk",
-  // Remove .fvm files from search
+  "dart.flutterSdkPath": ".fvm/versions/3.22.0",
   "search.exclude": {
     "**/.fvm": true,
     "**/.dart_tool": true,
     "**/build": true,
     "**/ios/.gems": true
   },
-  // Remove from file watching
   "files.watcherExclude": {
     "**/.fvm": true
   },
-  "deno.enablePaths": ["./supabase/functions"],
+  "deno.enablePaths": [
+    "./supabase/functions"
+  ],
   "cSpell.words": [
     "dotenv",
     "habitquokka",

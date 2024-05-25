@@ -1,5 +1,3 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 import 'package:habitquokka/models/profile.dart';
 import 'package:habitquokka/redux/redux.dart';
 
@@ -11,7 +9,7 @@ class GetProfileAction extends Action {
 
     final profile = await env.supabase
         .from('profiles')
-        .select<PostgrestMap>()
+        .select()
         .eq('id', user.id)
         .single()
         .withConverter(Profile.fromJson);

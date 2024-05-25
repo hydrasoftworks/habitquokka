@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:animated_emoji/emojis.dart';
+import 'package:animated_emoji/animated_emoji.dart';
 import 'package:collection/collection.dart';
 
 import 'package:habitquokka/widgets/tracker_widget/widgets/window.dart';

@@ -29,9 +29,8 @@ class SignInWithOTPAction extends Action {
     return switch (error) {
       AuthException(message: final message, statusCode: '400') => UserException(
           message,
-          code: const AppExceptionCode(Code.signInActionUserNotFound),
-          cause: error,
-        ),
+          code: AppExceptionCode.signInActionUserNotFound,
+        ).addCause(error),
       _ => super.wrapError(error, stackTrace)
     };
   }

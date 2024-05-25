@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/models/emoji.dart';
+import 'package:habitquokka/models/exception_code.dart';
 import 'package:habitquokka/pages/empty/empty.dart';
 import 'package:habitquokka/pages/home/home.dart';
 import 'package:habitquokka/pages/home/models/home_destination.dart';
@@ -46,6 +47,10 @@ class AppRouter {
           child: UserExceptionDialog<AppState>(
             useLocalContext: true,
             child: HomePage(child: child),
+            onShowUserExceptionDialog: (context, _, __) =>
+                AppExceptionCode.setTranslations(
+              Localizations.localeOf(context),
+            ),
           ),
         ),
         routes: <RouteBase>[

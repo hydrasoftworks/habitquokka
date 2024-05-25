@@ -12,18 +12,18 @@ class Factory
   @override
   ViewModel fromStore() => ViewModel(
         isAuthenticated: state.accountState.isAuthenticated,
-        onSignUpWithOTP: (username, email, redirect) => dispatchAsync(
+        onSignUpWithOTP: (username, email, redirect) => dispatchAndWait(
           SignUpWithOTPAction(
             username: username,
             email: email,
             redirect: redirect,
           ),
-        ).then((status) => status.isFinished),
-        onSignInWithOTP: (email, redirect) => dispatchAsync(
+        ).then((status) => status.isCompletedOk),
+        onSignInWithOTP: (email, redirect) => dispatchAndWait(
           SignInWithOTPAction(email: email, redirect: redirect),
-        ).then((status) => status.isFinished),
-        onVerifyOTP: (email, otp, type) => dispatchAsync(
+        ).then((status) => status.isCompletedOk),
+        onVerifyOTP: (email, otp, type) => dispatchAndWait(
           VerifyOTPAction(email: email, otp: otp, type: type),
-        ).then((status) => status.isFinished),
+        ).then((status) => status.isCompletedOk),
       );
 }

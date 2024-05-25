@@ -22,7 +22,7 @@ class CreateTrackerAction extends Action {
     if (userId == null) {
       throw const UserException(
         'User not logged in.',
-        code: AppExceptionCode(Code.createTrackerActionUserNotLoggedIn),
+        code: AppExceptionCode.createTrackerActionUserNotLoggedIn,
       );
     }
 

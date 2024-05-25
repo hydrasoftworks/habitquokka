@@ -19,7 +19,7 @@ class RegenerateTrackerImageAction extends Action {
     if (DateUtils.isSameDay(tracker.image.createdAt, DateTime.now())) {
       throw const UserException(
         'Tracker image can be regenerated only once per day.',
-        code: AppExceptionCode(Code.regenerateImageAPIUsageLimit),
+        code: AppExceptionCode.regenerateImageAPIUsageLimit,
       );
     }
 

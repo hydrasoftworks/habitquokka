@@ -1,5 +1,3 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 import 'package:habitquokka/redux/redux.dart';
 
 class GetOpenedWindowsAction extends Action {
@@ -10,7 +8,7 @@ class GetOpenedWindowsAction extends Action {
   Future<AppState?> reduce() async {
     final result = await env.supabase
         .from('windows')
-        .select<PostgrestMap?>()
+        .select()
         .eq('tracker_id', trackerId)
         .maybeSingle();
 

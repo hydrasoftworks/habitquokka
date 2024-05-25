@@ -3,33 +3,27 @@ import 'dart:ui';
 import 'package:habitquokka/l10n/l10n.dart';
 import 'package:habitquokka/redux/redux.dart';
 
-enum Code {
-  signInActionUserNotFound,
-  createTrackerActionUserNotLoggedIn,
-  regenerateImageAPIUsageLimit,
-}
+abstract class AppExceptionCode {
+  static Map<int, String>? _messages;
 
-class AppExceptionCode extends ExceptionCode {
-  const AppExceptionCode(this.code);
+  static const int signInActionUserNotFound = 1;
+  static const int createTrackerActionUserNotLoggedIn = 2;
+  static const int regenerateImageAPIUsageLimit = 3;
 
-  final Code code;
-
-  static Map<Code, String>? _messages;
-
-  @override
-  String? asText([Locale? locale]) {
-    if (locale == null) return null;
+  static void setTranslations([Locale? locale]) {
+    if (locale == null) return;
+    if (_messages?.isNotEmpty ?? false) return;
     _messages ??= _generateMessages(locale);
-    return _messages?[code];
+    UserException.translateCode = (code) => _messages?[code] ?? '';
   }
 
-  Map<Code, String> _generateMessages(Locale locale) {
+  static Map<int, String> _generateMessages(Locale locale) {
     final l10n = lookupL10n(locale);
     return {
-      Code.createTrackerActionUserNotLoggedIn:
+      createTrackerActionUserNotLoggedIn:
           l10n.userExceptionCreateTrackerActionUserNotLoggedIn,
-      Code.signInActionUserNotFound: l10n.userExceptionSignInActionUserNotFound,
-      Code.regenerateImageAPIUsageLimit:
+      signInActionUserNotFound: l10n.userExceptionSignInActionUserNotFound,
+      regenerateImageAPIUsageLimit:
           l10n.userExceptionRegenerateImageAPIUsageLimit,
     };
   }

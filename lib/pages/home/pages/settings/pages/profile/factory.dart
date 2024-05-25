@@ -10,9 +10,9 @@ class Factory extends VmFactory<AppState, ProfilePageConnector, ViewModel> {
   @override
   ViewModel fromStore() => ViewModel(
         profile: state.accountState.profile,
-        onUpdateProfile: (username) => dispatchAsync(
+        onUpdateProfile: (username) => dispatchAndWait(
           UpdateUsernameAction(username.trim()),
         ),
-        onDeleteAccount: () => dispatchAsync(DeleteAccountAction()),
+        onDeleteAccount: () => dispatchAndWait(DeleteAccountAction()),
       );
 }

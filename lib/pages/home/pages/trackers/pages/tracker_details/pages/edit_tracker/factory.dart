@@ -18,7 +18,7 @@ class Factory extends VmFactory<AppState, EditTrackerPageConnector, ViewModel> {
   ViewModel fromStore() => ViewModel(
         tracker: tracker,
         onEditTracker: (name, shortName, {required randomizeNumbers}) =>
-            dispatchAsync(
+            dispatchAndWait(
           EditTrackerAction(
             tracker: tracker,
             name: name,
@@ -26,10 +26,10 @@ class Factory extends VmFactory<AppState, EditTrackerPageConnector, ViewModel> {
             randomizeNumbers: randomizeNumbers,
           ),
         ),
-        onRegenerateImage: () => dispatchAsync(
+        onRegenerateImage: () => dispatchAndWait(
           RegenerateTrackerImageAction(tracker: tracker),
         ),
-        onDeleteTracker: () => dispatchAsync(
+        onDeleteTracker: () => dispatchAndWait(
           DeleteTrackerAction(tracker: tracker),
         ),
       );
